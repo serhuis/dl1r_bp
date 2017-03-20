@@ -1,0 +1,315 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V5.50.1.50465/W32 for MSP430       10/Aug/2015  18:39:19 #
+# Copyright 1996-2012 IAR Systems AB.                                         #
+#                                                                             #
+#    __rt_version  =  3                                                       #
+#    __double_size =  32                                                      #
+#    __reg_r4      =  regvar                                                  #
+#    __reg_r5      =  free                                                    #
+#    __pic         =  no                                                      #
+#    __core        =  430                                                     #
+#    Source file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\cc112x_rf.c  #
+#    Command line  =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\cc112x_rf.c  #
+#                     -lcN D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Deb #
+#                     ug\List\ -o D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\ #
+#                     IAR\Debug\Obj\ --debug -D__MSP430G2553__ -e             #
+#                     --double=32 --regvar_r4 --dlib_config "C:\Program       #
+#                     Files (x86)\IAR Systems\Embedded Workbench              #
+#                     6.4\430\LIB\DLIB\dl430fn.h" -I ..\ -I .\ -Oh            #
+#    List file     =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Debug\Li #
+#                     st\cc112x_rf.lst                                        #
+#    Object file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Debug\Ob #
+#                     j\cc112x_rf.r43                                         #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\cc112x_rf.c
+      1          
+      2          /*******************************************************************************
+      3          * INCLUDES
+      4          */
+      5          #include <string.h>
+      6          #include "msp430.h"
+      7          #include "hardware.h"
+      8          #include "main.h"
+      9          #include "flash.h"
+     10          #include "delay.h"
+     11          #include "flash.h"
+     12          #include "type.h"
+     13          #include "rf.h"
+     14          
+     15          
+     16          
+     17          /*******************************************************************************
+     18          * LOCAL VARIABLES
+     19          */
+     20          
+     21          u16 packetCounter = 0;
+     22          u8  packetSemaphore;
+     23          u8  packetSemaphore_Sniff;
+     24          //uint8  packetSemaphore_RX_overflow;
+     25          
+     26          u8 txBuffer[PKTLEN + 1] = {0};	// packet buffer of size PKTLEN + 1
+     27          u8 rxBuffer[PKTLEN + 3] = {0};	// packet buffer of size PKTLEN + 1 + 1 + 1(LQI + rssi);
+     28          
+     29          u8 data_last = 0;				// Last sent data
+     30          
+     31          /*******************************************************************************
+     32          * STATIC FUNCTIONS
+     33          */
+     34          
+     35          static void createPacket(u8 buf[], u8 data);
+     36          
+     37          
+     38          
+     39          
+     40          extern __regvar __no_init tFlags 	f 	 @ __R4;
+     41          
+     42          
+     43          
+     44          void RF_Init(void) {
+     45          
+     46          }
+     47          
+     48          
+     49          //--------------------------------------------------------------------------------
+     50          // Function		: void CC_IRQ_Hundler(void)
+     51          // Parameters	: None
+     52          // Return		: None
+     53          // Description	: 
+     54          //--------------------------------------------------------------------------------
+     55          static void RF_ResetToggle(void) {
+     56          	//CC_RESET_N_PORT_OUT &= ~CC_RESET_N_PIN; // keep reset pin low 
+     57          	DelayMs(5);	//DelayMs(10);
+     58          	//CC_RESET_N_PORT_OUT |= CC_RESET_N_PIN; 	// Release reset 
+     59          }
+     60          	
+     61          
+     62          
+     63          //--------------------------------------------------------------------------------
+     64          // Function		: void CC_IRQ_Hundler(void)
+     65          // Parameters	: None
+     66          // Return		: None
+     67          // Description	: 
+     68          //--------------------------------------------------------------------------------
+     69          void RF_TXMode(u8 mode) {
+     70          
+     71          	SNIFF_IRQ_INT_Disable();			// DeInit RX Sniff interrupts from CC112x 
+     72          	CC_IRQ_INT_Disable();			// DeInit TX complete interrupts from CC112x 
+     73          	
+     74          	//RF_ResetToggle();
+     75          	
+     76          	
+     77          	//CC_IRQ_INT_Init();				// Init interrupts from CC112x 
+     78          	CC_IRQ_INT_Enable();				// Init interrupts from CC112x 
+     79          	
+     80          	data_last = 0;						// !!!	For reanicialization transmite mode
+     81          	
+     82          	_EINT();
+     83          }
+     84          
+     85          
+     86          //--------------------------------------------------------------------------------
+     87          // Function		: void CC_IRQ_Hundler(void)
+     88          // Parameters	: None
+     89          // Return		: None
+     90          // Description	: 
+     91          //--------------------------------------------------------------------------------
+     92          void RF_SendPacket(u8 data) {
+     93          	u8			p1, p2;
+     94          	
+     95          	// Update packet counter
+     96          	packetCounter++;
+     97          	
+     98          	if (data != data_last) {
+     99          	
+    100          		// Create a random packet with PKTLEN + 2 byte packet counter + n x random bytes
+    101          		createPacket(txBuffer, data);
+    102          		
+    103          		p1 = 0;
+    104          		p2 = 0;
+    105          	
+    106          	}
+    107          		
+    108          	// Clear semaphore flag
+    109          	packetSemaphore = ISR_IDLE;
+    110          
+    111          }
+    112          
+    113          
+    114          
+    115          
+    116          //--------------------------------------------------------------------------------
+    117          // Function		: void RF_SniffMode(uint8 need_init, uint8 mode)
+    118          // Parameters	: need_init = 1 - need of initialization in mode = mode, need_init = 0 - none
+    119          // Return		: None
+    120          // Description	: 
+    121          //--------------------------------------------------------------------------------
+    122          void RF_SniffMode(u8 need_init, u8 mode) {
+    123          
+    124          	CC_IRQ_INT_Disable();			// 
+    125          	SNIFF_IRQ_INT_Disable();		
+    126          	
+    127          	if (need_init) {
+    128          		//
+    129          	}
+    130          		
+    131          	SNIFF_IRQ_INT_Enable();		
+    132          	
+    133          	_EINT();
+    134          }
+    135          
+    136          
+    137          
+    138          //--------------------------------------------------------------------------------
+    139          // Function		: void CC_IRQ_Hundler(void)
+    140          // Parameters	: None
+    141          // Return		: None
+    142          // Description	: 
+    143          //--------------------------------------------------------------------------------
+    144          void RF_IdleMode(void) {
+    145          
+    146          	//_DINT();
+    147          	
+    148          	SNIFF_IRQ_INT_Disable();
+    149          	
+    150          	//_EINT();
+    151          
+    152          }
+    153          
+    154          
+    155          //--------------------------------------------------------------------------------
+    156          // Function		: void CC_IRQ_Hundler(void)
+    157          // Parameters	: None
+    158          // Return		: None
+    159          // Description	: 
+    160          //--------------------------------------------------------------------------------
+    161          void RF_PowerDownMode(void) {
+    162          	
+    163          	//_DINT();
+    164          	
+    165          	CC_IRQ_INT_Disable();			// 
+    166          	SNIFF_IRQ_INT_Disable();		
+    167          	
+    168          	//_EINT();
+    169          
+    170          }
+    171          
+    172          
+    173          //--------------------------------------------------------------------------------
+    174          // Function		: void CC_IRQ_Hundler(void)
+    175          // Parameters	: None
+    176          // Return		: None
+    177          // Description	: 
+    178          //--------------------------------------------------------------------------------
+    179          u8 RF_RX_Handler(void) {
+    180              u8 rxBytes;
+    181          	u8 subch;							//subchannel
+    182          	u8 ret = 0;
+    183          
+    184          	//!!!_DINT(); 
+    185          	
+    186              // Clear semaphore flag
+    187              packetSemaphore_Sniff = ISR_IDLE;
+    188          
+    189          	// Read number of bytes in RX FIFO
+    190          	//cc112xSpiReadReg(CC112X_NUM_RXBYTES, &rxBytes, 1);
+    191          	
+    192          	// Check that we have bytes in FIFO
+    193          	if(rxBytes != 0) {
+    194          		
+    195          	}
+    196          	//
+    197          
+    198          	return ret;
+    199          }
+    200          
+    201          
+    202          
+    203          
+    204          /*******************************************************************************
+    205          *   @fn         createPacket
+    206          *
+    207          *   @brief      This function is called before a packet is transmitted. It fills
+    208          *               the txBuffer with a packet consisting of a length byte, two
+    209          *               bytes packet counter and n random bytes.
+    210          *
+    211          *               The packet format is as follows:
+    212          *               |--------------------------------------------------------------|
+    213          *               |           |           |           |         |       |        |
+    214          *               | pktLength | pktCount1 | pktCount0 | rndData |.......| rndData|
+    215          *               |           |           |           |         |       |        |
+    216          *               |--------------------------------------------------------------|
+    217          *                txBuffer[0] txBuffer[1] txBuffer[2]            txBuffer[PKTLEN]
+    218          *
+    219          *   @param       Pointer to start of txBuffer
+    220          *
+    221          *   @return      none
+    222          */
+    223          static void createPacket(u8 buf[], u8 data) {
+    224          	u8	spec = 0;							//subchannel
+    225          	
+    226          	spec = (CONFIG->rf_channel / 3) + 1;
+    227          
+    228              buf[0] = PKTLEN;                      // Length byte
+    229          	buf[1] = spec;    		          	  // Spec byte 0x50 + subchannel
+    230          	memcpy((void*)&buf[2],(void*)&CONFIG->dev_type, 4);
+    231          	buf[6] = data;                       // Data byte
+    232          	
+    233          }
+    234          
+    235          
+    236          
+
+   Maximum stack usage in bytes:
+
+   CSTACK Function
+   ------ --------
+       2  RF_IdleMode
+            2 -> SNIFF_IRQ_INT_Disable
+       2  RF_Init
+       2  RF_PowerDownMode
+            2 -> CC_IRQ_INT_Disable
+            2 -> SNIFF_IRQ_INT_Disable
+       2  RF_RX_Handler
+       4  RF_SendPacket
+            4 -> memcpy
+       2  RF_SniffMode
+            2 -> CC_IRQ_INT_Disable
+            2 -> SNIFF_IRQ_INT_Disable
+            2 -> SNIFF_IRQ_INT_Enable
+       2  RF_TXMode
+            2 -> CC_IRQ_INT_Disable
+            2 -> CC_IRQ_INT_Enable
+            2 -> SNIFF_IRQ_INT_Disable
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  RF_IdleMode
+       2  RF_Init
+       8  RF_PowerDownMode
+       8  RF_RX_Handler
+      64  RF_SendPacket
+      16  RF_SniffMode
+      20  RF_TXMode
+       1  data_last
+       2  packetCounter
+       1  packetSemaphore
+       1  packetSemaphore_Sniff
+       9  rxBuffer
+       7  txBuffer
+
+ 
+ 122 bytes in segment CODE
+  21 bytes in segment DATA16_Z
+ 
+ 122 bytes of CODE memory
+  21 bytes of DATA memory
+
+Errors: none
+Warnings: 14

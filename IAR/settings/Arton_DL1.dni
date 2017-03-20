@@ -1,0 +1,123 @@
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[State Storage]
+Control Register=0
+[Sequencer]
+Control Register=0
+NextState0=0
+NextState1=0
+[Action Register]
+Break=0
+State Storage=0
+[DebugChecksum]
+Checksum=-400515040
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[DataLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+[Breakpoints2]
+Bp0=_ 1 "STD_CODE2" "{$PROJ_DIR$\..\main.c}.896.3" 0 0 1 "" 0 ""
+Bp1=_ 1 "STD_CODE2" "{$PROJ_DIR$\..\main.c}.912.4" 0 0 1 "" 0 ""
+Count=2
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[Trace1]
+Enabled=1
+ShowSource=1
+[array_types]
+Fmt0=s16 [95]	3	0
+Fmt1=u16 [50]	3	0
+Fmt2=u8 [5]	3	0
+Fmt3=u8 [7]	3	0
+Fmt4=u8 [8]	3	0
+[watch_formats]
+Fmt0={W}0:R4	1	0
+Fmt1={W}0:T	3	0
+Fmt2={W}0:array_hi	3	2
+Fmt3={W}0:i_hi	3	0
+Fmt4={W}0:i_lo	3	0
+Fmt5={W}0:i_max	3	0
+Fmt6={W}0:i_min	3	0
+Fmt7={W}0:led_r	4	0
+Fmt8={W}0:led_sh	4	0
+Fmt9={W}0:led_y	4	0
+Fmt10={W}0:signal_array	4	3
+Fmt11={W}0:strob_pulse_period	3	0
+Fmt12={W}0:strob_pulse_period_tick	3	0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=0
+Graph=0
+Symbiont=0
+Exclusions=
+[Breakpoints]
+Count=0
+[FET]
+Clock mode=38
+Extended Clock mode=65535
+Secure Password=
+Extended Clock Control Enable=1
+Advanced Extended Clock Control=0
+Emulation mode=0
+Free running=0
+Shutting Down=3
+[Memory Dump]
+Start address=
+Lenghth=
+Address info=0
+Format=0
+Dump registers=0
+PC=0
+SP=0
+SR=0
+all registers=0
+File name=
+[EEM State Storage]
+Buffer=BAAAAAAADAAAAAAAAAAAAAAA
+[EEM Sequencer]
+Buffer=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[EEM Cycle Counter 0]
+Counter0=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[EEM Cycle Counter 1]
+Counter1=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[Aliases]
+A0=_ "d:\__COMMON\_Project\Arton-DL1\PRG\Arton-DL1\main.c" "D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c"
+Count=1
+SuppressDialog=0

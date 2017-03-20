@@ -1,0 +1,404 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V5.50.1.50465/W32 for MSP430       06/Apr/2016  16:19:25 #
+# Copyright 1996-2012 IAR Systems AB.                                         #
+#                                                                             #
+#    __rt_version  =  3                                                       #
+#    __double_size =  32                                                      #
+#    __reg_r4      =  regvar                                                  #
+#    __reg_r5      =  free                                                    #
+#    __pic         =  no                                                      #
+#    __core        =  430                                                     #
+#    Source file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\soft_uart.c  #
+#    Command line  =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\soft_uart.c  #
+#                     -lcN D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Deb #
+#                     ug\List\ -o D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\ #
+#                     IAR\Debug\Obj\ --debug -D__MSP430G2553__ -e             #
+#                     --double=32 --regvar_r4 --dlib_config "C:\Program       #
+#                     Files (x86)\IAR Systems\Embedded Workbench              #
+#                     6.4\430\LIB\DLIB\dl430fn.h" -I ..\ -I .\ -Oh            #
+#    List file     =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Debug\Li #
+#                     st\soft_uart.lst                                        #
+#    Object file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Debug\Ob #
+#                     j\soft_uart.r43                                         #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\soft_uart.c
+      1          /**********************************************************************************
+      2           *
+      3           *      Soft UART routines
+      4           *
+      5           **********************************************************************************
+      6           * FileName:        soft_uart.c
+      7           * Version:			1.00
+      8           *
+      9           * Processor:       MSP430G2xxx
+     10           * Complier:        IAR Workbench for MSP430 v4.50 or higher
+     11           *                  
+     12           * Company:         ARTON
+     13           *
+     14           *
+     15           * Author               Date      	Version	  		Comment
+     16           *-------------------------------------------------------------------------------
+     17           * Oleg Semeniuk	 27.11.2013    	1.00		Release for v1.00
+     18           *
+     19          
+     20           *********************************************************************************/
+     21          
+     22          
+     23          /*********************************************************************************/
+     24          /*                                 INCLUDES                                      */
+     25          /*********************************************************************************/
+     26          
+     27          #include <stdio.h>                    /* standard I/O .h-file                */
+     28          #include <string.h>                   /* string and memory functions         */
+     29          
+     30          #include  "hardware.h"
+     31          #include  "main.h"
+     32          #include  "flash.h"
+     33          #include  "type.h"
+     34          #include  "delay.h"
+     35          #include  "soft_uart.h"
+     36          
+     37          /*********************************************************************************/
+     38          /*                                 VARIABLES                                     */
+     39          /*********************************************************************************/
+     40          	 
+     41          extern __regvar __no_init tFlags 	f 	 @ __R4; 
+     42          
+     43          u8		uart_timer;						// Timer for Soft UART routine
+     44          u8		uart_rx_buf[UART_BUF_LEN];		// Receiving buffer for Soft UART routine
+     45          u8		uart_rx_ind = 0;				// Current cell index of receiving buffer
+     46          
+     47          
+     48          // The table of packets lengths
+     49          // Index in table = packet qualifier, value = packet length
+     50          //									Q_COMMAND 	Q_GET_MEM 	Q_SET_MEM_WORD 	 Q_SET_MEM_ALL  		Q_GET_PARAM
+     51          
+     52          const 	u8 packet_len_table[] = 
+     53          // 	Q_COMMAND  Q_GET_MEM    Q_SET_MEM_WORD    Q_SET_MEM_ALL  	Q_GET_PARAM  Q_GET_GRAPH  Q_SEND_GRAPH   
+     54          {0,   	2, 			3, 			    4, 	    2+PROPERTIES_LEN, 			1,        1,          2  };
+     55          
+     56          /*
+     57          // The table of packets lengths
+     58          // Index in table = packet qualifier, value = packet length
+     59          //									Q_COMMAND 	Q_GET_MEM 	Q_SET_MEM_WORD 	 Q_SET_MEM_ALL  		Q_GET_PARAM
+     60          const 	u8 packet_len_table[] = {0,   	2, 			3, 			  4, 		2+PROPERTIES_LEN, 			1};
+     61          */
+     62          
+     63          
+     64          /*********************************************************************************/
+     65          /*                                FUNCTIONS                                      */
+     66          /*********************************************************************************/
+     67          
+     68          //-------------------------------------------------------------------------------------------------
+     69          // Function		:  void SoftUART_Init (void)
+     70          // Parameters	:  None
+     71          // Return		:  None
+     72          // Description	:  Инициализация приемопередатчика на 9600 bps 
+     73          //-------------------------------------------------------------------------------------------------
+     74          void SoftUART_Init(void) {
+     75          	//
+     76          	INTER_REN |= INTER_BIT; 		// PULL enable
+     77          	INTER_OUT |= INTER_BIT;			// PULLUP Resistor 
+     78          	
+     79          	INTER_DIR &= ~(INTER_BIT);
+     80          	INTER_IES |= INTER_BIT;  		// прерывание по переходу из 1 в 0, 
+     81              
+     82          	INTER_IFG &= ~INTER_BIT; 		// Для предотвращения немедленного срабатывания прерывания,
+     83                       						// обнуляем его флаг для P1.3 до разрешения прерываний
+     84          	INTER_IE |= INTER_BIT;   		// Разрешаем прерывания для P1.3
+     85          
+     86          }
+     87          
+     88          
+     89          //-------------------------------------------------------------------------------------------------
+     90          // Function		:  void SoftUART_TxMode_ON (void)
+     91          // Parameters	:  None 
+     92          // Return		:  None 
+     93          // Description	:  Перевод Soft UART в режим передачи
+     94          //-------------------------------------------------------------------------------------------------
+     95          void SoftUART_TxMode_ON(void) {
+     96          
+     97          	_BIC_SR(GIE);    			// Disable interrupts
+     98          	DelayUs_8MHz(200);
+     99          	INTER_SET();				// Устанавливаем 1 для UART
+    100          	INTER_REN &= ~INTER_BIT; 	// PULL disable
+    101          	INTER_DIR |= INTER_BIT;		// Готовим UART к работе
+    102          	DelayUs_8MHz(100);
+    103          	
+    104          }
+    105          
+    106          
+    107          
+    108          //-------------------------------------------------------------------------------------------------
+    109          // Function		:  void SoftUART_TxMode_OFF (void) 
+    110          // Parameters	:  None 
+    111          // Return		:  None  
+    112          // Description	:  Выход Soft UART из режима передачи
+    113          //-------------------------------------------------------------------------------------------------
+    114          void SoftUART_TxMode_OFF(void) {
+    115          	
+    116          	INTER_REN |= INTER_BIT; 	// PULL enable
+    117          	INTER_DIR &= ~INTER_BIT;	// Готовим UART к работе на прием
+    118          	
+    119          	_BIS_SR(GIE);    			// Enable interrupts
+    120          }
+    121          
+    122          
+    123          
+    124          //-------------------------------------------------------------------------------------------------
+    125          // Function		:  void SoftUART_SendByte(u8 data) 
+    126          // Parameters	:  data - byte for transmite 
+    127          // Return		:  None   
+    128          // Description	:  Передача байта через Soft UART
+    129          //-------------------------------------------------------------------------------------------------
+    130          void SoftUART_SendByte(u8 data) {
+    131          	u8  sh = 0x01; 
+    132          
+    133          	INTER_CLR();
+    134          	DelayUs_8MHz(UART_TICK_US);
+    135          	while (sh) {
+    136          		if (data & sh) {
+    137          			INTER_SET();
+    138          		}else{
+    139          			INTER_CLR();
+    140          		}
+    141          		DelayUs_8MHz(UART_TICK_US);
+    142          		sh <<= 1;
+    143          	}
+    144          	INTER_SET();
+    145          	DelayUs_8MHz(UART_TICK_US * 2);
+    146          	//
+    147          	fTimer50msOn = 0;		// Reset WDT timer flag
+    148          }
+    149          	
+    150          
+    151          
+    152          //-------------------------------------------------------------------------------------------------
+    153          // Function		:  void SoftUART_SetReceiveByte(void)
+    154          // Parameters	:  None
+    155          // Return		:  None
+    156          // Description	:  Установка режима приема Soft UARt
+    157          //-------------------------------------------------------------------------------------------------
+    158          void SoftUART_SetReceiveByte(void) {
+    159          	
+    160          	INTER_IE &= ~INTER_BIT;   		// Disable Port Interrupt
+    161          	
+    162          	TA0R = 0;
+    163          	// Start timer 8MHz
+    164          	TACTL 	= TASSEL_2 + MC_1;          // SMCLK, up mode
+    165          	//			
+    166          	CCR0 	= 104 * 8 - 1;            // Period 104 us
+    167          	CCTL1 	= 0; 			          // CCR1 reset/set disable
+    168          
+    169          	fTimerA_Repeat = 1;
+    170          	
+    171          	TACCTL0 = CCIE;					  // Разрешаем прерывание таймера по достижению значения TACCCR0.
+    172          
+    173          }
+    174          	
+    175          
+    176          
+    177          //-------------------------------------------------------------------------------------------------
+    178          // Function		: void SoftUART_ResetReceiveByte(void)
+    179          // Parameters	: None
+    180          // Return		: None
+    181          // Description	: Выход из режима приема Soft UARt
+    182          //-------------------------------------------------------------------------------------------------
+    183          void SoftUART_ResetReceiveByte(void) {
+    184          	//
+    185          	TACCTL0 = 0;					// Disable прерывание таймера по достижению значения TACCCR0.
+    186          	TACTL = 0;     
+    187          	//
+    188          	INTER_IFG &= ~INTER_BIT; 		// Для предотвращения немедленного срабатывания прерывания,
+    189                       						// обнуляем его флаг до разрешения прерываний
+    190          	INTER_IE |= INTER_BIT;   		// Enable Port Interrupt
+    191          	
+    192          	fTimerA_Repeat = 0;
+    193          }
+    194          
+    195          
+    196          
+    197          //-------------------------------------------------------------------------------------------------
+    198          // Function		: void SoftUART_TxString(u8 * data_ptr, u8 len)
+    199          // Parameters	: data_ptr - pointer to data for transmitting, len - trnasmitting length (in bytes)
+    200          // Return		: None
+    201          // Description	: Передача буфера с данными с указанной длинной через Soft UART
+    202          //-------------------------------------------------------------------------------------------------
+    203          void SoftUART_TxString(u8 * data_ptr, u8 len) {
+    204          	
+    205          	SoftUART_TxMode_ON();
+    206          	//
+    207          	while (len--) {
+    208          		SoftUART_SendByte(*data_ptr++);
+    209          	}
+    210          	//
+    211          	SoftUART_TxMode_OFF();
+    212          }
+    213          
+    214          //-------------------------------------------------------------------------------------------------
+    215          // Function		: void SoftUART_TxString(u8 * data_ptr, u8 len)
+    216          // Parameters	: data_ptr - pointer to data for transmitting, len - trnasmitting length (in bytes)
+    217          // Return		: None
+    218          // Description	: Передача буфера с данными с указанной длинной через Soft UART
+    219          //-------------------------------------------------------------------------------------------------
+    220          void SoftUART_TxChar(u8 ch) {
+    221          	
+    222          	SoftUART_TxMode_ON();
+    223          	//
+    224          	SoftUART_SendByte(ch);
+    225          	//
+    226          	SoftUART_TxMode_OFF();
+    227          }
+    228          
+    229          
+    230          
+    231          //-------------------------------------------------------------------------------------------------
+    232          // Function		: void SoftUART_RxParse(void)
+    233          // Parameters	: None
+    234          // Return		: None
+    235          // Description	: Parsing of the input package
+    236          //-------------------------------------------------------------------------------------------------
+    237          void SoftUART_RxParse(void) {
+    238          	u8 	qualif = uart_rx_buf[0];
+    239          	u8 	len;
+    240          	u8 	tmp1 = uart_rx_buf[1];
+    241          	//
+    242          	fInterconnect = 1;
+    243          	//
+    244          	switch (qualif) {
+    245          		case Q_COMMAND:
+    246          			switch (tmp1) {
+    247          				case COMMAND_RESET:
+    248          					// Hardware RESET
+    249          					(*(void(*)(void))(*(unsigned int*)0xfffe))();
+    250          					break;
+    251          				case COMMAND_DIAGN:
+    252          					//BoostStop();
+    253          					DeviceDiagnostics();
+    254          					SoftUART_TxString((u8*)&DeviceFault, 20);
+    255          					break;
+    256          				case COMMAND_GET_DELTA:
+    257          					SoftUART_TxString((u8*)&dark, 4);
+    258          					break;
+    259          				case COMMAND_CALIBR_10:
+    260          					//res = DefineCurLevel();		// Define Norm level
+    261          					//SetFireLevels(res);
+    262          					break;
+    263          				case COMMAND_CALIBR_00:
+    264          					VLO_TimerCalibr();
+    265          					SetLevels(delta);
+    266          					SetLimitCompens();
+    267          					break;
+    268          			}
+    269          			break;
+    270          		case Q_GET_MEM:
+    271          			len = uart_rx_buf[2];
+    272          			SoftUART_TxString(((u8*)CONFIG + tmp1), len);
+    273          			break;
+    274          		case Q_SET_MEM_ALL:
+    275          			StorageProperty(tmp1, &uart_rx_buf[2], PROPERTIES_LEN);
+    276          #if (CRC_ENABLE == 1)	
+    277          			SavePropertyCS();
+    278          #endif
+    279          			break;
+    280          		case Q_GET_GRAPH:
+    281          			
+    282          			fSendingGraph = 1;
+    283          			
+    284          			/*
+    285          			loc_buf[0] = Q_SEND_GRAPH1;
+    286          			loc_buf[1] = SIGNAL_ARRAY_LEN * 2;
+    287          			SoftUART_TxString(loc_buf, 2);
+    288          			//
+    289          			SoftUART_TxString((u8*)&signal_array[0], SIGNAL_ARRAY_LEN * 2);
+    290          			*/
+    291          			
+    292          			break;
+    293          	}
+    294          	//
+    295          	fInterconnect = 0;
+    296          	//
+    297          }
+    298          
+    299          
+    300          // End soft_uart.c
+    301          
+
+   Maximum stack usage in bytes:
+
+   CSTACK Function
+   ------ --------
+       2  SoftUART_Init
+       2  SoftUART_ResetReceiveByte
+       2  SoftUART_RxParse
+            2 -- Indirect call
+            2 -> DeviceDiagnostics
+            2 -> SavePropertyCS
+            2 -> SetLevels
+            2 -> SetLimitCompens
+            2 -> SoftUART_TxString
+            2 -> StorageProperty
+            2 -> VLO_TimerCalibr
+       6  SoftUART_SendByte
+            6 -> DelayUs_8MHz
+       2  SoftUART_SetReceiveByte
+       4  SoftUART_TxChar
+            4 -> SoftUART_SendByte
+            4 -> SoftUART_TxMode_OFF
+            4 -> SoftUART_TxMode_ON
+       2  SoftUART_TxMode_OFF
+       2  SoftUART_TxMode_ON
+            2 -> DelayUs_8MHz
+       6  SoftUART_TxString
+            6 -> SoftUART_SendByte
+            6 -> SoftUART_TxMode_OFF
+            6 -> SoftUART_TxMode_ON
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       6  ?Subroutine0
+      14  ?Subroutine1
+       1  P2DIR
+       1  P2IE
+       1  P2IES
+       1  P2IFG
+       1  P2OUT
+       1  P2REN
+      24  SoftUART_Init
+      16  SoftUART_ResetReceiveByte
+     140  SoftUART_RxParse
+      68  SoftUART_SendByte
+      36  SoftUART_SetReceiveByte
+      22  SoftUART_TxChar
+      16  SoftUART_TxMode_OFF
+      36  SoftUART_TxMode_ON
+      32  SoftUART_TxString
+       2  TA0CCR0
+       2  TA0CCTL0
+       2  TA0CCTL1
+       2  TA0CTL
+       2  TA0R
+       8  packet_len_table
+      40  uart_rx_buf
+       1  uart_rx_ind
+       1  uart_timer
+
+ 
+ 410 bytes in segment CODE
+  16 bytes in segment DATA16_AN
+   8 bytes in segment DATA16_C
+  42 bytes in segment DATA16_Z
+ 
+ 410 bytes of CODE  memory
+   8 bytes of CONST memory
+  42 bytes of DATA  memory (+ 16 bytes shared)
+
+Errors: none
+Warnings: none
