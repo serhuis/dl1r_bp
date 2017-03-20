@@ -18,7 +18,7 @@ NextState1=0
 Break=0
 State Storage=0
 [DebugChecksum]
-Checksum=-400515040
+Checksum=-1353908762
 [CallStack]
 ShowArgs=0
 [Disassembly]
@@ -52,6 +52,22 @@ ActionState=1
 [Trace1]
 Enabled=1
 ShowSource=1
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=0
+Graph=0
+Symbiont=0
+Exclusions=
+[EEM State Storage]
+Buffer=BAAAAAAAAAAAAAAAAAAAAAAA
+[EEM Sequencer]
+Buffer=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[EEM Cycle Counter 0]
+Counter0=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[EEM Cycle Counter 1]
+Counter1=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 [array_types]
 Fmt0=s16 [95]	3	0
 Fmt1=u16 [50]	3	0
@@ -72,6 +88,18 @@ Fmt9={W}0:led_y	4	0
 Fmt10={W}0:signal_array	4	3
 Fmt11={W}0:strob_pulse_period	3	0
 Fmt12={W}0:strob_pulse_period_tick	3	0
+[PowerLog]
+Title_0=Energy
+Symbol_0=0 4 0
+Title_1=Voltage
+Symbol_1=0 4 0
+Title_2=Current
+Symbol_2=0 4 0
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+LiveEnabled=0
+LiveFile=PowerLogLive.log
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -79,19 +107,19 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
-[CallStackLog]
-Enabled=0
-[DriverProfiling]
-Enabled=0
-Mode=0
-Graph=0
-Symbiont=0
-Exclusions=
+[PowerProbe]
+Frequency=10000
+Probe0=Current
+ProbeSetup0=0 1 1 2 0 0
+Probe1=Voltage
+ProbeSetup1=1 1 1 4 0 0
+Probe2=Energy
+ProbeSetup2=4 1 1 10 0 0
 [Breakpoints]
 Count=0
 [FET]
-Clock mode=38
-Extended Clock mode=65535
+Clock mode=39
+Extended Clock mode=1
 Secure Password=
 Extended Clock Control Enable=1
 Advanced Extended Clock Control=0
@@ -109,15 +137,8 @@ SP=0
 SR=0
 all registers=0
 File name=
-[EEM State Storage]
-Buffer=BAAAAAAADAAAAAAAAAAAAAAA
-[EEM Sequencer]
-Buffer=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-[EEM Cycle Counter 0]
-Counter0=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-[EEM Cycle Counter 1]
-Counter1=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 [Aliases]
-A0=_ "d:\__COMMON\_Project\Arton-DL1\PRG\Arton-DL1\main.c" "D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c"
-Count=1
+A0=_ "D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c" "E:\_ARTON_PROJ\Arton-DL1-R\soft\main.c"
+A1=_ "d:\__COMMON\_Project\Arton-DL1\PRG\Arton-DL1\main.c" "D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c"
+Count=2
 SuppressDialog=0

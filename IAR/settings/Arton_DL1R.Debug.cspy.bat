@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\settings\Arton_DL1.Debug.general.xcl" --backend -f "E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\settings\Arton_DL1.Debug.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\settings\Arton_DL1R.Debug.general.xcl" --backend -f "E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\settings\Arton_DL1R.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\settings\Arton_DL1.Debug.general.xcl" "--debug_file=%~1" --backend -f "E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\settings\Arton_DL1.Debug.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\settings\Arton_DL1R.Debug.general.xcl" "--debug_file=%~1" --backend -f "E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\settings\Arton_DL1R.Debug.driver.xcl" 
 
 @echo off 
 :end

@@ -36,7 +36,7 @@
 // For VREF+
 #define VREF_DIR		P1DIR
 #define VREF_OUT		P1OUT
-#define VREF_IES       	P1IES
+#define VREF_IES    P1IES
 #define VREF_IFG		P1IFG
 #define VREF_IE			P1IE
 #define VREF_REN		P1REN
@@ -54,7 +54,7 @@
 #define BUT_DIR			P1DIR
 #define BUT_IN			P1IN
 #define BUT_OUT			P1OUT
-#define BUT_IES        	P1IES
+#define BUT_IES     P1IES
 #define BUT_IFG			P1IFG
 #define BUT_IE			P1IE
 #define BUT_REN			P1REN
@@ -69,16 +69,16 @@
 
 
 // For Red LED
-#define RED_DIR   		P2DIR
-#define RED_OUT   		P2OUT
+#define RED_DIR   	P2DIR
+#define RED_OUT   	P2OUT
 #define RED_BIT  		BIT7
 #define	RED_SET()		RED_OUT |= RED_BIT
 #define	RED_CLR()		RED_OUT &= ~RED_BIT
 
 
 // For Yellow LED
-#define YEL_DIR   		P1DIR
-#define YEL_OUT   		P1OUT
+#define YEL_DIR   	P1DIR
+#define YEL_OUT   	P1OUT
 #define YEL_BIT  		BIT6
 #define	YEL_SET()		YEL_OUT |= YEL_BIT
 #define	YEL_CLR()		YEL_OUT &= ~YEL_BIT
@@ -115,7 +115,7 @@
 #define INTER_DIR		P2DIR
 #define INTER_IN		P2IN
 #define INTER_OUT		P2OUT
-#define INTER_IES       P2IES
+#define INTER_IES   P2IES
 #define INTER_IFG		P2IFG
 #define INTER_IE		P2IE
 #define INTER_REN		P2REN

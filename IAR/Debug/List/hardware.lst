@@ -1,31 +1,31 @@
 ###############################################################################
-#                                                                             #
-# IAR C/C++ Compiler V5.50.1.50465/W32 for MSP430       07/Apr/2016  13:56:59 #
-# Copyright 1996-2012 IAR Systems AB.                                         #
-#                                                                             #
-#    __rt_version  =  3                                                       #
-#    __double_size =  32                                                      #
-#    __reg_r4      =  regvar                                                  #
-#    __reg_r5      =  free                                                    #
-#    __pic         =  no                                                      #
-#    __core        =  430                                                     #
-#    Source file   =  d:\__COMMON\_Project\Arton-DL1\PRG\Arton-DL1\hardware.c #
-#    Command line  =  d:\__COMMON\_Project\Arton-DL1\PRG\Arton-DL1\hardware.c #
-#                      -lcN d:\__COMMON\_Project\Arton-DL1\PRG\Arton-DL1\IAR\ #
-#                     Debug\List\ -o d:\__COMMON\_Project\Arton-DL1\PRG\Arton #
-#                     -DL1\IAR\Debug\Obj\ --debug -D__MSP430G2553__ -e        #
-#                     --double=32 --regvar_r4 --dlib_config "C:\Program       #
-#                     Files\IAR Systems\Embedded Workbench                    #
-#                     6.4\430\LIB\DLIB\dl430fn.h" -I ..\ -I .\ -Oh            #
-#    List file     =  d:\__COMMON\_Project\Arton-DL1\PRG\Arton-DL1\IAR\Debug\ #
-#                     List\hardware.lst                                       #
-#    Object file   =  d:\__COMMON\_Project\Arton-DL1\PRG\Arton-DL1\IAR\Debug\ #
-#                     Obj\hardware.r43                                        #
-#                                                                             #
-#                                                                             #
+#
+# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           20/Mar/2017  17:56:04
+# Copyright 1996-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for Texas Instruments MSP430
+#
+#    __rt_version  =  3
+#    __double_size =  32
+#    __reg_r4      =  regvar
+#    __reg_r5      =  free
+#    __pic         =  no
+#    __core        =  430
+#    Source file   =  E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c
+#    Command line  =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c -lcN
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\List -o
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\Obj --debug
+#        -D__MSP430G2433__ -e --double=32 --regvar_r4 --dlib_config "C:\Program
+#        Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.h"
+#        -I ..\ -I .\ -Oh
+#    List file     =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\List\hardware.lst
+#    Object file   =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\Obj\hardware.r43
+#
 ###############################################################################
 
-d:\__COMMON\_Project\Arton-DL1\PRG\Arton-DL1\hardware.c
+E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c
       1          /**********************************************************************************
       2           *
       3           *      Hardware routines
@@ -320,35 +320,33 @@ d:\__COMMON\_Project\Arton-DL1\PRG\Arton-DL1\hardware.c
 
    CSTACK Function
    ------ --------
-       2  AMP_SetGain
-       2  BUT_INT_Init
-       2  GPIO_Init
-             2 -> BUT_INT_Init
-             2 -> INTER_INT_Init
-             2 -> STROB_IRQ_Init
-       2  INTER_INT_Init
-      12  PORT1_ISR
-            12 -> DelayUs
-       8  PORT2_ISR
-       2  STROB_IE_Disable
-       2  STROB_IE_Enable
-       2  STROB_IRQ_Init
+      2   AMP_SetGain
+      2   BUT_INT_Init
+      2   GPIO_Init
+        2   -> BUT_INT_Init
+        2   -> INTER_INT_Init
+      2   INTER_INT_Init
+     12   PORT1_ISR
+       12   -> DelayUs
+      6   PORT2_ISR
+      2   STROB_IE_Disable
+      2   STROB_IE_Enable
+      0   STROB_IRQ_Init
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-       2  ??PORT1_ISR??INTVEC 4
-       2  ??PORT2_ISR??INTVEC 6
-       6  ?Subroutine0
+       6  ??Subroutine1_0
+      12  ?Subroutine0
       30  AMP_SetGain
        1  BCSCTL1
       26  BUT_INT_Init
        1  CALBC1_8MHZ
        1  CALDCO_8MHZ
        1  DCOCTL
-      88  GPIO_Init
+      86  GPIO_Init
       38  INTER_INT_Init
        1  P1DIR
        1  P1IE
@@ -367,21 +365,23 @@ d:\__COMMON\_Project\Arton-DL1\PRG\Arton-DL1\hardware.c
        1  P2REN
        1  P2SEL
      130  PORT1_ISR
-     148  PORT2_ISR
-       0  STROB_IE_Disable
+       2  PORT1_ISR::??INTVEC 4
+     116  PORT2_ISR
+       2  PORT2_ISR::??INTVEC 6
+       2  STROB_IE_Disable
       14  STROB_IE_Enable
-      14  STROB_IRQ_Init
+       0  STROB_IRQ_Init
        1  but
        1  i
        1  strob
 
  
- 494 bytes in segment CODE
+ 460 bytes in segment CODE
   20 bytes in segment DATA16_AN
    3 bytes in segment DATA16_Z
    4 bytes in segment INTVEC
  
- 494 bytes of CODE  memory
+ 460 bytes of CODE  memory
    0 bytes of CONST memory (+  4 bytes shared)
    3 bytes of DATA  memory (+ 20 bytes shared)
 

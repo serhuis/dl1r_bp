@@ -1,35 +1,31 @@
 ###############################################################################
-#                                                                             #
-# IAR C/C++ Compiler V5.50.1.50465/W32 for MSP430       14/Sep/2016  17:19:06 #
-# Copyright 1996-2012 IAR Systems AB.                                         #
-#                                                                             #
-#    __rt_version  =  3                                                       #
-#    __double_size =  32                                                      #
-#    __reg_r4      =  regvar                                                  #
-#    __reg_r5      =  free                                                    #
-#    __pic         =  no                                                      #
-#    __core        =  430                                                     #
-#    Source file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\flash.c                                  #
-#    Command line  =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\flash.c -lcN                             #
-#                     D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\IAR\Debug\List\ -o                       #
-#                     D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\IAR\Debug\Obj\ --debug                   #
-#                     -D__MSP430G2553__ -e --double=32 --regvar_r4            #
-#                     --dlib_config "C:\Program Files (x86)\IAR               #
-#                     Systems\Embedded Workbench 6.4\430\LIB\DLIB\dl430fn.h"  #
-#                     -I ..\ -I .\ -Oh                                        #
-#    List file     =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\IAR\Debug\List\flash.lst                 #
-#    Object file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\IAR\Debug\Obj\flash.r43                  #
-#                                                                             #
-#                                                                             #
+#
+# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           20/Mar/2017  17:56:04
+# Copyright 1996-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for Texas Instruments MSP430
+#
+#    __rt_version  =  3
+#    __double_size =  32
+#    __reg_r4      =  regvar
+#    __reg_r5      =  free
+#    __pic         =  no
+#    __core        =  430
+#    Source file   =  E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\flash.c
+#    Command line  =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\flash.c -lcN
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\List -o
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\Obj --debug
+#        -D__MSP430G2433__ -e --double=32 --regvar_r4 --dlib_config "C:\Program
+#        Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.h"
+#        -I ..\ -I .\ -Oh
+#    List file     =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\List\flash.lst
+#    Object file   =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\Obj\flash.r43
+#
 ###############################################################################
 
-D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\flash.c
+E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\flash.c
       1          /**********************************************************************************
       2           *
       3           *      Flash operation routines
@@ -317,31 +313,37 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\flash.c
 
    CSTACK Function
    ------ --------
-       2  FlashDeInit
-       2  FlashEraseSegment
-       2  FlashEraseSegmentSafe
-             2 -> FlashEraseSegment
-             2 -> memcpy
-       2  FlashInit
-      12  FlashWriteArray
-            12 -> memcpy
-       2  FlashWriteByte
-       2  FlashWriteSegmentSafe
-             2 -> FlashWriteArray
-       2  FlashWriteWord
-       2  GetPropertiesCS
-       4  SavePropertyCS
-             4 -> GetPropertiesCS
-             4 -> StorageProperty
-       8  StorageProperty
-             8 -> FlashEraseSegmentSafe
-             8 -> FlashInit
-             8 -> FlashWriteArray
-             8 -> memcpy
-       4  StoragePropertyByte
-             4 -> StorageProperty
-       4  StoragePropertyWord
-             4 -> StorageProperty
+      2   FlashDeInit
+      2   FlashEraseSegment
+      2   FlashEraseSegmentSafe
+        0   -> FlashEraseSegment
+        2   -> memcpy
+      0   FlashInit
+     12   FlashWriteArray
+       12   -> memcpy
+       12 ?Epilogue5
+      2   FlashWriteByte
+      2   FlashWriteSegmentSafe
+        0   -> FlashWriteArray
+      2   FlashWriteWord
+      2   GetPropertiesCS
+      4   SavePropertyCS
+        6   -> FlashEraseSegment
+        6   -> FlashWriteArray
+        4   -> GetPropertiesCS
+        6   -> memcpy
+      8   StorageProperty
+        8   -> FlashEraseSegment
+       10   -> FlashWriteArray
+       10   -> memcpy
+        8   -> memcpy
+        8 ?Epilogue3
+      4   StoragePropertyByte
+        4   -> StorageProperty
+      6   StoragePropertyWord
+        8   -> FlashEraseSegment
+        8   -> FlashWriteArray
+        8   -> memcpy
 
 
    Segment part sizes:
@@ -349,38 +351,40 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\flash.c
    Bytes  Function/Label
    -----  --------------
        2  ?<Initializer for SegCBackup>
-       8  ??Subroutine4_0
-       4  ?Subroutine0
-      20  ?Subroutine1
-      12  ?Subroutine2
-      14  ?Subroutine3
+      20  ?Subroutine0
+      36  ?Subroutine1
+      24  ?Subroutine2
+      12  ?Subroutine3
+      12  ?Subroutine5
+      18  ?Subroutine6
+      14  ?Subroutine7
        2  FCTL1
        2  FCTL2
        2  FCTL3
        4  FlashDeInit
       26  FlashEraseSegment
-      22  FlashEraseSegmentSafe
-      18  FlashInit
+      14  FlashEraseSegmentSafe
+       0  FlashInit
       60  FlashWriteArray
-      26  FlashWriteByte
+      24  FlashWriteByte
       14  FlashWriteSegmentSafe
-      26  FlashWriteWord
+      24  FlashWriteWord
       24  GetPropertiesCS
-      22  SavePropertyCS
+      30  SavePropertyCS
        2  SegCBackup
-      60  StorageProperty
-      10  StoragePropertyByte
-       8  StoragePropertyWord
+      50  StorageProperty
+      18  StoragePropertyByte
+      30  StoragePropertyWord
       40  ee_config
 
  
- 378 bytes in segment CODE
+ 454 bytes in segment CODE
   40 bytes in segment DATA16_AC
    6 bytes in segment DATA16_AN
    2 bytes in segment DATA16_I
    2 bytes in segment DATA16_ID
  
- 378 bytes of CODE  memory
+ 454 bytes of CODE  memory
    2 bytes of CONST memory (+ 40 bytes shared)
    2 bytes of DATA  memory (+  6 bytes shared)
 

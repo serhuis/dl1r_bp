@@ -1,31 +1,31 @@
 ###############################################################################
-#                                                                             #
-# IAR C/C++ Compiler V5.50.1.50465/W32 for MSP430       06/Apr/2016  16:19:25 #
-# Copyright 1996-2012 IAR Systems AB.                                         #
-#                                                                             #
-#    __rt_version  =  3                                                       #
-#    __double_size =  32                                                      #
-#    __reg_r4      =  regvar                                                  #
-#    __reg_r5      =  free                                                    #
-#    __pic         =  no                                                      #
-#    __core        =  430                                                     #
-#    Source file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\soft_uart.c  #
-#    Command line  =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\soft_uart.c  #
-#                     -lcN D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Deb #
-#                     ug\List\ -o D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\ #
-#                     IAR\Debug\Obj\ --debug -D__MSP430G2553__ -e             #
-#                     --double=32 --regvar_r4 --dlib_config "C:\Program       #
-#                     Files (x86)\IAR Systems\Embedded Workbench              #
-#                     6.4\430\LIB\DLIB\dl430fn.h" -I ..\ -I .\ -Oh            #
-#    List file     =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Debug\Li #
-#                     st\soft_uart.lst                                        #
-#    Object file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Debug\Ob #
-#                     j\soft_uart.r43                                         #
-#                                                                             #
-#                                                                             #
+#
+# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           20/Mar/2017  17:56:04
+# Copyright 1996-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for Texas Instruments MSP430
+#
+#    __rt_version  =  3
+#    __double_size =  32
+#    __reg_r4      =  regvar
+#    __reg_r5      =  free
+#    __pic         =  no
+#    __core        =  430
+#    Source file   =  E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\soft_uart.c
+#    Command line  =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\soft_uart.c -lcN
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\List -o
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\Obj --debug
+#        -D__MSP430G2433__ -e --double=32 --regvar_r4 --dlib_config "C:\Program
+#        Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.h"
+#        -I ..\ -I .\ -Oh
+#    List file     =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\List\soft_uart.lst
+#    Object file   =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\Obj\soft_uart.r43
+#
 ###############################################################################
 
-D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\soft_uart.c
+E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\soft_uart.c
       1          /**********************************************************************************
       2           *
       3           *      Soft UART routines
@@ -332,31 +332,38 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\soft_uart.c
 
    CSTACK Function
    ------ --------
-       2  SoftUART_Init
-       2  SoftUART_ResetReceiveByte
-       2  SoftUART_RxParse
-            2 -- Indirect call
-            2 -> DeviceDiagnostics
-            2 -> SavePropertyCS
-            2 -> SetLevels
-            2 -> SetLimitCompens
-            2 -> SoftUART_TxString
-            2 -> StorageProperty
-            2 -> VLO_TimerCalibr
-       6  SoftUART_SendByte
-            6 -> DelayUs_8MHz
-       2  SoftUART_SetReceiveByte
-       4  SoftUART_TxChar
-            4 -> SoftUART_SendByte
-            4 -> SoftUART_TxMode_OFF
-            4 -> SoftUART_TxMode_ON
-       2  SoftUART_TxMode_OFF
-       2  SoftUART_TxMode_ON
-            2 -> DelayUs_8MHz
-       6  SoftUART_TxString
-            6 -> SoftUART_SendByte
-            6 -> SoftUART_TxMode_OFF
-            6 -> SoftUART_TxMode_ON
+      2   SoftUART_Init
+      2   SoftUART_ResetReceiveByte
+      6   SoftUART_RxParse
+        6   -- Indirect call
+        6   -> DeviceDiagnostics
+        6   -> SavePropertyCS
+        6   -> SetLevels
+        6   -> SetLimitCompens
+        6   -> SoftUART_SendByte
+        6   -> SoftUART_TxMode_OFF
+        6   -> SoftUART_TxMode_ON
+        6   -> SoftUART_TxString
+        6   -> StorageProperty
+        6   -> VLO_TimerCalibr
+      6   SoftUART_SendByte
+        6   -> DelayUs_8MHz
+        8   -> DelayUs_8MHz
+      2   SoftUART_SetReceiveByte
+      4   SoftUART_TxChar
+        4   -> SoftUART_SendByte
+        4   -> SoftUART_TxMode_OFF
+        4   -> SoftUART_TxMode_ON
+      2   SoftUART_TxMode_OFF
+      2   SoftUART_TxMode_ON
+        0   -> DelayUs_8MHz
+        2   -> DelayUs_8MHz
+     10   SoftUART_TxString
+       10   -> DelayUs_8MHz
+       12   -> DelayUs_8MHz
+       10   -> SoftUART_TxMode_OFF
+       10   -> SoftUART_TxMode_ON
+       10 ?Epilogue4
 
 
    Segment part sizes:
@@ -364,7 +371,11 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\soft_uart.c
    Bytes  Function/Label
    -----  --------------
        6  ?Subroutine0
-      14  ?Subroutine1
+      18  ?Subroutine1
+      18  ?Subroutine2
+       6  ?Subroutine3
+      14  ?Subroutine4
+       8  ?Subroutine5
        1  P2DIR
        1  P2IE
        1  P2IES
@@ -373,13 +384,13 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\soft_uart.c
        1  P2REN
       24  SoftUART_Init
       16  SoftUART_ResetReceiveByte
-     140  SoftUART_RxParse
-      68  SoftUART_SendByte
+     188  SoftUART_RxParse
+      26  SoftUART_SendByte
       36  SoftUART_SetReceiveByte
       22  SoftUART_TxChar
       16  SoftUART_TxMode_OFF
       36  SoftUART_TxMode_ON
-      32  SoftUART_TxString
+      54  SoftUART_TxString
        2  TA0CCR0
        2  TA0CCTL0
        2  TA0CCTL1
@@ -391,12 +402,12 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\soft_uart.c
        1  uart_timer
 
  
- 410 bytes in segment CODE
+ 488 bytes in segment CODE
   16 bytes in segment DATA16_AN
    8 bytes in segment DATA16_C
   42 bytes in segment DATA16_Z
  
- 410 bytes of CODE  memory
+ 488 bytes of CODE  memory
    8 bytes of CONST memory
   42 bytes of DATA  memory (+ 16 bytes shared)
 

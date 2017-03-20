@@ -1,35 +1,31 @@
 ###############################################################################
-#                                                                             #
-# IAR C/C++ Compiler V5.50.1.50465/W32 for MSP430       16/Sep/2016  13:47:19 #
-# Copyright 1996-2012 IAR Systems AB.                                         #
-#                                                                             #
-#    __rt_version  =  3                                                       #
-#    __double_size =  32                                                      #
-#    __reg_r4      =  regvar                                                  #
-#    __reg_r5      =  free                                                    #
-#    __pic         =  no                                                      #
-#    __core        =  430                                                     #
-#    Source file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\main.c                                   #
-#    Command line  =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\main.c -lcN                              #
-#                     D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\IAR\Debug\List\ -o                       #
-#                     D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\IAR\Debug\Obj\ --debug                   #
-#                     -D__MSP430G2553__ -e --double=32 --regvar_r4            #
-#                     --dlib_config "C:\Program Files (x86)\IAR               #
-#                     Systems\Embedded Workbench 6.4\430\LIB\DLIB\dl430fn.h"  #
-#                     -I ..\ -I .\ -Oh                                        #
-#    List file     =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\IAR\Debug\List\main.lst                  #
-#    Object file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Releas #
-#                     e_new_Resistor\IAR\Debug\Obj\main.r43                   #
-#                                                                             #
-#                                                                             #
+#
+# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           20/Mar/2017  17:56:05
+# Copyright 1996-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for Texas Instruments MSP430
+#
+#    __rt_version  =  3
+#    __double_size =  32
+#    __reg_r4      =  regvar
+#    __reg_r5      =  free
+#    __pic         =  no
+#    __core        =  430
+#    Source file   =  E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\main.c
+#    Command line  =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\main.c -lcN
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\List -o
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\Obj --debug
+#        -D__MSP430G2433__ -e --double=32 --regvar_r4 --dlib_config "C:\Program
+#        Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.h"
+#        -I ..\ -I .\ -Oh
+#    List file     =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\List\main.lst
+#    Object file   =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\Obj\main.r43
+#
 ###############################################################################
 
-D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c
+E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\main.c
       1          /**********************************************************************************
       2           *
       3           *      ASD-10QR MAIN routine
@@ -2235,140 +2231,167 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c
 
    CSTACK Function
    ------ --------
-       4  ADC10_ISR
-       4  ADC_MeasureInit
-             4 -> DelayUs
-       2  ADC_MeasureStart
-      10  ADC_Measure_Simple
-            10 -> AverageData
-            10 -> DelayUs
-       2  ADC_SetParam
-       2  AMP_Gain_Init
-             2 -> AMP_SetGain
-       2  AbsValue
-       2  AverageData
-       4  CCR0_ISR
-      22  CalibrationResultAnalise
-            22 -> AMP_SetGain
-            22 -> SetLevelsFromCalibr
-            22 -> SetLimitCompens
-            22 -> StoragePropertyByte
-            22 -> StoragePropertyWord
-       2  ClearDriftVar
-       2  DefineNewMode
-       2  DeviceDiagnostics
-             2 -> DelayMs
-             2 -> GetPropertiesCS
-       2  DeviceStart
-             2 -> ClearDriftVar
-             2 -> VLO_TimerCalibr
-       2  FaultSignalManager
-       2  GetVCC
-             2 -> ADC_Measure
-             2 -> AverageData
-      10  JP1_Define
-            10 -> ADC_Measure_Simple
-       2  LedTestValueManager
-       2  Led_Flash
-             2 -> DelayMs
-       2  SetFaultMode
-       6  SetLevels
-             6 -> ClearDriftVar
-             6 -> SavePropertyCS
-             6 -> StoragePropertyWord
-       6  SetLevelsFromCalibr
-             6 -> ClearDriftVar
-             6 -> SavePropertyCS
-             6 -> StoragePropertyWord
-       2  SetLimitCompens
-             2 -> ClearDriftVar
-             2 -> SavePropertyCS
-             2 -> StoragePropertyWord
-      26  SignalAnalysis
-            26 -> AverageData
-            26 -> fir_filter
-       2  TimerA1_DelayUs
-       2  Timer_A0_Off
-       2  Timer_A0_SetDelay
-       4  Timer_A1_ISR
-       2  Timer_A1_Init
-       2  VLO_GetPeriod
-       2  VLO_TimerCalibr
-             2 -> SavePropertyCS
-             2 -> StoragePropertyWord
-       2  VREF_Off
-       2  VREF_On
-      10  fir_filter
-       2  getZeroLevel
-      24  main
-            24 -- Indirect call
-            24 -> ADC_MeasureInit
-            24 -> ADC_MeasureStart
-            24 -> ADC_SetParam
-            24 -> AMP_SetGain
-            24 -> CalibrationResultAnalise
-            24 -> ClearDriftVar
-            24 -> DelayMs
-            24 -> DelayUs
-            24 -> DelayUs_8MHz
-            24 -> DeviceStart
-            24 -> FaultSignalManager
-            24 -> GPIO_Init
-            24 -> JP1_Define
-            24 -> LedTestValueManager
-            24 -> Led_Flash
-            24 -> STROB_IE_Enable
-            24 -> SetFaultMode
-            24 -> SetLevels
-            24 -> SignalAnalysis
-            24 -> SoftUART_ResetReceiveByte
-            24 -> SoftUART_RxParse
-            24 -> SoftUART_SetReceiveByte
-            24 -> SoftUART_TxString
-            24 -> Timer_A0_Off
-            24 -> Timer_A0_SetDelay
-            24 -> Timer_A1_Init
-       4  watchdog_timer
+      4   ADC10_ISR
+      4   ADC_MeasureInit
+        6   -> DelayUs
+      0   ADC_MeasureStart
+     10   ADC_Measure_Simple
+       10   -> AverageData
+       10   -> DelayUs
+       10 ?Epilogue4
+      0   ADC_SetParam
+      2   AMP_Gain_Init
+        0   -> AMP_SetGain
+      2   AbsValue
+      2   AverageData
+        0 ?DivMod16u
+      4   CCR0_ISR
+     22   CalibrationResultAnalise
+       22   -> AMP_SetGain
+       22   -> SetLevelsFromCalibr
+       22   -> SetLimitCompens
+       22   -> StoragePropertyByte
+       22   -> StoragePropertyWord
+       14 ?Epilogue6
+      2   ClearDriftVar
+      2   DefineNewMode
+      2   DeviceDiagnostics
+        2   -> DelayMs
+        2   -> GetPropertiesCS
+      2   DeviceStart
+        4   -> SavePropertyCS
+        6   -> StoragePropertyWord
+      2   FaultSignalManager
+      2   GetVCC
+        2   -> ADC_Measure
+        2 ?DivMod16u
+     10   JP1_Define
+       10   -> ADC_Measure_Simple
+      2   LedTestValueManager
+      2   Led_Flash
+        2   -> DelayMs
+      0   SetFaultMode
+      6   SetLevels
+        8   -> SavePropertyCS
+       10   -> StoragePropertyWord
+        6   -> StoragePropertyWord
+        6 ?DivMod16s
+        6 ?DivMod16u
+      6   SetLevelsFromCalibr
+        8   -> SavePropertyCS
+       10   -> StoragePropertyWord
+        6   -> StoragePropertyWord
+        6 ?DivMod16s
+        6 ?DivMod16u
+      2   SetLimitCompens
+        2   -> SavePropertyCS
+        4   -> StoragePropertyWord
+     34   SignalAnalysis
+       30 ?DivMod16s
+       30 ?DivMod32s
+       14 ?Epilogue6
+       34 ?Mul16to32s
+      2   TimerA1_DelayUs
+      0   Timer_A0_Off
+      2   Timer_A0_SetDelay
+      4   Timer_A1_ISR
+      0   Timer_A1_Init
+      2   VLO_GetPeriod
+      0   VLO_TimerCalibr
+        2   -> SavePropertyCS
+        4   -> StoragePropertyWord
+      2   VREF_Off
+      2   VREF_On
+     10   fir_filter
+       10 ?DivMod32s
+       10 ?Epilogue4
+       10 ?Mul16to32s
+      2   getZeroLevel
+        0 ?DivMod16u
+     18   main
+       18   -> ADC_Measure_Simple
+       18   -> AMP_SetGain
+       18   -> CalibrationResultAnalise
+       18   -> DelayMs
+       20   -> DelayMs
+       18   -> DelayUs
+       20   -> DelayUs
+       18   -> DelayUs_8MHz
+       18   -> FaultSignalManager
+       18   -> GPIO_Init
+       18   -> STROB_IE_Enable
+       20   -> SavePropertyCS
+       18   -> SignalAnalysis
+       18   -> SoftUART_ResetReceiveByte
+       18   -> SoftUART_RxParse
+       18   -> SoftUART_SetReceiveByte
+       18   -> SoftUART_TxString
+       20   -> SoftUART_TxString
+       18   -> StoragePropertyWord
+       22   -> StoragePropertyWord
+       18   -> VLO_TimerCalibr
+       18 ?DivMod16s
+       18 ?DivMod16u
+       20 ?DivMod16u
+       18 ?DivMod32u
+      4   watchdog_timer
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-       2  ??ADC10_ISR??INTVEC 10
-       2  ??CCR0_ISR??INTVEC 18
-       6  ??Subroutine19_0
-      16  ??Subroutine20_0
-       2  ??Timer_A1_ISR??INTVEC 26
-       2  ??watchdog_timer??INTVEC 20
-      62  ?Subroutine0
-       8  ?Subroutine1
-      16  ?Subroutine10
+       8  ??Subroutine40_0
+       6  ??Subroutine41_0
+      22  ??Subroutine4_0
+      38  ?Subroutine0
+      12  ?Subroutine10
       10  ?Subroutine11
-      10  ?Subroutine13
-      20  ?Subroutine14
-      28  ?Subroutine15
-       8  ?Subroutine16
-      16  ?Subroutine17
-       8  ?Subroutine18
-       8  ?Subroutine2
-       8  ?Subroutine3
-      12  ?Subroutine4
-      18  ?Subroutine5
-       8  ?Subroutine6
-      10  ?Subroutine7
-       4  ?Subroutine8
-      10  ?Subroutine9
+      18  ?Subroutine12
+      16  ?Subroutine13
+       4  ?Subroutine14
+      24  ?Subroutine15
+      16  ?Subroutine16
+      10  ?Subroutine17
+      10  ?Subroutine18
+      28  ?Subroutine19
+      64  ?Subroutine2
+      20  ?Subroutine20
+      18  ?Subroutine21
+      14  ?Subroutine22
+      36  ?Subroutine23
+      18  ?Subroutine24
+      10  ?Subroutine25
+      16  ?Subroutine26
+      10  ?Subroutine28
+      24  ?Subroutine3
+      20  ?Subroutine30
+      28  ?Subroutine31
+       8  ?Subroutine32
+      14  ?Subroutine33
+       8  ?Subroutine34
+      16  ?Subroutine35
+       8  ?Subroutine36
+       6  ?Subroutine37
+       8  ?Subroutine38
+       8  ?Subroutine39
+       8  ?Subroutine4
+       2  ?Subroutine5
+      12  ?Subroutine6
+      12  ?Subroutine7
+      16  ?Subroutine8
+      18  ?Subroutine9
        1  ADC10AE0
        2  ADC10CTL0
        2  ADC10CTL1
        1  ADC10DTC1
        2  ADC10SA
       10  ADC10_ISR
-      92  ADC_MeasureInit
-      24  ADC_MeasureStart
-     132  ADC_Measure_Simple
-      36  ADC_SetParam
+       2  ADC10_ISR::??INTVEC 10
+      58  ADC_MeasureInit
+       0  ADC_MeasureStart
+     140  ADC_Measure_Simple
+       0  ADC_SetParam
        8  AMP_Gain_Init
       14  AbsValue
       22  AverageData
@@ -2381,26 +2404,27 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c
        1  CALDCO_1MHZ
        1  CALDCO_8MHZ
        4  CCR0_ISR
+       2  CCR0_ISR::??INTVEC 18
        2  CCR1_Value
        1  CalibrFault
      416  CalibrationResultAnalise
-      22  ClearDriftVar
+       4  ClearDriftVar
        1  DCOCTL
        4  DefineNewMode
       32  DeviceDiagnostics
        1  DeviceFault
        1  DeviceMode
-      16  DeviceStart
+      12  DeviceStart
        2  DriftCounter
        4  DriftLevel
        4  DriftSumma
       18  FIRCoef
-     250  FaultSignalManager
+     258  FaultSignalManager
        1  FireMeasCount
-      54  GetVCC
+      74  GetVCC
        1  IE1
        1  IFG1
-      38  JP1_Define
+      36  JP1_Define
       88  LedTestValueManager
        8  Led_Flash
        1  P1IE
@@ -2411,11 +2435,11 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c
        1  P2IFG
        1  P2IN
        1  P2OUT
-      28  SetFaultMode
+       0  SetFaultMode
       22  SetLevels
       64  SetLevelsFromCalibr
       20  SetLimitCompens
-     534  SignalAnalysis
+     690  SignalAnalysis
        2  TA0CCR0
        2  TA0CCTL0
        2  TA0CCTL1
@@ -2427,12 +2451,13 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c
        2  TA1R
        1  Timer50msCounter
       40  TimerA1_DelayUs
-      18  Timer_A0_Off
-      38  Timer_A0_SetDelay
+       0  Timer_A0_Off
+      24  Timer_A0_SetDelay
        6  Timer_A1_ISR
-      28  Timer_A1_Init
+       2  Timer_A1_ISR::??INTVEC 26
+       0  Timer_A1_Init
       30  VLO_GetPeriod
-      64  VLO_TimerCalibr
+       0  VLO_TimerCalibr
       10  VREF_Off
       14  VREF_On
        2  WDTCTL
@@ -2457,7 +2482,7 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c
        1  fault_phase
        8  fault_sequence
        2  fault_timer
-     114  fir_filter
+     112  fir_filter
        2  flash_period_timer
        1  gain
       12  getZeroLevel
@@ -2470,7 +2495,7 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c
        4  led_y
        1  light_sync
        2  light_timer
-    2104  main
+    2304  main
        2  mainPeriodCounter
        6  q_array
        1  reference
@@ -2483,18 +2508,19 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1_v1.00_Release_new_Resistor\main.c
        2  timerLongPeriod
        2  timerMain
       26  watchdog_timer
+       2  watchdog_timer::??INTVEC 20
       36  x
        2  zero_timer
 
  
- 4 728 bytes in segment CODE
+ 5 206 bytes in segment CODE
     47 bytes in segment DATA16_AN
     44 bytes in segment DATA16_C
    371 bytes in segment DATA16_Z
      8 bytes in segment INTVEC
      2 bytes in segment REGVAR_AN
  
- 4 728 bytes of CODE     memory
+ 5 206 bytes of CODE     memory
     44 bytes of CONST    memory (+  8 bytes shared)
    371 bytes of DATA     memory (+ 47 bytes shared)
      0 bytes of REGISTER memory (+  2 bytes shared)

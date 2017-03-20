@@ -1,31 +1,31 @@
 ###############################################################################
-#                                                                             #
-# IAR C/C++ Compiler V5.50.1.50465/W32 for MSP430       07/Aug/2015  15:24:02 #
-# Copyright 1996-2012 IAR Systems AB.                                         #
-#                                                                             #
-#    __rt_version  =  3                                                       #
-#    __double_size =  32                                                      #
-#    __reg_r4      =  regvar                                                  #
-#    __reg_r5      =  free                                                    #
-#    __pic         =  no                                                      #
-#    __core        =  430                                                     #
-#    Source file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\delay.c      #
-#    Command line  =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\delay.c      #
-#                     -lcN D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Deb #
-#                     ug\List\ -o D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\ #
-#                     IAR\Debug\Obj\ --debug -D__MSP430G2553__ -e             #
-#                     --double=32 --regvar_r4 --dlib_config "C:\Program       #
-#                     Files (x86)\IAR Systems\Embedded Workbench              #
-#                     6.4\430\LIB\DLIB\dl430fn.h" -I ..\RF\ -I RF\ -Oh        #
-#    List file     =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Debug\Li #
-#                     st\delay.lst                                            #
-#    Object file   =  D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\IAR\Debug\Ob #
-#                     j\delay.r43                                             #
-#                                                                             #
-#                                                                             #
+#
+# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           20/Mar/2017  17:56:04
+# Copyright 1996-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for Texas Instruments MSP430
+#
+#    __rt_version  =  3
+#    __double_size =  32
+#    __reg_r4      =  regvar
+#    __reg_r5      =  free
+#    __pic         =  no
+#    __core        =  430
+#    Source file   =  E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\delay.c
+#    Command line  =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\delay.c -lcN
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\List -o
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\Obj --debug
+#        -D__MSP430G2433__ -e --double=32 --regvar_r4 --dlib_config "C:\Program
+#        Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.h"
+#        -I ..\RF\ -I RF\ -Oh
+#    List file     =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\List\delay.lst
+#    Object file   =  
+#        E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\Obj\delay.r43
+#
 ###############################################################################
 
-D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\delay.c
+E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\delay.c
       1          /**********************************************************************************
       2           *
       3           *      Delays routine
@@ -142,11 +142,11 @@ D:\_My_Doc\Project\Arton-DL1\PRG\Arton-DL1\delay.c
 
    CSTACK Function
    ------ --------
-       2  Delay30Us
-       2  DelayMs
-            2 -> DelayUs
-       2  DelayUs
-       2  DelayUs_8MHz
+      2   Delay30Us
+      2   DelayMs
+        2   -> DelayUs
+      2   DelayUs
+      2   DelayUs_8MHz
 
 
    Segment part sizes:
