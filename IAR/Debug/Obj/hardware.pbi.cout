@@ -14,7 +14,7 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\inc\dlib\c
 -I
 ..
 -I
-e:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR
+E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git
 -D__MSP430G2433__=1
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=0xff

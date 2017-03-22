@@ -47,7 +47,7 @@ static u8 i, strob, but;
 //--------------------------------------------------------------------------------
 #pragma vector=PORT1_VECTOR
 __interrupt void PORT1_ISR(void) {   
-	//
+	/*
 	if (BUT_IFG & BUT_BIT) {
 		//BUT_IFG &= ~BUT_BIT;    		// Обнуляем флаг прерывания
         //
@@ -83,6 +83,7 @@ __interrupt void PORT1_ISR(void) {
 		//
 		__bic_SR_register_on_exit(LPM3_bits);               // Clear LPM3 bits from 0(SR) Просыпаемся
 	}
+*/
 }
 
 
@@ -129,6 +130,43 @@ __interrupt void PORT2_ISR(void) {
 		STROB_IFG &= ~STROB_BIT;    		// Clear ISR flag
 			
 		//__bic_SR_register_on_exit(LPM3_bits);   // Clear LPM3 bits from 0(SR) Просыпаемся
+	}
+
+	//
+	if (BUT_IFG & BUT_BIT) {
+			//BUT_IFG &= ~BUT_BIT;    		// Обнуляем флаг прерывания
+					//
+			if (BUT_IES & BUT_BIT) {		// Спадающий фронт
+				but = 1;
+				for (i = 0; i < 8; i++) {
+					if (BUT_IN & BUT_BIT) {
+						but = 0;
+						break;
+					}
+					DelayUs(200);
+				}
+				if (but == 1) {
+					BUT_IES &= ~BUT_BIT;
+					fButtonDownOn = 1;
+				}
+			}else{
+				but = 1;
+				for (i = 0; i < 4; i++) {
+					if ((BUT_IN & BUT_BIT) == 0) {
+						but = 0;
+						break;
+					}
+					DelayUs(100);
+				}
+				if (but == 1) {
+					BUT_IES |= BUT_BIT;
+					fButtonUpOn = 1;
+				}
+			}
+			//
+			BUT_IFG &= ~BUT_BIT;    		// Обнуляем флаг прерывания
+			//
+			__bic_SR_register_on_exit(LPM3_bits);               // Clear LPM3 bits from 0(SR) Просыпаемся
 	}
 }
 
@@ -263,6 +301,9 @@ void GPIO_Init(void) {
 
 	P1OUT = 0;	
 	P2OUT = 0;
+	
+	P1DIR = 0;
+	P2DIR = 0;
 	
 	AMP_PWR_DIR 	|= AMP_PWR_BIT;
 	VREF_DIR		|= VREF_BIT;

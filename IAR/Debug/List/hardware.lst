@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           20/Mar/2017  17:56:04
+# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           22/Mar/2017  10:02:09
 # Copyright 1996-2015 IAR Systems AB.
 # Standalone license - IAR Embedded Workbench for Texas Instruments MSP430
 #
@@ -75,7 +75,7 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c
      47          //--------------------------------------------------------------------------------
      48          #pragma vector=PORT1_VECTOR
      49          __interrupt void PORT1_ISR(void) {   
-     50          	//
+     50          	/*
      51          	if (BUT_IFG & BUT_BIT) {
      52          		//BUT_IFG &= ~BUT_BIT;    		// Обнуляем флаг прерывания
      53                  //
@@ -111,210 +111,251 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c
      83          		//
      84          		__bic_SR_register_on_exit(LPM3_bits);               // Clear LPM3 bits from 0(SR) Просыпаемся
      85          	}
-     86          }
-     87          
+     86          */
+     87          }
      88          
-     89          //--------------------------------------------------------------------------------
-     90          // Function		: __interrupt void PORT2_ISR(void)
-     91          // Parameters	: None
-     92          // Return		: None
-     93          // Description	: GPIO Interrupt routine for RF Button Press 
-     94          //--------------------------------------------------------------------------------
-     95          #pragma vector=PORT2_VECTOR
-     96          __interrupt void PORT2_ISR(void) {   
-     97          	
-     98          	//
-     99          	if ((INTER_IE & INTER_BIT) && (INTER_IFG & INTER_BIT)) {
-    100          		INTER_IFG &= ~INTER_BIT;    			// Обнуляем флаг прерывания
-    101                  //
-    102          		BCSCTL1 = CALBC1_8MHZ; 					// Используем частоту 8 MГц
-    103          		DCOCTL =  CALDCO_8MHZ;
-    104          		//
-    105          		fRxLineDownOn = 1;
-    106          		//
-    107          		//__bic_SR_register_on_exit(LPM3_bits);   // Clear LPM3 bits from 0(SR) Просыпаемся
-    108          		
-    109          	}
-    110          	//
-    111          	if ((STROB_IE & STROB_BIT) && (STROB_IFG & STROB_BIT)) {
-    112          		//
-    113          		strob = 1;
-    114          		for (i = 0; i < 4; i++) {
-    115          			if ((STROB_IN & STROB_BIT) == 0) {
-    116          				strob = 0;
-    117          				break;
-    118          			}
-    119          			//DelayUs(1);
-    120          		}
-    121          		
-    122          		if (strob) {
-    123          			fStartPulse = strob;					// Set flag
-    124          			STROB_IE_Disable();
-    125          		}else{
-    126          			fStartPulse = strob;					// Set flag
-    127          		}
-    128          			
-    129          		STROB_IFG &= ~STROB_BIT;    		// Clear ISR flag
-    130          			
-    131          		//__bic_SR_register_on_exit(LPM3_bits);   // Clear LPM3 bits from 0(SR) Просыпаемся
-    132          	}
-    133          }
+     89          
+     90          //--------------------------------------------------------------------------------
+     91          // Function		: __interrupt void PORT2_ISR(void)
+     92          // Parameters	: None
+     93          // Return		: None
+     94          // Description	: GPIO Interrupt routine for RF Button Press 
+     95          //--------------------------------------------------------------------------------
+     96          #pragma vector=PORT2_VECTOR
+     97          __interrupt void PORT2_ISR(void) {   
+     98          	
+     99          	//
+    100          	if ((INTER_IE & INTER_BIT) && (INTER_IFG & INTER_BIT)) {
+    101          		INTER_IFG &= ~INTER_BIT;    			// Обнуляем флаг прерывания
+    102                  //
+    103          		BCSCTL1 = CALBC1_8MHZ; 					// Используем частоту 8 MГц
+    104          		DCOCTL =  CALDCO_8MHZ;
+    105          		//
+    106          		fRxLineDownOn = 1;
+    107          		//
+    108          		//__bic_SR_register_on_exit(LPM3_bits);   // Clear LPM3 bits from 0(SR) Просыпаемся
+    109          		
+    110          	}
+    111          	//
+    112          	if ((STROB_IE & STROB_BIT) && (STROB_IFG & STROB_BIT)) {
+    113          		//
+    114          		strob = 1;
+    115          		for (i = 0; i < 4; i++) {
+    116          			if ((STROB_IN & STROB_BIT) == 0) {
+    117          				strob = 0;
+    118          				break;
+    119          			}
+    120          			//DelayUs(1);
+    121          		}
+    122          		
+    123          		if (strob) {
+    124          			fStartPulse = strob;					// Set flag
+    125          			STROB_IE_Disable();
+    126          		}else{
+    127          			fStartPulse = strob;					// Set flag
+    128          		}
+    129          			
+    130          		STROB_IFG &= ~STROB_BIT;    		// Clear ISR flag
+    131          			
+    132          		//__bic_SR_register_on_exit(LPM3_bits);   // Clear LPM3 bits from 0(SR) Просыпаемся
+    133          	}
     134          
-    135          
-    136          //--------------------------------------------------------------------------------
-    137          // Function		: void STROB_IE_Enable(void)
-    138          // Parameters	: None
-    139          // Return		: None
-    140          // Description	: GPIO Interrupt routine for RF Button Press 
-    141          //--------------------------------------------------------------------------------
-    142          void STROB_IE_Enable(void) {   
-    143          	_BIC_SR(GIE);    					// Disable interrupts
-    144          	//
-    145          	STROB_IFG &= ~STROB_BIT;    		// Clear ISR flag
-    146          	STROB_IE |=   STROB_BIT;
-    147          
-    148          	//fStartPulse = 0;					// Clear app flag
-    149          	
-    150          	_BIS_SR(GIE);    					// Enanble interrupts
-    151          	
-    152          }
-    153          
-    154          
-    155          //--------------------------------------------------------------------------------
-    156          // Function		: void STROB_IE_Enable(void)
-    157          // Parameters	: None
-    158          // Return		: None
-    159          // Description	: GPIO Interrupt routine for RF Button Press 
-    160          //--------------------------------------------------------------------------------
-    161          void STROB_IE_Disable(void) {   
-    162          	//
-    163          	STROB_IE &= ~ STROB_BIT;
-    164          	
-    165          }
-    166          
-    167          
-    168          
-    169          //---------------------------------------------------------------------------------
-    170          // Function		: void TEST_BUT_INT_Init(void)
-    171          // Parameters	: None
-    172          // Return		: None
-    173          // Description	: Initialization interrupts from TEST Button
-    174          //---------------------------------------------------------------------------------
-    175          void BUT_INT_Init(void) {
-    176          	//
-    177          	BUT_REN |= BUT_BIT; 		// PULL enable
-    178          	BUT_OUT |= BUT_BIT;			// PULLUP Resistor 
-    179          	
-    180          	BUT_DIR &= ~BUT_BIT;
-    181          	BUT_IES |= BUT_BIT;  		// прерывание по переходу из 1 в 0, 
-    182                          				// устанавливается соответствующим битом IES.x = 1.
-    183          	BUT_IFG &= ~BUT_BIT; 		// Для предотвращения немедленного срабатывания прерывания,
-    184                          				// обнуляем его флаг для P1.3 до разрешения прерываний
-    185          	BUT_IE  |= BUT_BIT;   		// Разрешаем прерывания для P1.3
-    186          }
-    187          
-    188          
-    189          //---------------------------------------------------------------------------------
-    190          // Function		: void INTER_INT_Init(void)
-    191          // Parameters	: None
-    192          // Return		: None
-    193          // Description	: Initialization interrupts from Intercom (Soft UART)
-    194          //---------------------------------------------------------------------------------
-    195          void INTER_INT_Init(void) {
-    196          	//
-    197          	INTER_REN |= INTER_BIT; 		// PULL enable
-    198          	INTER_OUT |= INTER_BIT;			// PULLUP Resistor 
-    199          	
-    200          	INTER_DIR &= ~INTER_BIT;
-    201          	INTER_IES |= INTER_BIT;  		// прерывание по переходу из 1 в 0, 
-    202                          					// устанавливается соответствующим битом IES.x = 1.
-    203          	INTER_IFG &= ~INTER_BIT; 		// Для предотвращения немедленного срабатывания прерывания,
-    204                          					// обнуляем его флаг для P1.3 до разрешения прерываний
-    205          	INTER_IE  |= INTER_BIT;   		// Разрешаем прерывания для P1.3
-    206          }
-    207          
-    208          
-    209          
-    210          //---------------------------------------------------------------------------------
-    211          // Function		: void SNIFF_IRQ_INT_Init(void)
-    212          // Parameters	: None
-    213          // Return		: None
-    214          // Description	: Initialization interrupts from RX Sniff CC112x (GPIO2)
-    215          //---------------------------------------------------------------------------------
-    216          void STROB_IRQ_Init(void) {
-    217          	//
-    218          	//STROB_REN |= STROB_BIT; 		// PULL enable
-    219          	//STROB_OUT &= ~STROB_BIT;		// PULLDOWN Resistor 
-    220          			
-    221          	STROB_DIR &= ~STROB_BIT;		
-    222          	STROB_IES &= ~STROB_BIT;  		// прерывание по переходу из 0 в 1, 
-    223          
-    224          	STROB_IFG &= ~STROB_BIT; 		// Для предотвращения немедленного срабатывания прерывания,
-    225          	//STROB_IE  |= STROB_BIT;   		// Разрешаем прерывания
-    226          	STROB_IE_Disable();
-    227          }
-    228          
-    229          
-    230          
-    231          //---------------------------------------------------------------------------------
-    232          // Function		: void AMP_SetGain(u8 value)
-    233          // Parameters	: None
-    234          // Return		: None
-    235          // Description	: Initialization interrupts from RX Sniff CC112x (GPIO2)
-    236          //---------------------------------------------------------------------------------
-    237          void AMP_SetGain(u8 value) {
-    238          	
-    239          	GAIN_1_CLR();
-    240          	GAIN_2_CLR();
-    241          	
-    242          	if (value & 1) GAIN_1_SET();
-    243          	if (value & 2) GAIN_2_SET();
-    244          	
-    245          	/*
-    246          	GAIN_1_OUT &= ~(GAIN_1_BIT | GAIN_2_BIT);
-    247          	
-    248          	bits =  (value & 1) ? GAIN_1_BIT : 0;
-    249          	bits |= (value & 2) ? GAIN_2_BIT : 0;
-    250          	
-    251          	GAIN_1_OUT |= bits;
-    252          	*/
-    253          }
-    254          
-    255          
-    256          //---------------------------------------------------------------------------------
-    257          // Function		: void GPIO_Init(void)
-    258          // Parameters	: None
-    259          // Return		: None
-    260          // Description	: Initialization GPIO 
-    261          //---------------------------------------------------------------------------------
-    262          void GPIO_Init(void) {
-    263          
-    264          	P1OUT = 0;	
-    265          	P2OUT = 0;
-    266          	
-    267          	AMP_PWR_DIR 	|= AMP_PWR_BIT;
-    268          	VREF_DIR		|= VREF_BIT;
-    269          	RED_DIR 		|= RED_BIT;
-    270          	YEL_DIR 		|= YEL_BIT;
-    271          	FIRE_DIR 		|= FIRE_BIT;
-    272          	FAULT_DIR 		|= FAULT_BIT;
-    273          	BREAK_DIR 		|= BREAK_BIT;
-    274          	VREF_DIR 		|= VREF_BIT;
-    275          	
-    276          	VREF_OUT 		|= VREF_BIT;
-    277          
-    278          	GAIN_1_DIR 		|= GAIN_1_BIT;
-    279          	GAIN_2_DIR 		|= GAIN_2_BIT;
-    280          	
-    281          	P1SEL = 0;
-    282          	P2SEL = 0;
-    283          	
-    284          	BUT_INT_Init();			// Init interrupts from TEST button 
-    285          	INTER_INT_Init();				// Init interrupts from Intercom
-    286          	STROB_IRQ_Init();
-    287          }
-    288          
-    289          // End hardware.c
+    135          	//
+    136          	if (BUT_IFG & BUT_BIT) {
+    137          			//BUT_IFG &= ~BUT_BIT;    		// Обнуляем флаг прерывания
+    138          					//
+    139          			if (BUT_IES & BUT_BIT) {		// Спадающий фронт
+    140          				but = 1;
+    141          				for (i = 0; i < 8; i++) {
+    142          					if (BUT_IN & BUT_BIT) {
+    143          						but = 0;
+    144          						break;
+    145          					}
+    146          					DelayUs(200);
+    147          				}
+    148          				if (but == 1) {
+    149          					BUT_IES &= ~BUT_BIT;
+    150          					fButtonDownOn = 1;
+    151          				}
+    152          			}else{
+    153          				but = 1;
+    154          				for (i = 0; i < 4; i++) {
+    155          					if ((BUT_IN & BUT_BIT) == 0) {
+    156          						but = 0;
+    157          						break;
+    158          					}
+    159          					DelayUs(100);
+    160          				}
+    161          				if (but == 1) {
+    162          					BUT_IES |= BUT_BIT;
+    163          					fButtonUpOn = 1;
+    164          				}
+    165          			}
+    166          			//
+    167          			BUT_IFG &= ~BUT_BIT;    		// Обнуляем флаг прерывания
+    168          			//
+    169          			__bic_SR_register_on_exit(LPM3_bits);               // Clear LPM3 bits from 0(SR) Просыпаемся
+    170          	}
+    171          }
+    172          
+    173          
+    174          //--------------------------------------------------------------------------------
+    175          // Function		: void STROB_IE_Enable(void)
+    176          // Parameters	: None
+    177          // Return		: None
+    178          // Description	: GPIO Interrupt routine for RF Button Press 
+    179          //--------------------------------------------------------------------------------
+    180          void STROB_IE_Enable(void) {   
+    181          	_BIC_SR(GIE);    					// Disable interrupts
+    182          	//
+    183          	STROB_IFG &= ~STROB_BIT;    		// Clear ISR flag
+    184          	STROB_IE |=   STROB_BIT;
+    185          
+    186          	//fStartPulse = 0;					// Clear app flag
+    187          	
+    188          	_BIS_SR(GIE);    					// Enanble interrupts
+    189          	
+    190          }
+    191          
+    192          
+    193          //--------------------------------------------------------------------------------
+    194          // Function		: void STROB_IE_Enable(void)
+    195          // Parameters	: None
+    196          // Return		: None
+    197          // Description	: GPIO Interrupt routine for RF Button Press 
+    198          //--------------------------------------------------------------------------------
+    199          void STROB_IE_Disable(void) {   
+    200          	//
+    201          	STROB_IE &= ~ STROB_BIT;
+    202          	
+    203          }
+    204          
+    205          
+    206          
+    207          //---------------------------------------------------------------------------------
+    208          // Function		: void TEST_BUT_INT_Init(void)
+    209          // Parameters	: None
+    210          // Return		: None
+    211          // Description	: Initialization interrupts from TEST Button
+    212          //---------------------------------------------------------------------------------
+    213          void BUT_INT_Init(void) {
+    214          	//
+    215          	BUT_REN |= BUT_BIT; 		// PULL enable
+    216          	BUT_OUT |= BUT_BIT;			// PULLUP Resistor 
+    217          	
+    218          	BUT_DIR &= ~BUT_BIT;
+    219          	BUT_IES |= BUT_BIT;  		// прерывание по переходу из 1 в 0, 
+    220                          				// устанавливается соответствующим битом IES.x = 1.
+    221          	BUT_IFG &= ~BUT_BIT; 		// Для предотвращения немедленного срабатывания прерывания,
+    222                          				// обнуляем его флаг для P1.3 до разрешения прерываний
+    223          	BUT_IE  |= BUT_BIT;   		// Разрешаем прерывания для P1.3
+    224          }
+    225          
+    226          
+    227          //---------------------------------------------------------------------------------
+    228          // Function		: void INTER_INT_Init(void)
+    229          // Parameters	: None
+    230          // Return		: None
+    231          // Description	: Initialization interrupts from Intercom (Soft UART)
+    232          //---------------------------------------------------------------------------------
+    233          void INTER_INT_Init(void) {
+    234          	//
+    235          	INTER_REN |= INTER_BIT; 		// PULL enable
+    236          	INTER_OUT |= INTER_BIT;			// PULLUP Resistor 
+    237          	
+    238          	INTER_DIR &= ~INTER_BIT;
+    239          	INTER_IES |= INTER_BIT;  		// прерывание по переходу из 1 в 0, 
+    240                          					// устанавливается соответствующим битом IES.x = 1.
+    241          	INTER_IFG &= ~INTER_BIT; 		// Для предотвращения немедленного срабатывания прерывания,
+    242                          					// обнуляем его флаг для P1.3 до разрешения прерываний
+    243          	INTER_IE  |= INTER_BIT;   		// Разрешаем прерывания для P1.3
+    244          }
+    245          
+    246          
+    247          
+    248          //---------------------------------------------------------------------------------
+    249          // Function		: void SNIFF_IRQ_INT_Init(void)
+    250          // Parameters	: None
+    251          // Return		: None
+    252          // Description	: Initialization interrupts from RX Sniff CC112x (GPIO2)
+    253          //---------------------------------------------------------------------------------
+    254          void STROB_IRQ_Init(void) {
+    255          	//
+    256          	//STROB_REN |= STROB_BIT; 		// PULL enable
+    257          	//STROB_OUT &= ~STROB_BIT;		// PULLDOWN Resistor 
+    258          			
+    259          	STROB_DIR &= ~STROB_BIT;		
+    260          	STROB_IES &= ~STROB_BIT;  		// прерывание по переходу из 0 в 1, 
+    261          
+    262          	STROB_IFG &= ~STROB_BIT; 		// Для предотвращения немедленного срабатывания прерывания,
+    263          	//STROB_IE  |= STROB_BIT;   		// Разрешаем прерывания
+    264          	STROB_IE_Disable();
+    265          }
+    266          
+    267          
+    268          
+    269          //---------------------------------------------------------------------------------
+    270          // Function		: void AMP_SetGain(u8 value)
+    271          // Parameters	: None
+    272          // Return		: None
+    273          // Description	: Initialization interrupts from RX Sniff CC112x (GPIO2)
+    274          //---------------------------------------------------------------------------------
+    275          void AMP_SetGain(u8 value) {
+    276          	
+    277          	GAIN_1_CLR();
+    278          	GAIN_2_CLR();
+    279          	
+    280          	if (value & 1) GAIN_1_SET();
+    281          	if (value & 2) GAIN_2_SET();
+    282          	
+    283          	/*
+    284          	GAIN_1_OUT &= ~(GAIN_1_BIT | GAIN_2_BIT);
+    285          	
+    286          	bits =  (value & 1) ? GAIN_1_BIT : 0;
+    287          	bits |= (value & 2) ? GAIN_2_BIT : 0;
+    288          	
+    289          	GAIN_1_OUT |= bits;
+    290          	*/
+    291          }
+    292          
+    293          
+    294          //---------------------------------------------------------------------------------
+    295          // Function		: void GPIO_Init(void)
+    296          // Parameters	: None
+    297          // Return		: None
+    298          // Description	: Initialization GPIO 
+    299          //---------------------------------------------------------------------------------
+    300          void GPIO_Init(void) {
+    301          
+    302          	P1OUT = 0;	
+    303          	P2OUT = 0;
+    304          	
+    305          	P1DIR = 0;
+    306          	P2DIR = 0;
+    307          	
+    308          	AMP_PWR_DIR 	|= AMP_PWR_BIT;
+    309          	VREF_DIR		|= VREF_BIT;
+    310          	RED_DIR 		|= RED_BIT;
+    311          	YEL_DIR 		|= YEL_BIT;
+    312          	FIRE_DIR 		|= FIRE_BIT;
+    313          	FAULT_DIR 		|= FAULT_BIT;
+    314          	BREAK_DIR 		|= BREAK_BIT;
+    315          	VREF_DIR 		|= VREF_BIT;
+    316          	
+    317          	VREF_OUT 		|= VREF_BIT;
+    318          
+    319          	GAIN_1_DIR 		|= GAIN_1_BIT;
+    320          	GAIN_2_DIR 		|= GAIN_2_BIT;
+    321          	
+    322          	P1SEL = 0;
+    323          	P2SEL = 0;
+    324          	
+    325          	BUT_INT_Init();			// Init interrupts from TEST button 
+    326          	INTER_INT_Init();				// Init interrupts from Intercom
+    327          	STROB_IRQ_Init();
+    328          }
+    329          
+    330          // End hardware.c
 
    Maximum stack usage in bytes:
 
@@ -326,9 +367,9 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c
         2   -> BUT_INT_Init
         2   -> INTER_INT_Init
       2   INTER_INT_Init
-     12   PORT1_ISR
+      4   PORT1_ISR
+     12   PORT2_ISR
        12   -> DelayUs
-      6   PORT2_ISR
       2   STROB_IE_Disable
       2   STROB_IE_Enable
       0   STROB_IRQ_Init
@@ -340,21 +381,16 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c
    -----  --------------
        6  ??Subroutine1_0
       12  ?Subroutine0
-      30  AMP_SetGain
+      26  AMP_SetGain
        1  BCSCTL1
       26  BUT_INT_Init
        1  CALBC1_8MHZ
        1  CALDCO_8MHZ
        1  DCOCTL
-      86  GPIO_Init
+      94  GPIO_Init
       38  INTER_INT_Init
        1  P1DIR
-       1  P1IE
-       1  P1IES
-       1  P1IFG
-       1  P1IN
        1  P1OUT
-       1  P1REN
        1  P1SEL
        1  P2DIR
        1  P2IE
@@ -364,9 +400,9 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c
        1  P2OUT
        1  P2REN
        1  P2SEL
-     130  PORT1_ISR
+       2  PORT1_ISR
        2  PORT1_ISR::??INTVEC 4
-     116  PORT2_ISR
+     240  PORT2_ISR
        2  PORT2_ISR::??INTVEC 6
        2  STROB_IE_Disable
       14  STROB_IE_Enable
@@ -377,13 +413,13 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c
 
  
  460 bytes in segment CODE
-  20 bytes in segment DATA16_AN
+  15 bytes in segment DATA16_AN
    3 bytes in segment DATA16_Z
    4 bytes in segment INTVEC
  
  460 bytes of CODE  memory
    0 bytes of CONST memory (+  4 bytes shared)
-   3 bytes of DATA  memory (+ 20 bytes shared)
+   3 bytes of DATA  memory (+ 15 bytes shared)
 
 Errors: none
 Warnings: none

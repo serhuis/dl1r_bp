@@ -1782,7 +1782,8 @@ label_light:
 			//TEST2_SET();
 			
 			_BIC_SR(GIE);    			// Запрещаем прерывания
-			Timer_A0_SetDelay(2250);
+//			Timer_A0_SetDelay(2250);
+			Timer_A0_SetDelay(1500);
 			_BIS_SR(GIE);    			// Разрешаем прерывания
 			//
 			BCSCTL1 = CALBC1_8MHZ; 		// Используем частоту 8 MГц

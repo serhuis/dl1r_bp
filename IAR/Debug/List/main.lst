@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           20/Mar/2017  17:56:05
+# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           22/Mar/2017  10:02:10
 # Copyright 1996-2015 IAR Systems AB.
 # Standalone license - IAR Embedded Workbench for Texas Instruments MSP430
 #
@@ -1810,422 +1810,423 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\main.c
    1782          			//TEST2_SET();
    1783          			
    1784          			_BIC_SR(GIE);    			// Запрещаем прерывания
-   1785          			Timer_A0_SetDelay(2250);
-   1786          			_BIS_SR(GIE);    			// Разрешаем прерывания
-   1787          			//
-   1788          			BCSCTL1 = CALBC1_8MHZ; 		// Используем частоту 8 MГц
-   1789          			DCOCTL =  CALDCO_8MHZ;
-   1790          			//
-   1791          			TA1CCR0  = 0xFFFF - 1;   	// ~ Compensation of frequence increase
-   1792          			//
-   1793          			// For define the presence of strob pulses
-   1794          			strob_pulse_timer = 0;
-   1795          			DeviceFault.fStrobNone = 0;
-   1796          			//
-   1797          			fault_phase = 0;
-   1798          			fault_timer = 0;
-   1799          		}
-   1800          		
-   1801          
-   1802          //-------------------------------------------------------------------------------
-   1803          // KEY DOWN event		
-   1804          		if (fButtonDownOn) {									// Нажата кнопка
-   1805          			fButtonDownOn = 0;
-   1806          			//...
-   1807          			timerKeyDown = 1;
-   1808          			//
-   1809          		} // if (fButtonDownOn)
-   1810          		
-   1811          //-------------------------------------------------------------------------------
-   1812          // KEY UP event
-   1813          		if (fButtonUpOn) {			// Отжата кнопка
-   1814          			fButtonUpOn = 0;
-   1815          
-   1816          			if ((timerKeyDown > 4) && (timerKeyDown < 150))  {	// < 1.5 sec
-   1817          				// The short pressure on the button
-   1818          				if ((DeviceMode == MODE_NORM) || (DeviceMode == MODE_PREFIRE) || (DeviceMode == MODE_PREPREFIRE)) {
-   1819          					DeviceMode = MODE_TEST;
-   1820          					DeviceFault.byte = 0;	// Reset all faults
-   1821          					FIRE_SET();				// Set fire mode current consumption
-   1822          					RED_CLR();
-   1823          					YEL_SET();
-   1824          					timerMain = 12000;		// 120 sec
-   1825          					led_sh = 0;
-   1826          					led_timer = 0;			// Устраняем задержку оптической индикации
-   1827          					led_clk = 0xFF;
-   1828          				}else
-   1829          				//	
-   1830          				if (DeviceMode == MODE_TEST) {
-   1831          					DeviceMode = MODE_NORM;
-   1832          					DeviceFault.byte = 0;	// Reset all faults
-   1833          					//led_timer = 0;
-   1834          					RED_CLR();
-   1835          					YEL_CLR();
-   1836          					FIRE_CLR();
-   1837          				}else
-   1838          				//
-   1839          				if (DeviceMode == MODE_FIRE) {
-   1840          					DeviceMode = MODE_NORM;
-   1841          					DeviceFault.byte = 0;	// Reset all faults
-   1842          					RED_CLR();
-   1843          					YEL_CLR();
-   1844          					FIRE_CLR();				// Disable Fire Mode consumption
-   1845          					led_r = 0;
-   1846          					led_y = 0;
-   1847          				}
-   1848          			}
-   1849          			//
-   1850          			timerKeyDown = 0;
-   1851          		} // if (fButtonUpOn) {
-   1852          
-   1853          		
-   1854          //-------------------------------------------------------------------------------
-   1855          // Soft UART Rx Hundler
-   1856          		if (fRxLineDownOn) {
-   1857          			uart_rx_ind = 0;
-   1858          			//
-   1859          label_rx_continue:
-   1860          			fRxLineDownOn = 0;
-   1861          			//
-   1862          			DelayUs_8MHz(25);		// Delay to center of pulse
-   1863          			//
-   1864          			//TEST2_SET();
-   1865          			//TEST2_CLR();
-   1866          			//
-   1867          			if ((INTER_BIT & INTER_IN) == 0) {
-   1868          				SoftUART_SetReceiveByte();
-   1869          				
-   1870          			}else{
-   1871          				//
-   1872          				BCSCTL1 = CALBC1_1MHZ; 					// Используем частоту 1 MГц
-   1873          				DCOCTL =  CALDCO_1MHZ;
-   1874          				//
-   1875          				TA1CCR0  = 1 * SYS_TICK_TIME - 1;   	// Period T(us) * F(MHz)
-   1876          				//
-   1877          				continue;		// False pulse
-   1878          			}
-   1879          			sh = 0x01;
-   1880          			byte = 0;
-   1881          			while (sh) {
-   1882          				if (fTimerA_On) {
-   1883          					fTimerA_On = 0;
-   1884          					//
-   1885          					//TEST2_SET();
-   1886          					//TEST2_CLR();
-   1887          					//
-   1888          					if (INTER_BIT & INTER_IN) {
-   1889          						byte |= sh;
-   1890          					}
-   1891          					sh <<= 1;
-   1892          				}
-   1893          			}
-   1894          			// Receive byte
-   1895          			SoftUART_ResetReceiveByte();
-   1896          			//
-   1897          			if (uart_rx_ind == 0) {
-   1898          				// Begin of packet
-   1899          				len = packet_len_table[byte];
-   1900          				if (len > UART_BUF_LEN) {
-   1901          					len = UART_BUF_LEN;
-   1902          				}
-   1903          			}
-   1904          				
-   1905          			*(uart_rx_buf+uart_rx_ind++) = byte;
-   1906          			if (uart_rx_ind >= len) {
-   1907          				// Parse of packet
-   1908          				//...
-   1909          				SoftUART_RxParse();
-   1910          				INTER_IFG &= ~INTER_BIT;    				// Обнуляем флаг прерывания
-   1911          				fRxLineDownOn = 0;
-   1912          			}else{
-   1913          				//			
-   1914          				uart_timer = 4;								// 200 ms timeout to next byte
-   1915          				while (1) {
-   1916          					//__bis_SR_register(LPM3_bits + GIE);     // Enter LPM3
-   1917          					//
-   1918          					while ((fRxLineDownOn || fTimer50msOn) == 0) {}
-   1919          					//
-   1920          					if (fRxLineDownOn) {
-   1921          						goto label_rx_continue;
-   1922          					}
-   1923          					if (fTimer50msOn) {						// Получен следующий 50мс интервал
-   1924          						fTimer50msOn = 0;
-   1925          						//
-   1926          						if (uart_timer) {
-   1927          							uart_timer--;
-   1928          						}else{
-   1929          							// End of Rx timeout
-   1930          							//...
-   1931          							INTER_IFG &= ~INTER_BIT;    	// Обнуляем флаг прерывания
-   1932          							fRxLineDownOn = 0;
-   1933          							break;
-   1934          						}
-   1935          					}
-   1936          				}
-   1937          			}
-   1938          			//
+   1785          //			Timer_A0_SetDelay(2250);
+   1786          			Timer_A0_SetDelay(1500);
+   1787          			_BIS_SR(GIE);    			// Разрешаем прерывания
+   1788          			//
+   1789          			BCSCTL1 = CALBC1_8MHZ; 		// Используем частоту 8 MГц
+   1790          			DCOCTL =  CALDCO_8MHZ;
+   1791          			//
+   1792          			TA1CCR0  = 0xFFFF - 1;   	// ~ Compensation of frequence increase
+   1793          			//
+   1794          			// For define the presence of strob pulses
+   1795          			strob_pulse_timer = 0;
+   1796          			DeviceFault.fStrobNone = 0;
+   1797          			//
+   1798          			fault_phase = 0;
+   1799          			fault_timer = 0;
+   1800          		}
+   1801          		
+   1802          
+   1803          //-------------------------------------------------------------------------------
+   1804          // KEY DOWN event		
+   1805          		if (fButtonDownOn) {									// Нажата кнопка
+   1806          			fButtonDownOn = 0;
+   1807          			//...
+   1808          			timerKeyDown = 1;
+   1809          			//
+   1810          		} // if (fButtonDownOn)
+   1811          		
+   1812          //-------------------------------------------------------------------------------
+   1813          // KEY UP event
+   1814          		if (fButtonUpOn) {			// Отжата кнопка
+   1815          			fButtonUpOn = 0;
+   1816          
+   1817          			if ((timerKeyDown > 4) && (timerKeyDown < 150))  {	// < 1.5 sec
+   1818          				// The short pressure on the button
+   1819          				if ((DeviceMode == MODE_NORM) || (DeviceMode == MODE_PREFIRE) || (DeviceMode == MODE_PREPREFIRE)) {
+   1820          					DeviceMode = MODE_TEST;
+   1821          					DeviceFault.byte = 0;	// Reset all faults
+   1822          					FIRE_SET();				// Set fire mode current consumption
+   1823          					RED_CLR();
+   1824          					YEL_SET();
+   1825          					timerMain = 12000;		// 120 sec
+   1826          					led_sh = 0;
+   1827          					led_timer = 0;			// Устраняем задержку оптической индикации
+   1828          					led_clk = 0xFF;
+   1829          				}else
+   1830          				//	
+   1831          				if (DeviceMode == MODE_TEST) {
+   1832          					DeviceMode = MODE_NORM;
+   1833          					DeviceFault.byte = 0;	// Reset all faults
+   1834          					//led_timer = 0;
+   1835          					RED_CLR();
+   1836          					YEL_CLR();
+   1837          					FIRE_CLR();
+   1838          				}else
+   1839          				//
+   1840          				if (DeviceMode == MODE_FIRE) {
+   1841          					DeviceMode = MODE_NORM;
+   1842          					DeviceFault.byte = 0;	// Reset all faults
+   1843          					RED_CLR();
+   1844          					YEL_CLR();
+   1845          					FIRE_CLR();				// Disable Fire Mode consumption
+   1846          					led_r = 0;
+   1847          					led_y = 0;
+   1848          				}
+   1849          			}
+   1850          			//
+   1851          			timerKeyDown = 0;
+   1852          		} // if (fButtonUpOn) {
+   1853          
+   1854          		
+   1855          //-------------------------------------------------------------------------------
+   1856          // Soft UART Rx Hundler
+   1857          		if (fRxLineDownOn) {
+   1858          			uart_rx_ind = 0;
+   1859          			//
+   1860          label_rx_continue:
+   1861          			fRxLineDownOn = 0;
+   1862          			//
+   1863          			DelayUs_8MHz(25);		// Delay to center of pulse
+   1864          			//
+   1865          			//TEST2_SET();
+   1866          			//TEST2_CLR();
+   1867          			//
+   1868          			if ((INTER_BIT & INTER_IN) == 0) {
+   1869          				SoftUART_SetReceiveByte();
+   1870          				
+   1871          			}else{
+   1872          				//
+   1873          				BCSCTL1 = CALBC1_1MHZ; 					// Используем частоту 1 MГц
+   1874          				DCOCTL =  CALDCO_1MHZ;
+   1875          				//
+   1876          				TA1CCR0  = 1 * SYS_TICK_TIME - 1;   	// Period T(us) * F(MHz)
+   1877          				//
+   1878          				continue;		// False pulse
+   1879          			}
+   1880          			sh = 0x01;
+   1881          			byte = 0;
+   1882          			while (sh) {
+   1883          				if (fTimerA_On) {
+   1884          					fTimerA_On = 0;
+   1885          					//
+   1886          					//TEST2_SET();
+   1887          					//TEST2_CLR();
+   1888          					//
+   1889          					if (INTER_BIT & INTER_IN) {
+   1890          						byte |= sh;
+   1891          					}
+   1892          					sh <<= 1;
+   1893          				}
+   1894          			}
+   1895          			// Receive byte
+   1896          			SoftUART_ResetReceiveByte();
+   1897          			//
+   1898          			if (uart_rx_ind == 0) {
+   1899          				// Begin of packet
+   1900          				len = packet_len_table[byte];
+   1901          				if (len > UART_BUF_LEN) {
+   1902          					len = UART_BUF_LEN;
+   1903          				}
+   1904          			}
+   1905          				
+   1906          			*(uart_rx_buf+uart_rx_ind++) = byte;
+   1907          			if (uart_rx_ind >= len) {
+   1908          				// Parse of packet
+   1909          				//...
+   1910          				SoftUART_RxParse();
+   1911          				INTER_IFG &= ~INTER_BIT;    				// Обнуляем флаг прерывания
+   1912          				fRxLineDownOn = 0;
+   1913          			}else{
+   1914          				//			
+   1915          				uart_timer = 4;								// 200 ms timeout to next byte
+   1916          				while (1) {
+   1917          					//__bis_SR_register(LPM3_bits + GIE);     // Enter LPM3
+   1918          					//
+   1919          					while ((fRxLineDownOn || fTimer50msOn) == 0) {}
+   1920          					//
+   1921          					if (fRxLineDownOn) {
+   1922          						goto label_rx_continue;
+   1923          					}
+   1924          					if (fTimer50msOn) {						// Получен следующий 50мс интервал
+   1925          						fTimer50msOn = 0;
+   1926          						//
+   1927          						if (uart_timer) {
+   1928          							uart_timer--;
+   1929          						}else{
+   1930          							// End of Rx timeout
+   1931          							//...
+   1932          							INTER_IFG &= ~INTER_BIT;    	// Обнуляем флаг прерывания
+   1933          							fRxLineDownOn = 0;
+   1934          							break;
+   1935          						}
+   1936          					}
+   1937          				}
+   1938          			}
    1939          			//
-   1940          			BCSCTL1 = CALBC1_1MHZ; 					// Используем частоту 1 MГц
-   1941          			DCOCTL =  CALDCO_1MHZ;
-   1942          			//
-   1943          			TA1CCR0  = 1 * SYS_TICK_TIME - 1;   	// Period T(us) * F(MHz)
-   1944          			//
+   1940          			//
+   1941          			BCSCTL1 = CALBC1_1MHZ; 					// Используем частоту 1 MГц
+   1942          			DCOCTL =  CALDCO_1MHZ;
+   1943          			//
+   1944          			TA1CCR0  = 1 * SYS_TICK_TIME - 1;   	// Period T(us) * F(MHz)
    1945          			//
-   1946          		} // Soft UART Rx Hundler
-   1947          	} // while(1)
-   1948          }
-   1949          
+   1946          			//
+   1947          		} // Soft UART Rx Hundler
+   1948          	} // while(1)
+   1949          }
    1950          
    1951          
    1952          
-   1953          //--------------------------------------------------------------------------------
-   1954          // Function		: __interrupt void watchdog_timer (void)
-   1955          // Parameters	: None
-   1956          // Return		: None
-   1957          // Description	: WDT Interrupt routine
-   1958          //--------------------------------------------------------------------------------
-   1959          #pragma vector=WDT_VECTOR
-   1960          __interrupt void watchdog_timer (void) {
-   1961          	
-   1962          	if (fTimer50msOn) {
-   1963          		if (++Timer50msCounter == 0) {		// > ~ 12sec
-   1964          			WDTCTL = WDTCTL;				// Hardware RESET
-   1965          		}
-   1966          	}
-   1967          	fTimer50msOn = 1;
-   1968          	
-   1969          	__bic_SR_register_on_exit(LPM3_bits);                   // Clear LPM3 bits from 0(SR)
-   1970          }
-   1971          
+   1953          
+   1954          //--------------------------------------------------------------------------------
+   1955          // Function		: __interrupt void watchdog_timer (void)
+   1956          // Parameters	: None
+   1957          // Return		: None
+   1958          // Description	: WDT Interrupt routine
+   1959          //--------------------------------------------------------------------------------
+   1960          #pragma vector=WDT_VECTOR
+   1961          __interrupt void watchdog_timer (void) {
+   1962          	
+   1963          	if (fTimer50msOn) {
+   1964          		if (++Timer50msCounter == 0) {		// > ~ 12sec
+   1965          			WDTCTL = WDTCTL;				// Hardware RESET
+   1966          		}
+   1967          	}
+   1968          	fTimer50msOn = 1;
+   1969          	
+   1970          	__bic_SR_register_on_exit(LPM3_bits);                   // Clear LPM3 bits from 0(SR)
+   1971          }
    1972          
    1973          
-   1974          //--------------------------------------------------------------------------------
-   1975          // Function		: __interrupt void CCR0_ISR(void)
-   1976          // Parameters	: None
-   1977          // Return		: None
-   1978          // Description	: TIMER0 Interrupt routine
-   1979          //--------------------------------------------------------------------------------
-   1980          #pragma vector = TIMER0_A0_VECTOR
-   1981          __interrupt void CCR0_ISR(void) {
-   1982          
-   1983          	fTimerA_On = 1;
-   1984          	
-   1985          } // CCR0_ISR
-   1986          
+   1974          
+   1975          //--------------------------------------------------------------------------------
+   1976          // Function		: __interrupt void CCR0_ISR(void)
+   1977          // Parameters	: None
+   1978          // Return		: None
+   1979          // Description	: TIMER0 Interrupt routine
+   1980          //--------------------------------------------------------------------------------
+   1981          #pragma vector = TIMER0_A0_VECTOR
+   1982          __interrupt void CCR0_ISR(void) {
+   1983          
+   1984          	fTimerA_On = 1;
+   1985          	
+   1986          } // CCR0_ISR
    1987          
    1988          
-   1989          //--------------------------------------------------------------------------------
-   1990          // Function		: __interrupt void Timer_A1_ISR (void)
-   1991          // Parameters	: None
-   1992          // Return		: None
-   1993          // Description	: TIMER1 Interrupt routine
-   1994          //--------------------------------------------------------------------------------
-   1995          #pragma vector=TIMER1_A0_VECTOR
-   1996          __interrupt void Timer_A1_ISR (void)  {
-   1997          	
-   1998          	fTimerA1_On = 1;
-   1999          	//__bic_SR_register_on_exit(LPM0_bits);                   // Clear LPM3 bits from 0(SR)
-   2000          } 
-   2001          
+   1989          
+   1990          //--------------------------------------------------------------------------------
+   1991          // Function		: __interrupt void Timer_A1_ISR (void)
+   1992          // Parameters	: None
+   1993          // Return		: None
+   1994          // Description	: TIMER1 Interrupt routine
+   1995          //--------------------------------------------------------------------------------
+   1996          #pragma vector=TIMER1_A0_VECTOR
+   1997          __interrupt void Timer_A1_ISR (void)  {
+   1998          	
+   1999          	fTimerA1_On = 1;
+   2000          	//__bic_SR_register_on_exit(LPM0_bits);                   // Clear LPM3 bits from 0(SR)
+   2001          } 
    2002          
    2003          
-   2004          //--------------------------------------------------------------------------------
-   2005          // Function		: void Led_Flash(u16 duration)
-   2006          // Parameters	: duration - duration Red LED flash in ms
-   2007          // Return		: None
-   2008          // Description	: Flashing red LED
-   2009          //--------------------------------------------------------------------------------
-   2010          void Led_Flash(u16 duration) {
-   2011          	RED_SET();
-   2012          	DelayMs(duration);
-   2013          	RED_CLR();
-   2014          }
-   2015          
+   2004          
+   2005          //--------------------------------------------------------------------------------
+   2006          // Function		: void Led_Flash(u16 duration)
+   2007          // Parameters	: duration - duration Red LED flash in ms
+   2008          // Return		: None
+   2009          // Description	: Flashing red LED
+   2010          //--------------------------------------------------------------------------------
+   2011          void Led_Flash(u16 duration) {
+   2012          	RED_SET();
+   2013          	DelayMs(duration);
+   2014          	RED_CLR();
+   2015          }
    2016          
    2017          
    2018          
    2019          
-   2020          //--------------------------------------------------------------------------------
-   2021          // Function		: u16 GetVCC(u8 boost_stop)
-   2022          // Parameters	: boost_stop = 1 - if need call BoostStop() after measure
-   2023          // Return		: Value in 10mV (for example 250 = 2.50V)
-   2024          // Description	: Measurement the voltage VCC
-   2025          //--------------------------------------------------------------------------------
-   2026          u16 GetVCC(u8 boost_stop) {
-   2027          	u16 res;	
-   2028          	ADC_Measure(ADC_CH_VCC, 0, VCC_DATA_LEN);
-   2029          	//~~~
-   2030          	VREF_Off();
-   2031          	//
-   2032          	//	
-   2033          	res = AverageData(adc_data1, VCC_DATA_LEN);
-   2034          	res = res * 64 / 218 + 2;						//~~res = ((u32)res * 301) / 1024 & Compensation dV(R38)=20mV (max=302)
-   2035          	return (res);			
-   2036          }
-   2037          
+   2020          
+   2021          //--------------------------------------------------------------------------------
+   2022          // Function		: u16 GetVCC(u8 boost_stop)
+   2023          // Parameters	: boost_stop = 1 - if need call BoostStop() after measure
+   2024          // Return		: Value in 10mV (for example 250 = 2.50V)
+   2025          // Description	: Measurement the voltage VCC
+   2026          //--------------------------------------------------------------------------------
+   2027          u16 GetVCC(u8 boost_stop) {
+   2028          	u16 res;	
+   2029          	ADC_Measure(ADC_CH_VCC, 0, VCC_DATA_LEN);
+   2030          	//~~~
+   2031          	VREF_Off();
+   2032          	//
+   2033          	//	
+   2034          	res = AverageData(adc_data1, VCC_DATA_LEN);
+   2035          	res = res * 64 / 218 + 2;						//~~res = ((u32)res * 301) / 1024 & Compensation dV(R38)=20mV (max=302)
+   2036          	return (res);			
+   2037          }
    2038          
    2039          
    2040          
-   2041          //--------------------------------------------------------------------------------
-   2042          // Function		: void VREF_On(void)
-   2043          // Parameters	: None 
-   2044          // Return		: None
-   2045          // Description	: Enable VREF
-   2046          //--------------------------------------------------------------------------------
-   2047          void VREF_On(void) {
-   2048          
-   2049          	ADC10CTL0 = REFOUT + REFON + SREF_1 + MSC + ADC10ON;
-   2050          	ADC10AE0 |= 0x10;                         // P1.4 ADC option select (VRef Out)
-   2051          
-   2052          }
-   2053          
+   2041          
+   2042          //--------------------------------------------------------------------------------
+   2043          // Function		: void VREF_On(void)
+   2044          // Parameters	: None 
+   2045          // Return		: None
+   2046          // Description	: Enable VREF
+   2047          //--------------------------------------------------------------------------------
+   2048          void VREF_On(void) {
+   2049          
+   2050          	ADC10CTL0 = REFOUT + REFON + SREF_1 + MSC + ADC10ON;
+   2051          	ADC10AE0 |= 0x10;                         // P1.4 ADC option select (VRef Out)
+   2052          
+   2053          }
    2054          
    2055          
-   2056          //--------------------------------------------------------------------------------
-   2057          // Function		: void VREF_Off(void)
-   2058          // Parameters	: None
-   2059          // Return		: None
-   2060          // Description	: Disable VREF
-   2061          //--------------------------------------------------------------------------------
-   2062          void VREF_Off(void) {
-   2063          
-   2064          	ADC10CTL0 = 0;							// Disable ADC & +VREF
-   2065          	ADC10CTL0 = 0;							//
-   2066          }
-   2067          
+   2056          
+   2057          //--------------------------------------------------------------------------------
+   2058          // Function		: void VREF_Off(void)
+   2059          // Parameters	: None
+   2060          // Return		: None
+   2061          // Description	: Disable VREF
+   2062          //--------------------------------------------------------------------------------
+   2063          void VREF_Off(void) {
+   2064          
+   2065          	ADC10CTL0 = 0;							// Disable ADC & +VREF
+   2066          	ADC10CTL0 = 0;							//
+   2067          }
    2068          
    2069          
-   2070          //--------------------------------------------------------------------------------
-   2071          // Function		: void ADC10_ISR(void)
-   2072          // Parameters	: None
-   2073          // Return		: None
-   2074          // Description	: ADC10 interrupt service routine
-   2075          //--------------------------------------------------------------------------------
-   2076          #pragma vector=ADC10_VECTOR
-   2077          __interrupt void ADC10_ISR(void) {
-   2078          
-   2079          	//ADC10AE0 &= ~0x0F;                      // Save only VRef Out
-   2080          	
-   2081          	adc_process = 0;
-   2082          	
-   2083          	fEndOfSamples = 1;
-   2084          	
-   2085          	//__bic_SR_register_on_exit(CPUOFF);      // Clear CPUOFF bit from 0(SR)
-   2086          	
-   2087          }
-   2088          
+   2070          
+   2071          //--------------------------------------------------------------------------------
+   2072          // Function		: void ADC10_ISR(void)
+   2073          // Parameters	: None
+   2074          // Return		: None
+   2075          // Description	: ADC10 interrupt service routine
+   2076          //--------------------------------------------------------------------------------
+   2077          #pragma vector=ADC10_VECTOR
+   2078          __interrupt void ADC10_ISR(void) {
+   2079          
+   2080          	//ADC10AE0 &= ~0x0F;                      // Save only VRef Out
+   2081          	
+   2082          	adc_process = 0;
+   2083          	
+   2084          	fEndOfSamples = 1;
+   2085          	
+   2086          	//__bic_SR_register_on_exit(CPUOFF);      // Clear CPUOFF bit from 0(SR)
+   2087          	
+   2088          }
    2089          
    2090          
-   2091          //--------------------------------------------------------------------------------
-   2092          // Function		: u16 AverageData(u16 * data_ptr, u8 len)
-   2093          // Parameters	: data_ptr - data array pointer, len - length of data array
-   2094          // Return		: Average value of data
-   2095          // Description	: Fuction calculate the average value of data array
-   2096          //--------------------------------------------------------------------------------
-   2097          u16 AverageData(u16 * data_ptr, u8 len) {
-   2098          	u16 summa = 0;
-   2099          	u8  i = len;
-   2100          	while (i--) {
-   2101          		summa += *data_ptr++;
-   2102          	}
-   2103          	//
-   2104          	return (summa/len);
-   2105          }
-   2106          
+   2091          
+   2092          //--------------------------------------------------------------------------------
+   2093          // Function		: u16 AverageData(u16 * data_ptr, u8 len)
+   2094          // Parameters	: data_ptr - data array pointer, len - length of data array
+   2095          // Return		: Average value of data
+   2096          // Description	: Fuction calculate the average value of data array
+   2097          //--------------------------------------------------------------------------------
+   2098          u16 AverageData(u16 * data_ptr, u8 len) {
+   2099          	u16 summa = 0;
+   2100          	u8  i = len;
+   2101          	while (i--) {
+   2102          		summa += *data_ptr++;
+   2103          	}
+   2104          	//
+   2105          	return (summa/len);
+   2106          }
    2107          
-   2108          //--------------------------------------------------------------------------------
-   2109          // Function		: void DeviceDiagnostics(void)
-   2110          // Parameters	: None
-   2111          // Return		: None
-   2112          // Description	: Procedure of the diagnostics device
-   2113          //--------------------------------------------------------------------------------
-   2114          void DeviceDiagnostics(void) {
-   2115          	//
-   2116          	DelayMs(100);
-   2117          	//
+   2108          
+   2109          //--------------------------------------------------------------------------------
+   2110          // Function		: void DeviceDiagnostics(void)
+   2111          // Parameters	: None
+   2112          // Return		: None
+   2113          // Description	: Procedure of the diagnostics device
+   2114          //--------------------------------------------------------------------------------
+   2115          void DeviceDiagnostics(void) {
+   2116          	//
+   2117          	DelayMs(100);
    2118          	//
-   2119          		
-   2120          #if (CRC_ENABLE == 1)
-   2121          	// Check CS of Memory
-   2122          	DeviceFault.fFaultCRC = 0;
-   2123          	if (GetPropertiesCS() != CONFIG->CS) {
-   2124          		DeviceFault.fFaultCRC = 1;
-   2125          	}
-   2126          #endif
-   2127          }
-   2128          
-   2129          //--------------------------------------------------------------------------------
-   2130          // Function		: u16 ADC_Measure_Simple(u16 ch, u16* buf, u8 count)
-   2131          // Parameters	: refout = 0 or REFOUT, vref = REF1_5V , count - кол-во измерений 
-   2132          // Return		: None
-   2133          // Description	: Measurement of the current temperature of MCU
-   2134          //--------------------------------------------------------------------------------
-   2135          #pragma optimize=none
-   2136          u16 ADC_Measure_Simple(u16 ch, u16* buf, u8 count) {
-   2137          	u16 res;
-   2138          
-   2139          	while(adc_process) {}
-   2140          	
-   2141          	BUT_IE &= ~BUT_BIT;
-   2142          	BUT_REN &= ~BUT_BIT; 		// PULL disable
-   2143          	
-   2144          	ADC10CTL0 = SREF_0 + ADC10SHT_1 + MSC  + ADC10ON + ADC10IE;	// Sample&hold = 8 x ADC10CLKs
-   2145          	
-   2146          	DelayUs(50);	
-   2147          	//
-   2148          	ADC10CTL1 = ADC10SSEL_2 + ADC10DIV_7 + CONSEQ_2 + ch;	// ADC_BUT;     // 
-   2149          	//
-   2150          	DelayUs(200);							// Delay to allow Ref to settle
-   2151          
-   2152          	ADC10DTC1 = count;						// count of conversions
-   2153          	ADC10AE0 = ADC_AE_BUT;                 // A3 & A7 ADC option select
-   2154          	//
-   2155          	ADC10SA = (u16) &buf[0];          		// Data buffer start
-   2156          	
-   2157          	fEndOfSamples = 0;
-   2158          	ADC10CTL0 |= ENC + ADC10SC;             // Sampling and conversion start
-   2159          		
-   2160          	__bis_SR_register(CPUOFF + GIE);        // LPM0, ADC10_ISR will force exit
-   2161          	
-   2162          	while (fEndOfSamples == 0){};
-   2163          	fEndOfSamples = 0;
-   2164          
-   2165          	res = AverageData(buf, count);	
-   2166          
-   2167          	ADC10AE0 = ADC_AE;          // A3 & A7 ADC option select
-   2168          	
-   2169          	BUT_IFG &= ~BUT_BIT;    	// Обнуляем флаг прерывания
-   2170          	BUT_IE |= BUT_BIT;
-   2171          	BUT_REN |= BUT_BIT; 		// PULL enable
-   2172          	
-   2173          	return res;
-   2174          }
-   2175          
+   2119          	//
+   2120          		
+   2121          #if (CRC_ENABLE == 1)
+   2122          	// Check CS of Memory
+   2123          	DeviceFault.fFaultCRC = 0;
+   2124          	if (GetPropertiesCS() != CONFIG->CS) {
+   2125          		DeviceFault.fFaultCRC = 1;
+   2126          	}
+   2127          #endif
+   2128          }
+   2129          
+   2130          //--------------------------------------------------------------------------------
+   2131          // Function		: u16 ADC_Measure_Simple(u16 ch, u16* buf, u8 count)
+   2132          // Parameters	: refout = 0 or REFOUT, vref = REF1_5V , count - кол-во измерений 
+   2133          // Return		: None
+   2134          // Description	: Measurement of the current temperature of MCU
+   2135          //--------------------------------------------------------------------------------
+   2136          #pragma optimize=none
+   2137          u16 ADC_Measure_Simple(u16 ch, u16* buf, u8 count) {
+   2138          	u16 res;
+   2139          
+   2140          	while(adc_process) {}
+   2141          	
+   2142          	BUT_IE &= ~BUT_BIT;
+   2143          	BUT_REN &= ~BUT_BIT; 		// PULL disable
+   2144          	
+   2145          	ADC10CTL0 = SREF_0 + ADC10SHT_1 + MSC  + ADC10ON + ADC10IE;	// Sample&hold = 8 x ADC10CLKs
+   2146          	
+   2147          	DelayUs(50);	
+   2148          	//
+   2149          	ADC10CTL1 = ADC10SSEL_2 + ADC10DIV_7 + CONSEQ_2 + ch;	// ADC_BUT;     // 
+   2150          	//
+   2151          	DelayUs(200);							// Delay to allow Ref to settle
+   2152          
+   2153          	ADC10DTC1 = count;						// count of conversions
+   2154          	ADC10AE0 = ADC_AE_BUT;                 // A3 & A7 ADC option select
+   2155          	//
+   2156          	ADC10SA = (u16) &buf[0];          		// Data buffer start
+   2157          	
+   2158          	fEndOfSamples = 0;
+   2159          	ADC10CTL0 |= ENC + ADC10SC;             // Sampling and conversion start
+   2160          		
+   2161          	__bis_SR_register(CPUOFF + GIE);        // LPM0, ADC10_ISR will force exit
+   2162          	
+   2163          	while (fEndOfSamples == 0){};
+   2164          	fEndOfSamples = 0;
+   2165          
+   2166          	res = AverageData(buf, count);	
+   2167          
+   2168          	ADC10AE0 = ADC_AE;          // A3 & A7 ADC option select
+   2169          	
+   2170          	BUT_IFG &= ~BUT_BIT;    	// Обнуляем флаг прерывания
+   2171          	BUT_IE |= BUT_BIT;
+   2172          	BUT_REN |= BUT_BIT; 		// PULL enable
+   2173          	
+   2174          	return res;
+   2175          }
    2176          
-   2177          //--------------------------------------------------------------------------------
-   2178          // Function		: void u8 JP1_Define(void)
-   2179          // Parameters	: None
-   2180          // Return		: 0 - JP1 Open, 1 - JP1 Close
-   2181          // Description	: Definition of JP1 state
-   2182          //--------------------------------------------------------------------------------
-   2183          void JP1_Define(void) {
-   2184          	u16 buf[4];
-   2185          	u16 res;
-   2186          	
-   2187          	res = ADC_Measure_Simple(ADC_BUT, buf, 4);
-   2188          	
-   2189          	if (res > 600) return; 
-   2190          	if (res > 100) {
-   2191          		jp1_state = 0;		// JP1 is Open 
-   2192          	}else{
-   2193          		jp1_state = 1;		// JP1 is Close
-   2194          	}	
-   2195          	//
-   2196          	return;	
-   2197          }
-   2198          
+   2177          
+   2178          //--------------------------------------------------------------------------------
+   2179          // Function		: void u8 JP1_Define(void)
+   2180          // Parameters	: None
+   2181          // Return		: 0 - JP1 Open, 1 - JP1 Close
+   2182          // Description	: Definition of JP1 state
+   2183          //--------------------------------------------------------------------------------
+   2184          void JP1_Define(void) {
+   2185          	u16 buf[4];
+   2186          	u16 res;
+   2187          	
+   2188          	res = ADC_Measure_Simple(ADC_BUT, buf, 4);
+   2189          	
+   2190          	if (res > 600) return; 
+   2191          	if (res > 100) {
+   2192          		jp1_state = 0;		// JP1 is Open 
+   2193          	}else{
+   2194          		jp1_state = 1;		// JP1 is Close
+   2195          	}	
+   2196          	//
+   2197          	return;	
+   2198          }
    2199          
-   2200          // End of main.c
+   2200          
+   2201          // End of main.c
 
    Maximum stack usage in bytes:
 
@@ -2341,8 +2342,8 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\main.c
 
    Bytes  Function/Label
    -----  --------------
-       8  ??Subroutine40_0
-       6  ??Subroutine41_0
+       8  ??Subroutine41_0
+       6  ??Subroutine42_0
       22  ??Subroutine4_0
       38  ?Subroutine0
       12  ?Subroutine10
@@ -2361,26 +2362,27 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\main.c
       14  ?Subroutine22
       36  ?Subroutine23
       18  ?Subroutine24
-      10  ?Subroutine25
-      16  ?Subroutine26
-      10  ?Subroutine28
+       8  ?Subroutine25
+      10  ?Subroutine26
+      16  ?Subroutine27
+      12  ?Subroutine29
       24  ?Subroutine3
-      20  ?Subroutine30
-      28  ?Subroutine31
-       8  ?Subroutine32
-      14  ?Subroutine33
-       8  ?Subroutine34
-      16  ?Subroutine35
-       8  ?Subroutine36
-       6  ?Subroutine37
-       8  ?Subroutine38
+      20  ?Subroutine31
+      28  ?Subroutine32
+       8  ?Subroutine33
+      14  ?Subroutine34
+       8  ?Subroutine35
+      16  ?Subroutine36
+       8  ?Subroutine37
+       6  ?Subroutine38
        8  ?Subroutine39
        8  ?Subroutine4
+       8  ?Subroutine40
        2  ?Subroutine5
       12  ?Subroutine6
       12  ?Subroutine7
       16  ?Subroutine8
-      18  ?Subroutine9
+      20  ?Subroutine9
        1  ADC10AE0
        2  ADC10CTL0
        2  ADC10CTL1
@@ -2407,7 +2409,7 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\main.c
        2  CCR0_ISR::??INTVEC 18
        2  CCR1_Value
        1  CalibrFault
-     416  CalibrationResultAnalise
+     420  CalibrationResultAnalise
        4  ClearDriftVar
        1  DCOCTL
        4  DefineNewMode
@@ -2419,7 +2421,7 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\main.c
        4  DriftLevel
        4  DriftSumma
       18  FIRCoef
-     258  FaultSignalManager
+     266  FaultSignalManager
        1  FireMeasCount
       74  GetVCC
        1  IE1
@@ -2427,14 +2429,13 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\main.c
       36  JP1_Define
       88  LedTestValueManager
        8  Led_Flash
-       1  P1IE
-       1  P1IFG
        1  P1OUT
-       1  P1REN
        1  P2DIR
+       1  P2IE
        1  P2IFG
        1  P2IN
        1  P2OUT
+       1  P2REN
        0  SetFaultMode
       22  SetLevels
       64  SetLevelsFromCalibr
@@ -2495,7 +2496,7 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\main.c
        4  led_y
        1  light_sync
        2  light_timer
-    2304  main
+    2312  main
        2  mainPeriodCounter
        6  q_array
        1  reference
@@ -2513,16 +2514,16 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\main.c
        2  zero_timer
 
  
- 5 206 bytes in segment CODE
-    47 bytes in segment DATA16_AN
+ 5 238 bytes in segment CODE
+    46 bytes in segment DATA16_AN
     44 bytes in segment DATA16_C
    371 bytes in segment DATA16_Z
      8 bytes in segment INTVEC
      2 bytes in segment REGVAR_AN
  
- 5 206 bytes of CODE     memory
+ 5 238 bytes of CODE     memory
     44 bytes of CONST    memory (+  8 bytes shared)
-   371 bytes of DATA     memory (+ 47 bytes shared)
+   371 bytes of DATA     memory (+ 46 bytes shared)
      0 bytes of REGISTER memory (+  2 bytes shared)
 
 Errors: none

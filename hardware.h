@@ -51,14 +51,14 @@
 
 
 // For Button
-#define BUT_DIR			P1DIR
-#define BUT_IN			P1IN
-#define BUT_OUT			P1OUT
-#define BUT_IES     P1IES
-#define BUT_IFG			P1IFG
-#define BUT_IE			P1IE
-#define BUT_REN			P1REN
-#define BUT_BIT			BIT2
+#define BUT_DIR			P2DIR
+#define BUT_IN			P2IN
+#define BUT_OUT			P2OUT
+#define BUT_IES     P2IES
+#define BUT_IFG			P2IFG
+#define BUT_IE			P2IE
+#define BUT_REN			P2REN
+#define BUT_BIT			BIT0
 
 //!!!!! For test
 #define TEST2_DIR		P2DIR
@@ -79,15 +79,15 @@
 // For Yellow LED
 #define YEL_DIR   	P1DIR
 #define YEL_OUT   	P1OUT
-#define YEL_BIT  		BIT6
+#define YEL_BIT  		BIT5
 #define	YEL_SET()		YEL_OUT |= YEL_BIT
 #define	YEL_CLR()		YEL_OUT &= ~YEL_BIT
 
 
 // For Fire signal
-#define FIRE_DIR   		P2DIR
-#define FIRE_OUT   		P2OUT
-#define FIRE_BIT  		BIT3
+#define FIRE_DIR   		P1DIR
+#define FIRE_OUT   		P1OUT
+#define FIRE_BIT  		BIT6
 #define	FIRE_SET()		FIRE_OUT |= FIRE_BIT
 #define	FIRE_CLR()		FIRE_OUT &= ~FIRE_BIT
 
@@ -95,7 +95,7 @@
 // For Fault signal
 #define FAULT_DIR   	P2DIR
 #define FAULT_OUT   	P2OUT
-#define FAULT_BIT  		BIT4
+#define FAULT_BIT  		BIT3
 #define	FAULT_SET()		FAULT_OUT |= FAULT_BIT
 #define	FAULT_CLR()		FAULT_OUT &= ~FAULT_BIT
 
@@ -103,7 +103,7 @@
 // For Break signal
 #define BREAK_DIR   	P2DIR
 #define BREAK_OUT   	P2OUT
-#define BREAK_BIT  		BIT0
+#define BREAK_BIT  		BIT5
 #define	BREAK_SET()		BREAK_OUT |= BREAK_BIT
 #define	BREAK_CLR()		BREAK_OUT &= ~BREAK_BIT
 
@@ -140,8 +140,8 @@
 #define GAIN_2_DIR		P1DIR
 #define GAIN_1_OUT		P1OUT
 #define GAIN_2_OUT		P1OUT
-#define GAIN_1_BIT		BIT3
-#define GAIN_2_BIT		BIT5
+#define GAIN_1_BIT		BIT2
+#define GAIN_2_BIT		BIT3
 
 #define	GAIN_1_SET()	GAIN_1_OUT |=  GAIN_1_BIT
 #define	GAIN_1_CLR()	GAIN_1_OUT &= ~GAIN_1_BIT

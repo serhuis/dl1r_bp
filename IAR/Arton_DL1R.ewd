@@ -57,7 +57,7 @@
         </option>
         <option>
           <name>DdfFileName</name>
-          <state>$TOOLKIT_DIR$\config\debugger\msp430g2553.ddf</state>
+          <state>$TOOLKIT_DIR$\config\debugger\msp430g2433.ddf</state>
         </option>
         <option>
           <name>ProcTMS</name>
