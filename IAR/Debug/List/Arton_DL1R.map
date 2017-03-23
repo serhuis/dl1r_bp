@@ -2,7 +2,7 @@
 #                                                                              #
 #      IAR Universal Linker V6.3.4.78                                          #
 #                                                                              #
-#           Link time     =  22/Mar/2017  10:02:10                             #
+#           Link time     =  23/Mar/2017  11:27:20                             #
 #           Target CPU    =  MSP430                                            #
 #           List file     =  E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\IAR\Debug\ #
 #                            List\Arton_DL1R.map                               #
@@ -127,31 +127,31 @@ Absolute parts
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F85A - F86D (0x14 bytes), align: 1
+  Relative segment, address: F862 - F875 (0x14 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           DelayUs_8MHz            F85A            ?Subroutine2 (soft_uart)
+           DelayUs_8MHz            F862            ?Subroutine2 (soft_uart)
                                                    ?Subroutine5 (soft_uart)
                                                    SoftUART_TxMode_ON (soft_uart)
                                                    main (main)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F75A - F779 (0x20 bytes), align: 1
+  Relative segment, address: F762 - F781 (0x20 bytes), align: 1
   Segment part 3.             Intra module refs:   DelayMs
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           DelayUs                 F75A            ?Subroutine13 (main)
+           DelayUs                 F762            ?Subroutine14 (main)
                                                    ADC_Measure_Simple (main)
                                                    PORT2_ISR (hardware)
-                                                   Segment part 150 (main)
+                                                   Segment part 149 (main)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F832 - F845 (0x14 bytes), align: 1
+  Relative segment, address: F83A - F84D (0x14 bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           DelayMs                 F832            DeviceDiagnostics (main)
+           DelayMs                 F83A            DeviceDiagnostics (main)
                                                    main (main)
                calls direct
 
@@ -210,109 +210,109 @@ DATA16_I
            SegCBackup              0200 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F880 - F891 (0x12 bytes), align: 1
+  Relative segment, address: F888 - F899 (0x12 bytes), align: 1
   Segment part 9.             Intra module refs:   ?Subroutine1
                                                    StorageProperty
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine6            F880 
+           ?Subroutine6            F888 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F7B6 - F7CF (0x1a bytes), align: 1
+  Relative segment, address: F7BE - F7D7 (0x1a bytes), align: 1
   Segment part 11.            Intra module refs:   ?Subroutine1
                                                    StorageProperty
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           FlashEraseSegment       F7B6 
+           FlashEraseSegment       F7BE 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F8F4 - F901 (0xe bytes), align: 1
+  Relative segment, address: F8FC - F909 (0xe bytes), align: 1
   Segment part 15.            Intra module refs:   ?Subroutine3
                                                    FlashEraseSegment
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine7            F8F4 
+           ?Subroutine7            F8FC 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F846 - F859 (0x14 bytes), align: 1
+  Relative segment, address: F84E - F861 (0x14 bytes), align: 1
   Segment part 16.            Intra module refs:   FlashEraseSegment
                                                    FlashWriteArray
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine0            F846 
+           ?Subroutine0            F84E 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F91E - F929 (0xc bytes), align: 1
+  Relative segment, address: F926 - F931 (0xc bytes), align: 1
   Segment part 14.            Intra module refs:   FlashWriteArray
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine3            F91E 
+           ?Subroutine3            F926 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F5EE - F629 (0x3c bytes), align: 1
+  Relative segment, address: F5F6 - F631 (0x3c bytes), align: 1
   Segment part 17.            Intra module refs:   ?Subroutine2
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           FlashWriteArray         F5EE 
+           FlashWriteArray         F5F6 
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F92A - F935 (0xc bytes), align: 1
+  Relative segment, address: F932 - F93D (0xc bytes), align: 1
   Segment part 21.            Intra module refs:   StorageProperty
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine5            F92A 
+           ?Subroutine5            F932 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F662 - F693 (0x32 bytes), align: 1
+  Relative segment, address: F66A - F69B (0x32 bytes), align: 1
   Segment part 20.            Intra module refs:   StoragePropertyByte
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           StorageProperty         F662            SoftUART_RxParse (soft_uart)
+           StorageProperty         F66A            SoftUART_RxParse (soft_uart)
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F7EA - F801 (0x18 bytes), align: 1
+  Relative segment, address: F7F2 - F809 (0x18 bytes), align: 1
   Segment part 22.            Intra module refs:   SavePropertyCS
                                                    StorageProperty
                                                    StoragePropertyWord
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine2            F7EA 
+           ?Subroutine2            F7F2 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F8A4 - F8B5 (0x12 bytes), align: 1
+  Relative segment, address: F8AC - F8BD (0x12 bytes), align: 1
   Segment part 23.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           StoragePropertyByte     F8A4            CalibrationResultAnalise (main)
+           StoragePropertyByte     F8AC            CalibrationResultAnalise (main)
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F77A - F797 (0x1e bytes), align: 1
+  Relative segment, address: F782 - F79F (0x1e bytes), align: 1
   Segment part 24.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           StoragePropertyWord     F77A            ?Subroutine0 (main)
-                                                   ?Subroutine33 (main)
+           StoragePropertyWord     F782            ?Subroutine0 (main)
+                                                   ?Subroutine34 (main)
                                                    CalibrationResultAnalise (main)
-                                                   Segment part 102 (main)
+                                                   Segment part 101 (main)
                                                    main (main)
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F802 - F819 (0x18 bytes), align: 1
+  Relative segment, address: F80A - F821 (0x18 bytes), align: 1
   Segment part 25.            Intra module refs:   SavePropertyCS
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           GetPropertiesCS         F802            DeviceDiagnostics (main)
+           GetPropertiesCS         F80A            DeviceDiagnostics (main)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F798 - F7B5 (0x1e bytes), align: 1
+  Relative segment, address: F7A0 - F7BD (0x1e bytes), align: 1
   Segment part 26.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SavePropertyCS          F798            ?Subroutine33 (main)
+           SavePropertyCS          F7A0            ?Subroutine34 (main)
                                                    SoftUART_RxParse (soft_uart)
                calls direct
     -------------------------------------------------------------------------
@@ -321,12 +321,12 @@ DATA16_ID
   Segment part 7.             Intra module refs:   SegCBackup
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F6F2 - F715 (0x24 bytes), align: 1
+  Relative segment, address: F6FA - F71D (0x24 bytes), align: 1
   Segment part 27.            Intra module refs:   SavePropertyCS
                                                    StoragePropertyWord
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine1            F6F2 
+           ?Subroutine1            F6FA 
 
     *************************************************************************
 
@@ -405,7 +405,6 @@ DATA16_AN
                                                    INTER_INT_Init
                                                    SoftUART_TxMode_OFF (soft_uart)
                                                    SoftUART_TxMode_ON (soft_uart)
-                                                   main (main)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            P2DIR                   002A 
@@ -497,68 +496,68 @@ DATA16_Z
            but                     0335 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F94C - F94D (0x2 bytes), align: 1
+  Relative segment, address: F954 - F955 (0x2 bytes), align: 1
   Segment part 22.            Intra module refs:   PORT1_ISR::??INTVEC 4
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           PORT1_ISR               F94C 
+           PORT1_ISR               F954 
                interrupt function
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F3B4 - F4A3 (0xf0 bytes), align: 1
+  Relative segment, address: F3BC - F4AB (0xf0 bytes), align: 1
   Segment part 23.            Intra module refs:   PORT2_ISR::??INTVEC 6
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           PORT2_ISR               F3B4 
+           PORT2_ISR               F3BC 
                interrupt function
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F910 - F91D (0xe bytes), align: 1
+  Relative segment, address: F918 - F925 (0xe bytes), align: 1
   Segment part 24.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           STROB_IE_Enable         F910            main (main)
+           STROB_IE_Enable         F918            main (main)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F4A4 - F4BD (0x1a bytes), align: 1
+  Relative segment, address: F4AC - F4C5 (0x1a bytes), align: 1
   Segment part 26.            Intra module refs:   GPIO_Init
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           BUT_INT_Init            F4A4 
+           BUT_INT_Init            F4AC 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F4BE - F4E3 (0x26 bytes), align: 1
+  Relative segment, address: F4C6 - F4EB (0x26 bytes), align: 1
   Segment part 27.            Intra module refs:   GPIO_Init
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           INTER_INT_Init          F4BE 
+           INTER_INT_Init          F4C6 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F4E4 - F4EF (0xc bytes), align: 1
+  Relative segment, address: F4EC - F4F7 (0xc bytes), align: 1
   Segment part 29.            Intra module refs:   GPIO_Init
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine0            F4E4 
+           ?Subroutine0            F4EC 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F4F0 - F4F5 (0x6 bytes), align: 1
+  Relative segment, address: F4F8 - F4FD (0x6 bytes), align: 1
   Segment part 30.            Intra module refs:   ?Subroutine0
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F4F6 - F50F (0x1a bytes), align: 1
+  Relative segment, address: F4FE - F517 (0x1a bytes), align: 1
   Segment part 31.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           AMP_SetGain             F4F6            CalibrationResultAnalise (main)
+           AMP_SetGain             F4FE            CalibrationResultAnalise (main)
                                                    main (main)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F510 - F56D (0x5e bytes), align: 1
+  Relative segment, address: F518 - F575 (0x5e bytes), align: 1
   Segment part 32.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           GPIO_Init               F510            main (main)
+           GPIO_Init               F518            main (main)
                calls direct
     -------------------------------------------------------------------------
 INTVEC
@@ -645,7 +644,7 @@ DATA16_AN
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 0160 - 0161 (0x2 bytes), align: 0
-  Segment part 18. ROOT       Intra module refs:   SoftUART_ResetReceiveByte (soft_uart)
+  Segment part 17. ROOT       Intra module refs:   SoftUART_ResetReceiveByte (soft_uart)
                                                    SoftUART_SetReceiveByte (soft_uart)
                                                    VLO_TimerCalibr
                                                    main
@@ -655,7 +654,7 @@ DATA16_AN
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 0162 - 0163 (0x2 bytes), align: 0
-  Segment part 19. ROOT       Intra module refs:   SoftUART_ResetReceiveByte (soft_uart)
+  Segment part 18. ROOT       Intra module refs:   SoftUART_ResetReceiveByte (soft_uart)
                                                    SoftUART_SetReceiveByte (soft_uart)
                                                    VLO_TimerCalibr
                                                    main
@@ -665,7 +664,7 @@ DATA16_AN
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 0164 - 0165 (0x2 bytes), align: 0
-  Segment part 20. ROOT       Intra module refs:   SoftUART_SetReceiveByte (soft_uart)
+  Segment part 19. ROOT       Intra module refs:   SoftUART_SetReceiveByte (soft_uart)
                                                    VLO_TimerCalibr
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -673,7 +672,7 @@ DATA16_AN
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 0170 - 0171 (0x2 bytes), align: 0
-  Segment part 21. ROOT       Intra module refs:   SoftUART_SetReceiveByte (soft_uart)
+  Segment part 20. ROOT       Intra module refs:   SoftUART_SetReceiveByte (soft_uart)
                                                    main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -681,7 +680,7 @@ DATA16_AN
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 0172 - 0173 (0x2 bytes), align: 0
-  Segment part 22. ROOT       Intra module refs:   SoftUART_SetReceiveByte (soft_uart)
+  Segment part 21. ROOT       Intra module refs:   SoftUART_SetReceiveByte (soft_uart)
                                                    VLO_TimerCalibr
                                                    main
            ENTRY                   ADDRESS         REF BY
@@ -690,35 +689,35 @@ DATA16_AN
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 0180 - 0181 (0x2 bytes), align: 0
-  Segment part 23. ROOT       Intra module refs:   main
+  Segment part 22. ROOT       Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            TA1CTL                  0180 
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 0182 - 0183 (0x2 bytes), align: 0
-  Segment part 24. ROOT       Intra module refs:   main
+  Segment part 23. ROOT       Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            TA1CCTL0                0182 
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 0190 - 0191 (0x2 bytes), align: 0
-  Segment part 25. ROOT       Intra module refs:   main
+  Segment part 24. ROOT       Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            TA1R                    0190 
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 0192 - 0193 (0x2 bytes), align: 0
-  Segment part 26. ROOT       Intra module refs:   main
+  Segment part 25. ROOT       Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            TA1CCR0                 0192 
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 0120 - 0121 (0x2 bytes), align: 0
-  Segment part 27. ROOT       Intra module refs:   main
+  Segment part 26. ROOT       Intra module refs:   main
                                                    watchdog_timer
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -726,35 +725,35 @@ DATA16_AN
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 10F8 - 10F8 (0x1 bytes), align: 0
-  Segment part 28. ROOT       Intra module refs:   main
+  Segment part 27. ROOT       Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CALDCO_16MHZ            10F8 
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 10F9 - 10F9 (0x1 bytes), align: 0
-  Segment part 29. ROOT       Intra module refs:   main
+  Segment part 28. ROOT       Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CALBC1_16MHZ            10F9 
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 10FE - 10FE (0x1 bytes), align: 0
-  Segment part 32. ROOT       Intra module refs:   main
+  Segment part 31. ROOT       Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CALDCO_1MHZ             10FE 
     -------------------------------------------------------------------------
 DATA16_AN
   Relative segment, address: 10FF - 10FF (0x1 bytes), align: 0
-  Segment part 33. ROOT       Intra module refs:   main
+  Segment part 32. ROOT       Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CALBC1_1MHZ             10FF 
     -------------------------------------------------------------------------
 REGVAR_AN
   Relative segment, address: REGISTER 0008 - 0009 (0x2 bytes), align: 0
-  Segment part 34. ROOT       Intra module refs:   ADC10_ISR
+  Segment part 33. ROOT       Intra module refs:   ADC10_ISR
                                                    ADC_Measure_Simple
                                                    CCR0_ISR
                                                    VLO_TimerCalibr
@@ -771,22 +770,22 @@ REGVAR_AN
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0202 - 0203 (0x2 bytes), align: 1
-  Segment part 40.            Intra module refs:   main
+  Segment part 39.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            timerMain               0202 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0204 - 0205 (0x2 bytes), align: 1
-  Segment part 43.            Intra module refs:   main
+  Segment part 42.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            timerKeyDown            0204 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0336 - 0336 (0x1 bytes), align: 0
-  Segment part 45.            Intra module refs:   ?Subroutine35
-                                                   ?Subroutine9
+  Segment part 44.            Intra module refs:   ?Subroutine10
+                                                   ?Subroutine36
                                                    CalibrationResultAnalise
                                                    FaultSignalManager
                                                    SignalAnalysis
@@ -797,8 +796,8 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0337 - 0337 (0x1 bytes), align: 0
-  Segment part 46.            Intra module refs:   ?Subroutine11
-                                                   ?Subroutine9
+  Segment part 45.            Intra module refs:   ?Subroutine10
+                                                   ?Subroutine12
                                                    DeviceDiagnostics
                                                    FaultSignalManager
                                                    main
@@ -808,7 +807,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0338 - 0338 (0x1 bytes), align: 0
-  Segment part 47.            Intra module refs:   ?Subroutine11
+  Segment part 46.            Intra module refs:   ?Subroutine12
                                                    CalibrationResultAnalise
                                                    FaultSignalManager
                                                    main
@@ -818,14 +817,14 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0206 - 0207 (0x2 bytes), align: 1
-  Segment part 48.
+  Segment part 47.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            dark                    0206            SoftUART_RxParse (soft_uart)
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0208 - 0209 (0x2 bytes), align: 1
-  Segment part 49.            Intra module refs:   SignalAnalysis
+  Segment part 48.            Intra module refs:   SignalAnalysis
                                                    main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -833,21 +832,21 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 020A - 020B (0x2 bytes), align: 1
-  Segment part 50.            Intra module refs:   main
+  Segment part 49.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            delta_last              020A 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 020C - 020D (0x2 bytes), align: 1
-  Segment part 51.            Intra module refs:   main
+  Segment part 50.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            zero_timer              020C 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 020E - 020F (0x2 bytes), align: 1
-  Segment part 54.            Intra module refs:   Segment part 159
+  Segment part 53.            Intra module refs:   Segment part 158
                                                    main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -855,7 +854,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0210 - 0213 (0x4 bytes), align: 1
-  Segment part 55.            Intra module refs:   Segment part 159
+  Segment part 54.            Intra module refs:   Segment part 158
                                                    main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -863,7 +862,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0214 - 0217 (0x4 bytes), align: 1
-  Segment part 56.            Intra module refs:   Segment part 159
+  Segment part 55.            Intra module refs:   Segment part 158
                                                    main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -871,7 +870,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0339 - 0339 (0x1 bytes), align: 0
-  Segment part 58.            Intra module refs:   main
+  Segment part 57.            Intra module refs:   main
                                                    watchdog_timer
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -879,8 +878,8 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0218 - 02DF (0xc8 bytes), align: 1
-  Segment part 59.            Intra module refs:   ?Subroutine15
-                                                   ?Subroutine32
+  Segment part 58.            Intra module refs:   ?Subroutine16
+                                                   ?Subroutine33
                                                    SignalAnalysis
                                                    main
            ENTRY                   ADDRESS         REF BY
@@ -889,8 +888,8 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 02E0 - 02E3 (0x4 bytes), align: 1
-  Segment part 60.            Intra module refs:   ?Subroutine22
-                                                   ?Subroutine24
+  Segment part 59.            Intra module refs:   ?Subroutine23
+                                                   ?Subroutine25
                                                    main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -898,7 +897,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 02E4 - 02E7 (0x4 bytes), align: 1
-  Segment part 61.            Intra module refs:   ?Subroutine24
+  Segment part 60.            Intra module refs:   ?Subroutine25
                                                    FaultSignalManager
                                                    main
            ENTRY                   ADDRESS         REF BY
@@ -907,14 +906,14 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 02E8 - 02EB (0x4 bytes), align: 1
-  Segment part 62.            Intra module refs:   main
+  Segment part 61.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            led_sh                  02E8 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 033A - 033A (0x1 bytes), align: 0
-  Segment part 63.            Intra module refs:   Timer_A1_ISR
+  Segment part 62.            Intra module refs:   Timer_A1_ISR
                                                    main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -922,14 +921,14 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 033B - 033B (0x1 bytes), align: 0
-  Segment part 64.            Intra module refs:   main
+  Segment part 63.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            calibr_stage            033B 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 02EC - 02F7 (0xc bytes), align: 1
-  Segment part 65.            Intra module refs:   CalibrationResultAnalise
+  Segment part 64.            Intra module refs:   CalibrationResultAnalise
                                                    main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -937,7 +936,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 033C - 0341 (0x6 bytes), align: 0
-  Segment part 66.            Intra module refs:   CalibrationResultAnalise
+  Segment part 65.            Intra module refs:   CalibrationResultAnalise
                                                    main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -945,7 +944,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_C
   Relative segment, address: E000 - E011 (0x12 bytes), align: 0
-  Segment part 67.            Intra module refs:   CalibrationResultAnalise
+  Segment part 66.            Intra module refs:   CalibrationResultAnalise
                                                    main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -953,28 +952,28 @@ DATA16_C
     -------------------------------------------------------------------------
 DATA16_C
   Relative segment, address: E012 - E019 (0x8 bytes), align: 0
-  Segment part 68.            Intra module refs:   main
+  Segment part 67.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            fault_sequence          E012 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0342 - 0342 (0x1 bytes), align: 0
-  Segment part 69.            Intra module refs:   main
+  Segment part 68.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            fault_chain_ind         0342 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 02F8 - 02F9 (0x2 bytes), align: 1
-  Segment part 70.            Intra module refs:   main
+  Segment part 69.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            fault_chain_timer       02F8 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0343 - 0343 (0x1 bytes), align: 0
-  Segment part 71.            Intra module refs:   ?Subroutine23
+  Segment part 70.            Intra module refs:   ?Subroutine24
                                                    CalibrationResultAnalise
                                                    main
            ENTRY                   ADDRESS         REF BY
@@ -983,7 +982,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0344 - 0344 (0x1 bytes), align: 0
-  Segment part 72.            Intra module refs:   ?Subroutine23
+  Segment part 71.            Intra module refs:   ?Subroutine24
                                                    CalibrationResultAnalise
                                                    SignalAnalysis
                                                    main
@@ -993,7 +992,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0345 - 0345 (0x1 bytes), align: 0
-  Segment part 73.            Intra module refs:   ?Subroutine23
+  Segment part 72.            Intra module refs:   ?Subroutine24
                                                    CalibrationResultAnalise
                                                    main
            ENTRY                   ADDRESS         REF BY
@@ -1002,7 +1001,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 02FA - 02FB (0x2 bytes), align: 1
-  Segment part 74.            Intra module refs:   CalibrationResultAnalise
+  Segment part 73.            Intra module refs:   CalibrationResultAnalise
                                                    main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -1010,14 +1009,14 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0346 - 0346 (0x1 bytes), align: 0
-  Segment part 75.            Intra module refs:   main
+  Segment part 74.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            jp1_state               0346 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0347 - 0347 (0x1 bytes), align: 0
-  Segment part 76.            Intra module refs:   ?Subroutine15
+  Segment part 75.            Intra module refs:   ?Subroutine16
                                                    ADC10_ISR
                                                    ADC_Measure_Simple
            ENTRY                   ADDRESS         REF BY
@@ -1026,21 +1025,21 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 02FC - 02FD (0x2 bytes), align: 1
-  Segment part 77.            Intra module refs:   main
+  Segment part 76.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            light_timer             02FC 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0348 - 0348 (0x1 bytes), align: 0
-  Segment part 78.            Intra module refs:   main
+  Segment part 77.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            light_sync              0348 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 02FE - 02FF (0x2 bytes), align: 1
-  Segment part 79.            Intra module refs:   ?Subroutine12
+  Segment part 78.            Intra module refs:   ?Subroutine13
                                                    FaultSignalManager
                                                    main
            ENTRY                   ADDRESS         REF BY
@@ -1049,16 +1048,16 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0300 - 0301 (0x2 bytes), align: 1
-  Segment part 81.            Intra module refs:   main
+  Segment part 80.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            hi_signal_counter       0300 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0302 - 0303 (0x2 bytes), align: 1
-  Segment part 82.            Intra module refs:   ?Subroutine12
-                                                   ?Subroutine26
-                                                   ?Subroutine34
+  Segment part 81.            Intra module refs:   ?Subroutine13
+                                                   ?Subroutine27
+                                                   ?Subroutine35
                                                    FaultSignalManager
                                                    main
            ENTRY                   ADDRESS         REF BY
@@ -1067,8 +1066,8 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0349 - 0349 (0x1 bytes), align: 0
-  Segment part 83.            Intra module refs:   ?Subroutine26
-                                                   ?Subroutine34
+  Segment part 82.            Intra module refs:   ?Subroutine27
+                                                   ?Subroutine35
                                                    FaultSignalManager
                                                    main
            ENTRY                   ADDRESS         REF BY
@@ -1077,36 +1076,36 @@ DATA16_Z
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0304 - 0305 (0x2 bytes), align: 1
-  Segment part 84.            Intra module refs:   main
+  Segment part 83.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            start_timer             0304 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0306 - 0307 (0x2 bytes), align: 1
-  Segment part 85.            Intra module refs:   main
+  Segment part 84.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            flash_period_timer      0306 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F56E, align: 1
-  Segment part 94.            Intra module refs:   main
+  Relative segment, address: F576, align: 1
+  Segment part 93.            Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           VLO_TimerCalibr         F56E            SoftUART_RxParse (soft_uart)
+           VLO_TimerCalibr         F576            SoftUART_RxParse (soft_uart)
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F56E - F5AD (0x40 bytes), align: 1
-  Segment part 95.            Intra module refs:   VLO_TimerCalibr
+  Relative segment, address: F576 - F5B5 (0x40 bytes), align: 1
+  Segment part 94.            Intra module refs:   VLO_TimerCalibr
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine2            F56E 
+           ?Subroutine3            F576 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E05E - E071 (0x14 bytes), align: 1
-  Segment part 97.            Intra module refs:   CalibrationResultAnalise
+  Segment part 96.            Intra module refs:   CalibrationResultAnalise
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            SetLimitCompens         E05E            SoftUART_RxParse (soft_uart)
@@ -1114,16 +1113,16 @@ DATA16_Z
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E072 - E079 (0x8 bytes), align: 1
-  Segment part 98.            Intra module refs:   ?Subroutine2
-                                                   ?Subroutine4
+  Segment part 97.            Intra module refs:   ?Subroutine3
+                                                   ?Subroutine5
                                                    SetLimitCompens
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine33           E072 
+           ?Subroutine34           E072 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E07A - E08F (0x16 bytes), align: 1
-  Segment part 99.
+  Segment part 98.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            SetLevels               E07A            SoftUART_RxParse (soft_uart)
@@ -1131,7 +1130,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E090 - E0B5 (0x26 bytes), align: 1
-  Segment part 100.           Intra module refs:   SetLevels
+  Segment part 99.            Intra module refs:   SetLevels
                                                    SetLevelsFromCalibr
            LOCAL                   ADDRESS         
            =====                   =======         
@@ -1139,20 +1138,20 @@ DATA16_Z
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E0B6 - E0B7 (0x2 bytes), align: 1
-  Segment part 101.           Intra module refs:   SetLevels
+  Segment part 100.           Intra module refs:   SetLevels
                                                    SetLevelsFromCalibr
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine5            E0B6 
+           ?Subroutine6            E0B6 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E0B8 - E0BF (0x8 bytes), align: 1
-  Segment part 102.           Intra module refs:   ?Subroutine5
+  Segment part 101.           Intra module refs:   ?Subroutine6
                                                    main
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E0C0 - E0FF (0x40 bytes), align: 1
-  Segment part 103.           Intra module refs:   CalibrationResultAnalise
+  Segment part 102.           Intra module refs:   CalibrationResultAnalise
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            SetLevelsFromCalibr     E0C0 
@@ -1160,63 +1159,63 @@ DATA16_Z
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E100 - E117 (0x18 bytes), align: 1
-  Segment part 110.           Intra module refs:   main
+  Segment part 109.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine15           E100 
+           ?Subroutine16           E100 
     -------------------------------------------------------------------------
 DATA16_C
   Relative segment, address: E01A - E02B (0x12 bytes), align: 0
-  Segment part 88.            Intra module refs:   SignalAnalysis
+  Segment part 87.            Intra module refs:   SignalAnalysis
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            FIRCoef                 E01A 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0308 - 032B (0x24 bytes), align: 1
-  Segment part 89.            Intra module refs:   SignalAnalysis
+  Segment part 88.            Intra module refs:   SignalAnalysis
            LOCAL                   ADDRESS         
            =====                   =======         
            x                       0308 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E118 - E127 (0x10 bytes), align: 1
-  Segment part 114.           Intra module refs:   SignalAnalysis
+  Segment part 113.           Intra module refs:   SignalAnalysis
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine16           E118 
+           ?Subroutine17           E118 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 032C - 032D (0x2 bytes), align: 1
-  Segment part 90.            Intra module refs:   SignalAnalysis
+  Segment part 89.            Intra module refs:   SignalAnalysis
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            d1                      032C 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 032E - 032F (0x2 bytes), align: 1
-  Segment part 91.            Intra module refs:   SignalAnalysis
+  Segment part 90.            Intra module refs:   SignalAnalysis
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            d2                      032E 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0330 - 0331 (0x2 bytes), align: 1
-  Segment part 92.            Intra module refs:   SignalAnalysis
+  Segment part 91.            Intra module refs:   SignalAnalysis
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            d3                      0330 
     -------------------------------------------------------------------------
 DATA16_Z
   Relative segment, address: 0332 - 0333 (0x2 bytes), align: 1
-  Segment part 93.            Intra module refs:   SignalAnalysis
+  Segment part 92.            Intra module refs:   SignalAnalysis
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            d4                      0332 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E128 - E3D9 (0x2b2 bytes), align: 1
-  Segment part 116.           Intra module refs:   main
+  Segment part 115.           Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            SignalAnalysis          E128 
@@ -1224,65 +1223,65 @@ DATA16_Z
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E3DA - E3E3 (0xa bytes), align: 1
-  Segment part 117.           Intra module refs:   SignalAnalysis
+  Segment part 116.           Intra module refs:   SignalAnalysis
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine18           E3DA 
+           ?Subroutine19           E3DA 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E3E4 - E3FF (0x1c bytes), align: 1
-  Segment part 121.           Intra module refs:   main
+  Segment part 120.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine19           E3E4 
+           ?Subroutine20           E3E4 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E400 - E411 (0x12 bytes), align: 1
-  Segment part 123.           Intra module refs:   main
+  Segment part 122.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine21           E400 
+           ?Subroutine22           E400 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E412 - E423 (0x12 bytes), align: 1
-  Segment part 125.           Intra module refs:   main
+  Segment part 124.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine12           E412 
+           ?Subroutine13           E412 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E424 - E52D (0x10a bytes), align: 1
-  Segment part 126.           Intra module refs:   main
+  Segment part 125.           Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            FaultSignalManager      E424 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E52E - E53B (0xe bytes), align: 1
-  Segment part 127.           Intra module refs:   FaultSignalManager
+  Segment part 126.           Intra module refs:   FaultSignalManager
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine22           E52E 
+           ?Subroutine23           E52E 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E53C - E543 (0x8 bytes), align: 1
-  Segment part 128.           Intra module refs:   ?Subroutine12
-                                                   ?Subroutine22
+  Segment part 127.           Intra module refs:   ?Subroutine13
+                                                   ?Subroutine23
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine35           E53C 
+           ?Subroutine36           E53C 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E544 - E567 (0x24 bytes), align: 1
-  Segment part 131.           Intra module refs:   main
+  Segment part 130.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine23           E544 
+           ?Subroutine24           E544 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E568 - E70B (0x1a4 bytes), align: 1
-  Segment part 132.           Intra module refs:   main
+  Segment part 131.           Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CalibrationResultAnalise
@@ -1291,7 +1290,7 @@ DATA16_Z
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E70C - E721 (0x16 bytes), align: 1
-  Segment part 133.           Intra module refs:   ADC_Measure_Simple
+  Segment part 132.           Intra module refs:   ADC_Measure_Simple
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            AverageData             E70C 
@@ -1299,255 +1298,263 @@ DATA16_Z
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: E722 - E7AD (0x8c bytes), align: 1
-  Segment part 134.           Intra module refs:   main
+  Segment part 133.           Intra module refs:   main
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ADC_Measure_Simple      E722 
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: E7AE - F0B5 (0x908 bytes), align: 1
-  Segment part 135.
+  Relative segment, address: E7AE - F0BF (0x912 bytes), align: 1
+  Segment part 134.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            main                    E7AE            Segment part 18 (?cstart)
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F0B6 - F0C3 (0xe bytes), align: 1
-  Segment part 136.           Intra module refs:   ?Subroutine12
+  Relative segment, address: F0C0 - F0CD (0xe bytes), align: 1
+  Segment part 135.           Intra module refs:   ?Subroutine13
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine34           F0B6 
+           ?Subroutine35           F0C0 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F0C4 - F0DF (0x1c bytes), align: 1
+  Relative segment, address: F0CE - F0E9 (0x1c bytes), align: 1
+  Segment part 136.           Intra module refs:   main
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine33           F0CE 
+    -------------------------------------------------------------------------
+<CODE> 1 (was CODE)
+  Relative segment, address: F0EA - F0FD (0x14 bytes), align: 1
   Segment part 137.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine32           F0C4 
+           ?Subroutine32           F0EA 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F0E0 - F0F3 (0x14 bytes), align: 1
-  Segment part 138.           Intra module refs:   main
-           LOCAL                   ADDRESS         
-           =====                   =======         
-           ?Subroutine31           F0E0 
-    -------------------------------------------------------------------------
-<CODE> 1 (was CODE)
-  Relative segment, address: F0F4 - F0F9 (0x6 bytes), align: 1
-  Segment part 139.           Intra module refs:   ?Subroutine9
+  Relative segment, address: F0FE - F103 (0x6 bytes), align: 1
+  Segment part 138.           Intra module refs:   ?Subroutine10
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine38           F0F4 
+           ?Subroutine39           F0FE 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F0FA - F101 (0x8 bytes), align: 1
-  Segment part 140.           Intra module refs:   ?Subroutine29
-                                                   ?Subroutine38
+  Relative segment, address: F104 - F10B (0x8 bytes), align: 1
+  Segment part 139.           Intra module refs:   ?Subroutine30
+                                                   ?Subroutine39
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine40           F0FA 
+           ?Subroutine41           F104 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F102 - F10D (0xc bytes), align: 1
-  Segment part 141.           Intra module refs:   main
+  Relative segment, address: F10C - F117 (0xc bytes), align: 1
+  Segment part 140.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine29           F102 
+           ?Subroutine30           F10C 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F10E - F11D (0x10 bytes), align: 1
-  Segment part 142.           Intra module refs:   ?Subroutine14
+  Relative segment, address: F118 - F127 (0x10 bytes), align: 1
+  Segment part 141.           Intra module refs:   ?Subroutine15
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine36           F10E 
+           ?Subroutine37           F118 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F11E - F12D (0x10 bytes), align: 1
-  Segment part 143.           Intra module refs:   main
+  Relative segment, address: F128 - F135 (0xe bytes), align: 1
+  Segment part 142.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine27           F11E 
+           ?Subroutine28           F128 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F12E - F135 (0x8 bytes), align: 1
-  Segment part 144.           Intra module refs:   ?Subroutine27
-                                                   ?Subroutine29
+  Relative segment, address: F136 - F13D (0x8 bytes), align: 1
+  Segment part 143.           Intra module refs:   ?Subroutine28
+                                                   ?Subroutine30
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine37           F12E 
+           ?Subroutine38           F136 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F136 - F13F (0xa bytes), align: 1
+  Relative segment, address: F13E - F147 (0xa bytes), align: 1
+  Segment part 144.           Intra module refs:   FaultSignalManager
+                                                   main
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine27           F13E 
+    -------------------------------------------------------------------------
+<CODE> 1 (was CODE)
+  Relative segment, address: F148 - F14F (0x8 bytes), align: 1
   Segment part 145.           Intra module refs:   FaultSignalManager
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine26           F136 
+           ?Subroutine26           F148 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F140 - F147 (0x8 bytes), align: 1
+  Relative segment, address: F150 - F161 (0x12 bytes), align: 1
   Segment part 146.           Intra module refs:   FaultSignalManager
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine25           F140 
+           ?Subroutine25           F150 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F148 - F159 (0x12 bytes), align: 1
-  Segment part 147.           Intra module refs:   FaultSignalManager
-                                                   main
+  Relative segment, address: F162 - F175 (0x14 bytes), align: 1
+  Segment part 147.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine24           F148 
+           ?Subroutine21           F162 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F15A - F16D (0x14 bytes), align: 1
+  Relative segment, address: F176 - F179 (0x4 bytes), align: 1
   Segment part 148.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine20           F15A 
+           ?Subroutine15           F176 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F16E - F171 (0x4 bytes), align: 1
-  Segment part 149.           Intra module refs:   main
-           LOCAL                   ADDRESS         
-           =====                   =======         
-           ?Subroutine14           F16E 
-    -------------------------------------------------------------------------
-<CODE> 1 (was CODE)
-  Relative segment, address: F172 - F177 (0x6 bytes), align: 1
-  Segment part 150.           Intra module refs:   ?Subroutine14
+  Relative segment, address: F17A - F17F (0x6 bytes), align: 1
+  Segment part 149.           Intra module refs:   ?Subroutine15
                                                    main
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F178 - F187 (0x10 bytes), align: 1
+  Relative segment, address: F180 - F18F (0x10 bytes), align: 1
+  Segment part 150.           Intra module refs:   main
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine14           F180 
+    -------------------------------------------------------------------------
+<CODE> 1 (was CODE)
+  Relative segment, address: F190 - F199 (0xa bytes), align: 1
   Segment part 151.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine13           F178 
+           ?Subroutine12           F190 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F188 - F191 (0xa bytes), align: 1
+  Relative segment, address: F19A - F1A5 (0xc bytes), align: 1
   Segment part 152.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine11           F188 
+           ?Subroutine11           F19A 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F192 - F19D (0xc bytes), align: 1
+  Relative segment, address: F1A6 - F1B9 (0x14 bytes), align: 1
   Segment part 153.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine10           F192 
+           ?Subroutine10           F1A6 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F19E - F1B1 (0x14 bytes), align: 1
+  Relative segment, address: F1BA - F1C9 (0x10 bytes), align: 1
   Segment part 154.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine9            F19E 
+           ?Subroutine9            F1BA 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F1B2 - F1C1 (0x10 bytes), align: 1
-  Segment part 155.           Intra module refs:   main
+  Relative segment, address: F1CA - F1D5 (0xc bytes), align: 1
+  Segment part 155.           Intra module refs:   ?Subroutine0
+                                                   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine8            F1B2 
+           ?Subroutine8            F1CA 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F1C2 - F1CD (0xc bytes), align: 1
+  Relative segment, address: F1D6 - F1E1 (0xc bytes), align: 1
   Segment part 156.           Intra module refs:   ?Subroutine0
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine7            F1C2 
+           ?Subroutine7            F1D6 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F1CE - F1D9 (0xc bytes), align: 1
+  Relative segment, address: F1E2 - F1E9 (0x8 bytes), align: 1
   Segment part 157.           Intra module refs:   ?Subroutine0
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine6            F1CE 
+           ?Subroutine5            F1E2 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F1DA - F1E1 (0x8 bytes), align: 1
-  Segment part 158.           Intra module refs:   ?Subroutine0
-                                                   main
-           LOCAL                   ADDRESS         
-           =====                   =======         
-           ?Subroutine4            F1DA 
-    -------------------------------------------------------------------------
-<CODE> 1 (was CODE)
-  Relative segment, address: F1E2 - F1F7 (0x16 bytes), align: 1
-  Segment part 159.           Intra module refs:   ?Subroutine4
+  Relative segment, address: F1EA - F1FF (0x16 bytes), align: 1
+  Segment part 158.           Intra module refs:   ?Subroutine5
                                                    SetLimitCompens
                                                    main
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F1F8 - F20F (0x18 bytes), align: 1
-  Segment part 160.           Intra module refs:   main
+  Relative segment, address: F200 - F217 (0x18 bytes), align: 1
+  Segment part 159.           Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine3            F1F8 
+           ?Subroutine4            F200 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F210 - F229 (0x1a bytes), align: 1
-  Segment part 161.           Intra module refs:   watchdog_timer::??INTVEC 20
+  Relative segment, address: F218 - F229 (0x12 bytes), align: 1
+  Segment part 160.           Intra module refs:   watchdog_timer::??INTVEC 20
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           watchdog_timer          F210 
+           watchdog_timer          F218 
                interrupt function
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F22A - F22D (0x4 bytes), align: 1
+  Relative segment, address: F22A - F231 (0x8 bytes), align: 1
+  Segment part 161.           Intra module refs:   Timer_A1_ISR
+                                                   watchdog_timer
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           ?Subroutine2            F22A 
+    -------------------------------------------------------------------------
+<CODE> 1 (was CODE)
+  Relative segment, address: F232 - F235 (0x4 bytes), align: 1
   Segment part 162.           Intra module refs:   CCR0_ISR::??INTVEC 18
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CCR0_ISR                F22A 
+           CCR0_ISR                F232 
                interrupt function
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F22E - F233 (0x6 bytes), align: 1
+  Relative segment, address: F236 - F23B (0x6 bytes), align: 1
   Segment part 163.           Intra module refs:   Timer_A1_ISR::??INTVEC 26
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           Timer_A1_ISR            F22E 
+           Timer_A1_ISR            F236 
                interrupt function
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F234 - F23B (0x8 bytes), align: 1
-  Segment part 165.           Intra module refs:   ?Subroutine27
+  Relative segment, address: F23C - F243 (0x8 bytes), align: 1
+  Segment part 165.           Intra module refs:   ?Subroutine28
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine39           F234 
+           ?Subroutine40           F23C 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F936 - F93F (0xa bytes), align: 1
+  Relative segment, address: F93E - F947 (0xa bytes), align: 1
   Segment part 169.           Intra module refs:   ADC10_ISR::??INTVEC 10
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ADC10_ISR               F936 
+           ADC10_ISR               F93E 
                interrupt function
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F73A - F759 (0x20 bytes), align: 1
+  Relative segment, address: F742 - F761 (0x20 bytes), align: 1
   Segment part 170.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           DeviceDiagnostics       F73A            SoftUART_RxParse (soft_uart)
+           DeviceDiagnostics       F742            SoftUART_RxParse (soft_uart)
                calls direct
     -------------------------------------------------------------------------
 INTVEC
   Common segment, address: FFE0 - FFEB (0xc bytes), align: 1
-  Segment part 35. ROOT 
+  Segment part 34. ROOT 
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            ADC10_ISR::??INTVEC 10
@@ -1555,14 +1562,14 @@ INTVEC
     -------------------------------------------------------------------------
 INTVEC
   Common segment, address: FFE0 - FFF3 (0x14 bytes), align: 1
-  Segment part 36. ROOT 
+  Segment part 35. ROOT 
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CCR0_ISR::??INTVEC 18   FFF2 
     -------------------------------------------------------------------------
 INTVEC
   Common segment, address: FFE0 - FFF5 (0x16 bytes), align: 1
-  Segment part 37. ROOT 
+  Segment part 36. ROOT 
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            watchdog_timer::??INTVEC 20
@@ -1570,7 +1577,7 @@ INTVEC
     -------------------------------------------------------------------------
 INTVEC
   Common segment, address: FFE0 - FFFB (0x1c bytes), align: 1
-  Segment part 38. ROOT 
+  Segment part 37. ROOT 
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            Timer_A1_ISR::??INTVEC 26
@@ -1612,108 +1619,108 @@ DATA16_C
            packet_len_table        E02C            main (main)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F8E6 - F8F3 (0xe bytes), align: 1
+  Relative segment, address: F8EE - F8FB (0xe bytes), align: 1
   Segment part 18.            Intra module refs:   SoftUART_ResetReceiveByte
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine4            F8E6 
+           ?Subroutine4            F8EE 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F716 - F739 (0x24 bytes), align: 1
+  Relative segment, address: F71E - F741 (0x24 bytes), align: 1
   Segment part 19.            Intra module refs:   SoftUART_RxParse
                                                    SoftUART_TxString
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SoftUART_TxMode_ON      F716 
+           SoftUART_TxMode_ON      F71E 
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F8B6 - F8C5 (0x10 bytes), align: 1
+  Relative segment, address: F8BE - F8CD (0x10 bytes), align: 1
   Segment part 20.            Intra module refs:   SoftUART_RxParse
                                                    SoftUART_TxString
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SoftUART_TxMode_OFF     F8B6 
+           SoftUART_TxMode_OFF     F8BE 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F23C - F255 (0x1a bytes), align: 1
+  Relative segment, address: F244 - F25D (0x1a bytes), align: 1
   Segment part 21.            Intra module refs:   SoftUART_RxParse
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SoftUART_SendByte       F23C 
+           SoftUART_SendByte       F244 
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F256 - F25B (0x6 bytes), align: 1
+  Relative segment, address: F25E - F263 (0x6 bytes), align: 1
   Segment part 22.            Intra module refs:   SoftUART_RxParse
                                                    SoftUART_SendByte
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine0            F256 
+           ?Subroutine0            F25E 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F25C - F27F (0x24 bytes), align: 1
+  Relative segment, address: F264 - F287 (0x24 bytes), align: 1
   Segment part 23.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            SoftUART_SetReceiveByte
-                                   F25C            main (main)
+                                   F264            main (main)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F280 - F28F (0x10 bytes), align: 1
+  Relative segment, address: F288 - F297 (0x10 bytes), align: 1
   Segment part 24.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            SoftUART_ResetReceiveByte
-                                   F280            main (main)
+                                   F288            main (main)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F290 - F2C5 (0x36 bytes), align: 1
+  Relative segment, address: F298 - F2CD (0x36 bytes), align: 1
   Segment part 25.            Intra module refs:   SoftUART_RxParse
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SoftUART_TxString       F290            ?Subroutine32 (main)
+           SoftUART_TxString       F298            ?Subroutine33 (main)
                                                    main (main)
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F2C6 - F2CB (0x6 bytes), align: 1
+  Relative segment, address: F2CE - F2D3 (0x6 bytes), align: 1
   Segment part 26.            Intra module refs:   SoftUART_SendByte
                                                    SoftUART_TxString
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine3            F2C6 
+           ?Subroutine3            F2CE 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F2CC - F2D3 (0x8 bytes), align: 1
+  Relative segment, address: F2D4 - F2DB (0x8 bytes), align: 1
   Segment part 27.            Intra module refs:   ?Subroutine1
                                                    ?Subroutine3
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine5            F2CC 
+           ?Subroutine5            F2D4 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F2D4 - F2E5 (0x12 bytes), align: 1
+  Relative segment, address: F2DC - F2ED (0x12 bytes), align: 1
   Segment part 28.            Intra module refs:   SoftUART_SendByte
                                                    SoftUART_TxString
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine2            F2D4 
+           ?Subroutine2            F2DC 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F2E6 - F2F7 (0x12 bytes), align: 1
+  Relative segment, address: F2EE - F2FF (0x12 bytes), align: 1
   Segment part 29.            Intra module refs:   SoftUART_SendByte
                                                    SoftUART_TxString
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine1            F2E6 
+           ?Subroutine1            F2EE 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F2F8 - F3B3 (0xbc bytes), align: 1
+  Relative segment, address: F300 - F3BB (0xbc bytes), align: 1
   Segment part 31.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SoftUART_RxParse        F2F8            main (main)
+           SoftUART_RxParse        F300            main (main)
                calls direct and indirect
 
     *************************************************************************
@@ -1724,11 +1731,11 @@ DATA16_C
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F94E - F94F (0x2 bytes), align: 1
+  Relative segment, address: F956 - F957 (0x2 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __DebugBreak            F94E            __exit (?__exit)
+           __DebugBreak            F956            __exit (?__exit)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?__exit
@@ -1736,11 +1743,11 @@ DATA16_C
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F892 - F8A3 (0x12 bytes), align: 1
+  Relative segment, address: F89A - F8AB (0x12 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __exit                  F892            Segment part 6 (?_exit)
+           __exit                  F89A            Segment part 6 (?_exit)
                                                    _exit (?_exit)
                calls direct
 
@@ -1750,14 +1757,14 @@ DATA16_C
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F940, align: 1
+  Relative segment, address: F948, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           _exit                   F940            exit (?exit)
+           _exit                   F948            exit (?exit)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F940 - F943 (0x4 bytes), align: 1
+  Relative segment, address: F948 - F94B (0x4 bytes), align: 1
   Segment part 6.             Intra module refs:   _exit
 
     -------------------------------------------------------------------------
@@ -1876,34 +1883,34 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F902 - F903 (0x2 bytes), align: 1
+  Relative segment, address: F90A - F90B (0x2 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?Epilogue6              F902            CalibrationResultAnalise (main)
+           ?Epilogue6              F90A            CalibrationResultAnalise (main)
                                                    SignalAnalysis (main)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F904 - F905 (0x2 bytes), align: 1
+  Relative segment, address: F90C - F90D (0x2 bytes), align: 1
   Segment part 3.             Intra module refs:   ?Epilogue6
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?Epilogue5              F904            FlashWriteArray (flash)
+           ?Epilogue5              F90C            FlashWriteArray (flash)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F906 - F907 (0x2 bytes), align: 1
+  Relative segment, address: F90E - F90F (0x2 bytes), align: 1
   Segment part 4.             Intra module refs:   ?Epilogue5
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?Epilogue4              F906            ADC_Measure_Simple (main)
+           ?Epilogue4              F90E            ADC_Measure_Simple (main)
                                                    SoftUART_TxString (soft_uart)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F908 - F90F (0x8 bytes), align: 1
+  Relative segment, address: F910 - F917 (0x8 bytes), align: 1
   Segment part 5.             Intra module refs:   ?Epilogue4
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?Epilogue3              F908            StorageProperty (flash)
+           ?Epilogue3              F910            StorageProperty (flash)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?exit
@@ -1911,11 +1918,11 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F944 - F947 (0x4 bytes), align: 1
+  Relative segment, address: F94C - F94F (0x4 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           exit                    F944            Segment part 18 (?cstart)
+           exit                    F94C            Segment part 18 (?cstart)
                calls direct
 
     -------------------------------------------------------------------------
@@ -1924,12 +1931,12 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F6C4 - F6F1 (0x2e bytes), align: 1
+  Relative segment, address: F6CC - F6F9 (0x2e bytes), align: 1
   Segment part 1.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?Mul16                  F6C4 
-           ?Mul16to32u             F6C4            ?Mul16to32s (?Mul16to32s)
+           ?Mul16                  F6CC 
+           ?Mul16to32u             F6CC            ?Mul16to32s (?Mul16to32s)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?Mul16to32s
@@ -1937,11 +1944,11 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F7D0 - F7E9 (0x1a bytes), align: 1
+  Relative segment, address: F7D8 - F7F1 (0x1a bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?Mul16to32s             F7D0            ?Subroutine18 (main)
+           ?Mul16to32s             F7D8            ?Subroutine19 (main)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?DivMod816u
@@ -1949,13 +1956,13 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F81A - F831 (0x18 bytes), align: 1
+  Relative segment, address: F822 - F839 (0x18 bytes), align: 1
   Segment part 1.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?DivMod16u              F81A            ?DivMod16s (?DivMod816s)
-                                                   ?Subroutine6 (main)
-                                                   ?Subroutine8 (main)
+           ?DivMod16u              F822            ?DivMod16s (?DivMod816s)
+                                                   ?Subroutine7 (main)
+                                                   ?Subroutine9 (main)
                                                    AverageData (main)
                                                    main (main)
 
@@ -1965,11 +1972,11 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F694 - F6C3 (0x30 bytes), align: 1
+  Relative segment, address: F69C - F6CB (0x30 bytes), align: 1
   Segment part 1.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?DivMod16s              F694            ?Subroutine7 (main)
+           ?DivMod16s              F69C            ?Subroutine8 (main)
                                                    SignalAnalysis (main)
 
     -------------------------------------------------------------------------
@@ -1978,11 +1985,11 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F62A - F661 (0x38 bytes), align: 1
+  Relative segment, address: F632 - F669 (0x38 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?DivMod32u              F62A            ?DivMod32s (?DivMod32s)
+           ?DivMod32u              F632            ?DivMod32s (?DivMod32s)
                                                    main (main)
 
     -------------------------------------------------------------------------
@@ -1991,11 +1998,11 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F5AE - F5ED (0x40 bytes), align: 1
+  Relative segment, address: F5B6 - F5F5 (0x40 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?DivMod32s              F5AE            ?Subroutine16 (main)
+           ?DivMod32s              F5B6            ?Subroutine17 (main)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?ShiftRight32s_8n
@@ -2003,18 +2010,18 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F8C6 - F8C9 (0x4 bytes), align: 1
+  Relative segment, address: F8CE - F8D1 (0x4 bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?ShiftRight32s_9        F8C6            ?Subroutine16 (main)
+           ?ShiftRight32s_9        F8CE            ?Subroutine17 (main)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F8CA - F8D5 (0xc bytes), align: 1
+  Relative segment, address: F8D2 - F8DD (0xc bytes), align: 1
   Segment part 6.             Intra module refs:   ?ShiftRight32s_9
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?ShiftRight32s_8        F8CA 
+           ?ShiftRight32s_8        F8D2 
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?memcpy
@@ -2022,11 +2029,11 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F86E - F87F (0x12 bytes), align: 1
+  Relative segment, address: F876 - F887 (0x12 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           memcpy                  F86E            ?Subroutine1 (flash)
+           memcpy                  F876            ?Subroutine1 (flash)
                                                    ?Subroutine2 (flash)
                                                    ?Subroutine5 (flash)
                                                    FlashWriteArray (flash)
@@ -2038,18 +2045,18 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: F8D6 - F8E5 (0x10 bytes), align: 1
+  Relative segment, address: F8DE - F8ED (0x10 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __data16_memzero        F8D6            ?cstart_init_zero (?cstart)
+           __data16_memzero        F8DE            ?cstart_init_zero (?cstart)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: F948 - F94B (0x4 bytes), align: 1
+  Relative segment, address: F950 - F953 (0x4 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __data16_memcpy         F948            ?cstart_init_copy (?cstart)
+           __data16_memcpy         F950            ?cstart_init_copy (?cstart)
                calls direct
 
 
@@ -2089,7 +2096,7 @@ DATA16_AN                              10F8 - 10F9               2   rel    0
 DATA16_C                               E000 - E033              34   rel    0
 DATA16_ID                              E034 - E035               2   rel    1
 CSTART                                 E036 - E05D              28   rel    1
-<CODE> 1                               E05E - F94F            18F2   rel    1
+<CODE> 1                               E05E - F957            18FA   rel    1
 INTVEC                                 FFE0 - FFFB              1C   com    1
 RESET                                  FFFE - FFFF               2   rel    1
 REGVAR_AN            REGISTER          0008 - 0009               2   rel    0
@@ -2100,7 +2107,7 @@ REGVAR_AN            REGISTER          0008 - 0009               2   rel    0
                 *                                      *
                 ****************************************
 
- 6 456 bytes of CODE     memory
+ 6 464 bytes of CODE     memory
    472 bytes of DATA     memory (+ 56 absolute )
      0 bytes of REGISTER memory (+  2 absolute )
     54 bytes of CONST    memory (+ 40 absolute )

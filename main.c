@@ -646,7 +646,7 @@ volatile s16	d1, d2, d3, d4;
 #define EXT_ARRAY_LEN	7
 
 //--------------------------------------------------------------------------------
-// Function		: void VLO_TimerCalibr(void)
+// Function		: u8 SignalAnalysis(void)
 // Parameters	: None
 // Return		: 0 - no signal, 1 - signal is existing
 // Description	: The analysis of the input signal on ADC_SAMPLES_NUMBER samples
@@ -1182,7 +1182,7 @@ void main(void) {
 	BCSCTL3 |= LFXT1S_2;                    // Select VLO as low freq clock
 	// End initialization code
 	
-	WDTCTL = WDT_ADLY_16;                   // Interval timer	/* for 50 ms */
+	WDTCTL = WDT_ADLY_1000;                   // Interval timer	/* for 50 ms */
 	//WDTCTL = WDT_ADLY_1_9;                   // Interval timer	/* for 5.9 ms */
 	IE1 |= WDTIE;                           // Enable WDT interrupt
 	//
@@ -1197,16 +1197,18 @@ void main(void) {
 	DeviceMode = MODE_NORM;
 	
 	//!!!!
-	TEST2_DIR |= TEST2_BIT;
-		
-	DelayMs(2000);
+//	TEST2_DIR |= TEST2_BIT;
+	sleep();
+	
+//	DelayMs(2000);
 	
 	Led_Flash(10);
 	DelayMs(300);
 	Led_Flash(10);
 	
 	BREAK_DISABLE();					// Enable BI
-	DelayMs(7000);
+//	DelayMs(7000);
+	sleep();
 	
 	_BIS_SR(GIE);    					// Interrupt enable
 	DeviceStart();
@@ -1221,7 +1223,7 @@ void main(void) {
 	DelayMs(2000);
 	
 	start_timer = 400;		// 4 sec
-	
+	WDTCTL = WDT_ADLY_16;                   // Interval timer	/* for 50 ms */
 // *****************************************************************
 // ******************   M A I N   L O O P  *************************
 // *****************************************************************
@@ -1270,10 +1272,7 @@ void main(void) {
 				start_timer--;
 				if (start_timer == 0) {
 					CalibrFault.byte = CONFIG->calibr_fault;
-					////if (CalibrFault.byte) {
-					////	DeviceMode = MODE_FAULT;
-					////}
-					//
+
 					flash_period_timer = 500;	// Need flash after 5 sec
 					strob_pulse_timer = 0;
 				}
@@ -1486,7 +1485,7 @@ void main(void) {
 					}
 				}
 			}
-				
+			sleep();	
 		} // if (fTimerA1_On 10 ms)
 		
 //-------------------------------------------------------------------------------
@@ -1997,7 +1996,7 @@ __interrupt void CCR0_ISR(void) {
 __interrupt void Timer_A1_ISR (void)  {
 	
 	fTimerA1_On = 1;
-	//__bic_SR_register_on_exit(LPM0_bits);                   // Clear LPM3 bits from 0(SR)
+	__bic_SR_register_on_exit(LPM3_bits);                   // Clear LPM3 bits from 0(SR)
 } 
 
 

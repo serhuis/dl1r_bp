@@ -35,6 +35,7 @@
 #define CRC_ENABLE				1	/* 1 - control memory enable, 0 - control memory disable */
 	
 #define SYS_TICK_TIME			10000	/* in us */
+#define sleep()						__bis_SR_register(CPUOFF + GIE);
 	 
 // Modes of device
 #define	MODE_CALIBR				0x03
