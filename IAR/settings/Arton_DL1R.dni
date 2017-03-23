@@ -55,10 +55,8 @@ ProbeSetup1=1 1 1 4 0 0
 Probe2=Energy
 ProbeSetup2=4 1 1 10 0 0
 [Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\main.c}.1241.3" 0 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\..\main.c}.1209.2" 0 0 0 0 "" 0 ""
-Bp2=_ "STD_CODE" "{$PROJ_DIR$\..\main.c}.1213.2" 0 0 0 0 "" 0 ""
-Count=3
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\main.c}.1239.3" 0 0 0 0 "" 0 ""
+Count=1
 [FET]
 Clock mode=39
 Secure Password=

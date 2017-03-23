@@ -1196,8 +1196,6 @@ void main(void) {
 	//	
 	DeviceMode = MODE_NORM;
 	
-	//!!!!
-//	TEST2_DIR |= TEST2_BIT;
 	sleep();
 	
 //	DelayMs(2000);
