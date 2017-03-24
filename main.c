@@ -1490,13 +1490,15 @@ void main(void) {
 // End of samples of ADC Event
 		if (fEndOfSamples) {	// End of samples of ADC Event
 			fEndOfSamples = 0;
+
+			AMP_PWR_OFF();						// AMP Power Supply Disable			
 			
 			//VREF_Off();						// Vref Disable
 			ADC10CTL0 &= ~ENC;
 			while (ADC10CTL1 & BUSY);           // Wait if ADC10 core is active 
 			ADC10CTL0 &= ~REFON;
 			
-			AMP_PWR_OFF();						// AMP Power Supply Disable
+
 			//AMP_Off_Timer = CONFIG->timer_calibr - CONFIG->timer_calibr / 4 + 1;	//CONFIG->timer_calibr - CONFIG->timer_calibr / 4 + 1;
 			//
 			BCSCTL1 = CALBC1_8MHZ; 					// »спользуем частоту 1 M√ц
@@ -2079,6 +2081,7 @@ __interrupt void ADC10_ISR(void) {
 	adc_process = 0;
 	
 	fEndOfSamples = 1;
+//	AMP_PWR_OFF();
 	
 	//__bic_SR_register_on_exit(CPUOFF);      // Clear CPUOFF bit from 0(SR)
 	

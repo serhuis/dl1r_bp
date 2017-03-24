@@ -129,7 +129,7 @@ __interrupt void PORT2_ISR(void) {
 			
 		STROB_IFG &= ~STROB_BIT;    		// Clear ISR flag
 			
-		//__bic_SR_register_on_exit(LPM3_bits);   // Clear LPM3 bits from 0(SR) Просыпаемся
+		__bic_SR_register_on_exit(LPM3_bits);   // Clear LPM3 bits from 0(SR) Просыпаемся
 	}
 
 	//

@@ -17,7 +17,7 @@ Counter0=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 [EEM Cycle Counter 1]
 Counter1=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 [DebugChecksum]
-Checksum=-532855591
+Checksum=-1460139307
 [CallStack]
 ShowArgs=0
 [Disassembly]
@@ -55,8 +55,7 @@ ProbeSetup1=1 1 1 4 0 0
 Probe2=Energy
 ProbeSetup2=4 1 1 10 0 0
 [Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\main.c}.1239.3" 0 0 0 0 "" 0 ""
-Count=1
+Count=0
 [FET]
 Clock mode=39
 Secure Password=
