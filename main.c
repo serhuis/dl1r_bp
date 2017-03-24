@@ -689,8 +689,6 @@ u8 SignalAnalysis(void) {
 				array_hi[i_hi] = i;
 				if (i_hi < EXT_ARRAY_LEN - 1) i_hi++;
 			}
-			
-			
 		}
 		
 		if (((sample <  signal_array[i - 1]) && (sample <  signal_array[i + 1]) && (sample < signal_array[i - 2]) && (sample < signal_array[i + 2])) ||
@@ -718,11 +716,6 @@ u8 SignalAnalysis(void) {
 	delta = 0;
 	
 	// Filtering
-	/*
-	if (i_max > i_min) {
-		fError = 1;
-	}
-	*/
 	
 	if ((i_lo < 2) || (i_hi < 3)) {
 		// Low signal
