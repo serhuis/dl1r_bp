@@ -1947,34 +1947,16 @@
     </configuration>
   </file>
   <file>
-    <name>$PROJ_DIR$\..\delay.h</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\..\flash.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\flash.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\..\hardware.c</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\..\hardware.h</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\..\main.c</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\..\main.h</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\..\soft_uart.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\soft_uart.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\type.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\..\VersionHistory.txt</name>

@@ -105,7 +105,7 @@ __interrupt void PORT2_ISR(void) {
 		//
 		fRxLineDownOn = 1;
 		//
-		//__bic_SR_register_on_exit(LPM3_bits);   // Clear LPM3 bits from 0(SR) Просыпаемся
+		__bic_SR_register_on_exit(LPM3_bits);   // Clear LPM3 bits from 0(SR) Просыпаемся
 		
 	}
 	//

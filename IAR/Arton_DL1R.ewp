@@ -753,7 +753,7 @@
         </option>
         <option>
           <name>SecondaryOutputFile</name>
-          <state></state>
+          <state>(None for the selected format)</state>
         </option>
         <option>
           <name>XDefines</name>
@@ -805,7 +805,7 @@
         </option>
         <option>
           <name>XclFile</name>
-          <state>lnk0t.xcl</state>
+          <state>$TOOLKIT_DIR$\config\linker\lnk430g2433.xcl</state>
         </option>
         <option>
           <name>XclFileSlave</name>
@@ -893,7 +893,7 @@
         </option>
         <option>
           <name>xcProgramEntryLabel</name>
-          <state></state>
+          <state>__program_start</state>
         </option>
         <option>
           <name>DebugInformation</name>
@@ -933,7 +933,7 @@
         </option>
         <option>
           <name>ExtraOutputFile</name>
-          <state></state>
+          <state>Arton_DL1R.a43</state>
         </option>
         <option>
           <name>ExtraOutputFormat</name>
@@ -2551,34 +2551,16 @@
     </configuration>
   </file>
   <file>
-    <name>$PROJ_DIR$\..\delay.h</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\..\flash.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\flash.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\..\hardware.c</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\..\hardware.h</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\..\main.c</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\..\main.h</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\..\soft_uart.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\soft_uart.h</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\type.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\..\VersionHistory.txt</name>

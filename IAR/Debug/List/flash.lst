@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           22/Mar/2017  10:36:40
+# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           27/Mar/2017  17:10:12
 # Copyright 1996-2015 IAR Systems AB.
 # Standalone license - IAR Embedded Workbench for Texas Instruments MSP430
 #
@@ -70,8 +70,8 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\flash.c
      42          // Area in the flash memory for placing of configuration data
      43          const tEE_CONFIG 	ee_config @ FLASH_SEG_ADDR = {
      44          	// Common section
-     45          		.version = 101,					// v1.01
-     46          		.dev_type = 4,					// Arton-DL1
+     45          		.version = 001,					// v1.01
+     46          		.dev_type = 5,					// Arton-DL1
      47          		.serial = {0xFF, 0xFF, 0xFF},
      48          		.date_prod = 0x0810,
      49          	// Specific section
@@ -84,8 +84,8 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\flash.c
      56          		.limit_low = 20,	
      57          		.limit_hi = 600,
      58          		.calibr_fault = 0,
-     59          		.Gain = 0,
-     60          		.AMP_No = 1,
+     59          		.Gain = 3,
+     60          		.AMP_No = 2,
      61          		//	
      62          		.CS = 0xFFFF,
      63           };
@@ -369,7 +369,7 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\flash.c
       24  FlashWriteByte
       14  FlashWriteSegmentSafe
       24  FlashWriteWord
-      24  GetPropertiesCS
+      22  GetPropertiesCS
       30  SavePropertyCS
        2  SegCBackup
       50  StorageProperty
@@ -378,13 +378,13 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\flash.c
       40  ee_config
 
  
- 454 bytes in segment CODE
+ 452 bytes in segment CODE
   40 bytes in segment DATA16_AC
    6 bytes in segment DATA16_AN
    2 bytes in segment DATA16_I
    2 bytes in segment DATA16_ID
  
- 454 bytes of CODE  memory
+ 452 bytes of CODE  memory
    2 bytes of CONST memory (+ 40 bytes shared)
    2 bytes of DATA  memory (+  6 bytes shared)
 

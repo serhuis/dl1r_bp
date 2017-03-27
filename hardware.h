@@ -128,7 +128,7 @@
 #define STROB_DIR		P2DIR
 #define STROB_IN		P2IN
 #define STROB_OUT		P2OUT
-#define STROB_IES       P2IES
+#define STROB_IES   P2IES
 #define STROB_IFG		P2IFG
 #define STROB_IE		P2IE
 #define STROB_REN		P2REN

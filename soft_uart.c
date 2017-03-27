@@ -39,6 +39,7 @@
 /*********************************************************************************/
 	 
 extern __regvar __no_init tFlags 	f 	 @ __R4; 
+u8  loc_buf[2];
 
 u8		uart_timer;						// Timer for Soft UART routine
 u8		uart_rx_buf[UART_BUF_LEN];		// Receiving buffer for Soft UART routine
@@ -281,13 +282,13 @@ void SoftUART_RxParse(void) {
 			
 			fSendingGraph = 1;
 			
-			/*
+			
 			loc_buf[0] = Q_SEND_GRAPH1;
 			loc_buf[1] = SIGNAL_ARRAY_LEN * 2;
 			SoftUART_TxString(loc_buf, 2);
 			//
 			SoftUART_TxString((u8*)&signal_array[0], SIGNAL_ARRAY_LEN * 2);
-			*/
+			
 			
 			break;
 	}

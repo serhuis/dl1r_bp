@@ -42,8 +42,8 @@ __no_init 	unsigned char SegC[64] 			@FLASH_SEG_ADDR;
 // Area in the flash memory for placing of configuration data
 const tEE_CONFIG 	ee_config @ FLASH_SEG_ADDR = {
 	// Common section
-		.version = 101,					// v1.01
-		.dev_type = 4,					// Arton-DL1
+		.version = 001,					// v1.01
+		.dev_type = 5,					// Arton-DL1
 		.serial = {0xFF, 0xFF, 0xFF},
 		.date_prod = 0x0810,
 	// Specific section
@@ -56,8 +56,8 @@ const tEE_CONFIG 	ee_config @ FLASH_SEG_ADDR = {
 		.limit_low = 20,	
 		.limit_hi = 600,
 		.calibr_fault = 0,
-		.Gain = 0,
-		.AMP_No = 1,
+		.Gain = 3,
+		.AMP_No = 2,
 		//	
 		.CS = 0xFFFF,
  };

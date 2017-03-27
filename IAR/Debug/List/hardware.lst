@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           24/Mar/2017  13:21:50
+# IAR C/C++ Compiler V6.40.1.950/W32 for MSP430           27/Mar/2017  15:47:38
 # Copyright 1996-2015 IAR Systems AB.
 # Standalone license - IAR Embedded Workbench for Texas Instruments MSP430
 #
@@ -133,7 +133,7 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c
     105          		//
     106          		fRxLineDownOn = 1;
     107          		//
-    108          		//__bic_SR_register_on_exit(LPM3_bits);   // Clear LPM3 bits from 0(SR) Просыпаемся
+    108          		__bic_SR_register_on_exit(LPM3_bits);   // Clear LPM3 bits from 0(SR) Просыпаемся
     109          		
     110          	}
     111          	//
@@ -402,7 +402,7 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c
        1  P2SEL
        2  PORT1_ISR
        2  PORT1_ISR::??INTVEC 4
-     246  PORT2_ISR
+     252  PORT2_ISR
        2  PORT2_ISR::??INTVEC 6
        2  STROB_IE_Disable
       14  STROB_IE_Enable
@@ -412,12 +412,12 @@ E:\_ARTON_PROJ\Arton-DL1-R\BP\soft\git\hardware.c
        1  strob
 
  
- 466 bytes in segment CODE
+ 472 bytes in segment CODE
   15 bytes in segment DATA16_AN
    3 bytes in segment DATA16_Z
    4 bytes in segment INTVEC
  
- 466 bytes of CODE  memory
+ 472 bytes of CODE  memory
    0 bytes of CONST memory (+  4 bytes shared)
    3 bytes of DATA  memory (+ 15 bytes shared)
 
