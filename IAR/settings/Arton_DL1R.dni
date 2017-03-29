@@ -17,7 +17,7 @@ Counter0=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 [EEM Cycle Counter 1]
 Counter1=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 [DebugChecksum]
-Checksum=-322850643
+Checksum=1210848831
 [CallStack]
 ShowArgs=0
 [Disassembly]
@@ -27,6 +27,35 @@ Placement=_ 357 384 802 667
 [SfrWindow]
 Show=1 1
 Sort=4 0
+[InterruptLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+SumEnabled=0
+ShowTimeSum=1
+SumSortOrder=0
+[DataLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+SumEnabled=0
+ShowTimeSum=1
+[Breakpoints2]
+Count=0
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[Trace1]
+Enabled=0
+ShowSource=1
+[Simulator]
+Freq=1000000
 [PowerLog]
 Title_0=Energy
 Symbol_0=0 4 0
@@ -55,7 +84,8 @@ ProbeSetup1=1 1 1 4 0 0
 Probe2=Energy
 ProbeSetup2=4 1 1 10 0 0
 [Breakpoints]
-Count=0
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\main.c}.1308.6" 0 0 0 0 "" 0 ""
+Count=1
 [FET]
 Clock mode=39
 Secure Password=

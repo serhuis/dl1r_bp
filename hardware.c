@@ -280,14 +280,6 @@ void AMP_SetGain(u8 value) {
 	if (value & 1) GAIN_1_SET();
 	if (value & 2) GAIN_2_SET();
 	
-	/*
-	GAIN_1_OUT &= ~(GAIN_1_BIT | GAIN_2_BIT);
-	
-	bits =  (value & 1) ? GAIN_1_BIT : 0;
-	bits |= (value & 2) ? GAIN_2_BIT : 0;
-	
-	GAIN_1_OUT |= bits;
-	*/
 }
 
 

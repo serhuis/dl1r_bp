@@ -131,7 +131,7 @@ const u8 calibr_sequence[CALIBR_STAGES][3] = {
 			{  2,    1,     1 },
 			{  2,    2,     1 },
 			{  2,    3,     1 },
-			{  2,    3,     0 },
+			{  2,    2,     0 },
 };
 
 
@@ -464,7 +464,7 @@ void ADC_MeasureInit(u8 input_no, u8 refer) {
 			ADC10CTL0 = SREF_1 + ADC10SHT_1 + MSC + REFOUT + REFON + ADC10ON + ADC10IE + REF2_5V;	// Sample&hold = 8 x ADC10CLKs
 			break;
 		case REF_3_3V:  
-			ADC10CTL0 = SREF_0 + ADC10SHT_1 + MSC + ADC10ON + ADC10IE  + REFOUT + REFON + REF2_5V;	// Sample&hold = 8 x ADC10CLKs
+			ADC10CTL0 = SREF_0 + ADC10SHT_1 + MSC + REFOUT + REFON +ADC10ON + ADC10IE  +  REF2_5V;	// Sample&hold = 8 x ADC10CLKs
 			break;
 	}
 	//
@@ -473,9 +473,11 @@ void ADC_MeasureInit(u8 input_no, u8 refer) {
 	ADC10DTC1 = SIGNAL_ARRAY_LEN;	//ADC_SAMPLES_NUMBER;			// count of conversions
 	//
 	if (input_no == 1) {
-		ADC10CTL1 = ADC10SSEL_2 + ADC10DIV_7 + CONSEQ_2 + ADC_AMP1;     // MCLK + ADC10 Clock Divider Select 6 (DIV = 7),  Input 1
-	}else{
-		ADC10CTL1 = ADC10SSEL_2 + ADC10DIV_7 + CONSEQ_2 + ADC_AMP2;     // MCLK + ADC10 Clock Divider Select 6 (DIV = 7),  Input 2
+//		ADC10CTL1 = ADC10SSEL_2 + ADC10DIV_7 + CONSEQ_2 + ADC_AMP1;     // MCLK + ADC10 Clock Divider Select 6 (DIV = 7),  Input 1
+			ADC10CTL1 = ADC10SSEL_3 + ADC10DIV_7 + CONSEQ_2 + ADC_AMP1;     // MCLK + ADC10 Clock Divider Select 6 (DIV = 7),  Input 1
+			}else{
+//		ADC10CTL1 = ADC10SSEL_2 + ADC10DIV_7 + CONSEQ_2 + ADC_AMP2;     // MCLK + ADC10 Clock Divider Select 6 (DIV = 7),  Input 2
+			ADC10CTL1 = ADC10SSEL_3 + ADC10DIV_7 + CONSEQ_2 + ADC_AMP2;     // MCLK + ADC10 Clock Divider Select 6 (DIV = 7),  Input 1
 	}
 	
 	ADC10AE0 |= ADC_AE;                     // A0 & A1 ADC option select
@@ -1775,7 +1777,7 @@ label_light:
 			
 			_BIC_SR(GIE);    			// Запрещаем прерывания
 //			Timer_A0_SetDelay(2250);
-			Timer_A0_SetDelay(1500);
+			Timer_A0_SetDelay(700);
 			_BIS_SR(GIE);    			// Разрешаем прерывания
 			//
 			BCSCTL1 = CALBC1_8MHZ; 		// Используем частоту 8 MГц
